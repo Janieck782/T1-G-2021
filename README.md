@@ -2,12 +2,19 @@
 El entregable debe ser un sitio que sea instalable auto contenido, es decir que incluya todas las
 librerías necesarias sin requerir instalación adicional en el servidor. Debe ser capaz de ejecutarse en un
 entorno Windows con los siguientes elementos:
+
 • Apache v 2.4
+
 • IIS v 7.5
+
 • .NET v 4.8
+
 • Tomcat 8.0
+
 • PHP v 7.3
+
 • Java 1.8.0_91
+
 Se reitera que los entregables que no corran en dichos entornos se consideran como entregas no conforme a
 lo estipulado, implicando nota mínima. Los trabajos con lenguajes compilables, deben incluir en la pauta las
 indicaciones de compilación. Que un trabajo no compile o no vengan las instrucciones de compilación, se
