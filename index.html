@@ -1,7 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Network</title>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grafos 1</title>
+
+  <link rel="preload" href="css/normalize.css" as="style">
+  <link rel="stylesheet" href="css/normalize.css">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
+
+  <link rel="preload" href="css/styles.css" as="style">
+  <link rel="stylesheet" href="css/styles.css">
+  
+    <!--Codigo que interactua con el grafo-->
     <script
       type="text/javascript"
       src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"
@@ -9,13 +23,17 @@
     <style type="text/css">
       #mynetwork {
         width: 500px;
-        height: 600px;
-        border: 1px solid lightgray;
+        height: 700px;
+        border: 1px solid rgb(90, 72, 72);
       }
     </style>
-  </head>
-  <body>
-    <div id="mynetwork"></div>
+</head>
+
+<body>
+  
+    <h1>Trabajo 1 de GRAFOS Y LENGUAJES FORMALES</h1>
+  
+    <div class="network" id="mynetwork"></div>
     <script type="text/javascript">
       // create an array with nodes
       var nodes = new vis.DataSet([
@@ -24,13 +42,8 @@
         { id: 3, label: "Node 3" },
         { id: 4, label: "Node 4" },
         { id: 5, label: "Node 5" },
-        { id: 6, label: "A" },
-        { id: 7, label: "Node 1" },
-        { id: 8, label: "Node 2" },
-        { id: 9, label: "Node 3" },
-        { id: 10, label: "Node 4" },
-        { id: 11, label: "Node 5" },
-        { id: 12, label: "A" },
+        { id: 6, label: "Node 6" },
+
       ]);
 
       // create an array with edges
@@ -38,11 +51,9 @@
         { from: 1, to: 3 },
         { from: 1, to: 5 },
         { from: 1, to: 4 },
-        { from: 4, to: 3 },
-        { from: 1, to: 2 },
-        { from: 2, to: 4 },
-        { from: 2, to: 5 },
-        { from: 3, to: 3 },
+        { from: 5, to: 6 },
+
+   
       ]);
 
       // create a network
@@ -54,5 +65,6 @@
       var options = {};
       var network = new vis.Network(container, data, options);
     </script>
-  </body>
+  
+</body>
 </html>
