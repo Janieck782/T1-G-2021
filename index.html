@@ -1,70 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Grafos 1</title>
+  <title>Trabajo 1</title>
 
+  <!--normalize.css-->
   <link rel="preload" href="css/normalize.css" as="style">
   <link rel="stylesheet" href="css/normalize.css">
-
+  <!--Fuente Noto Sans-->
   <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
+  <!--LLamada a css-->
   <link rel="preload" href="css/styles.css" as="style">
   <link rel="stylesheet" href="css/styles.css">
-  
-    <!--Codigo que interactua con el grafo-->
-    <script
-      type="text/javascript"
-      src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"
-    ></script>
-    <style type="text/css">
-      #mynetwork {
-        width: 500px;
-        height: 700px;
-        border: 1px solid rgb(90, 72, 72);
-      }
-    </style>
+  <!--Llamada a la libreria Vis.js-->
+  <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+    <!--Crea el recuadro-->
+  <style type="text/css">
+    #mynetwork {
+      width: 500px;
+      height: 700px;
+      border: 1px solid rgb(255, 255, 255);
+    }
+  </style>
+  <style type="text/css">
+    #opciones {
+      width: 500px;
+      height: 700px;
+      border: 1px solid rgb(255, 255, 255);
+      background-color: white;
+      margin: 0 auto ;
+      
+    }
+  </style>
 </head>
 
 <body>
-  
-    <h1>Trabajo 1 de GRAFOS Y LENGUAJES FORMALES</h1>
-  
-    <div class="network" id="mynetwork"></div>
-    <script type="text/javascript">
-      // create an array with nodes
-      var nodes = new vis.DataSet([
-        { id: 1, label: "Node 1" },
-        { id: 2, label: "Node 2" },
-        { id: 3, label: "Node 3" },
-        { id: 4, label: "Node 4" },
-        { id: 5, label: "Node 5" },
-        { id: 6, label: "Node 6" },
 
-      ]);
+  <h1>Trabajo 1 de GRAFOS Y LENGUAJES FORMALES</h1>
 
-      // create an array with edges
-      var edges = new vis.DataSet([
-        { from: 1, to: 3 },
-        { from: 1, to: 5 },
-        { from: 1, to: 4 },
-        { from: 5, to: 6 },
-
-   
-      ]);
-
-      // create a network
-      var container = document.getElementById("mynetwork");
-      var data = {
-        nodes: nodes,
-        edges: edges,
-      };
-      var options = {};
-      var network = new vis.Network(container, data, options);
-    </script>
-  
+  <!--Seccion que almacena el grafo-->
+  <div class="network" id="mynetwork"></div>
+  <script type="text/javascript">
+    // crea un array con los nodos
+    var nodes = new vis.DataSet([
+    //ej: {id: 1, label: "Node 1"},
+      {id: 1, label: "Node 1"},
+      {id: 2, label: "Node 2"},
+      {id: 3, label: "Node 3"},
+      {id: 4, label: "Node 4"},
+      {id: 5, label: "Node 5"},
+      {id: 6, label: "Node 6"},
+    ]);
+    // crea un array con los vertices
+    var edges = new vis.DataSet([
+    //ej: {from: 1, to: 3, label:"peso de la arista/ponderado"},
+      {from: 1, to: 3},
+      {from: 1, to: 5},
+      {from: 1, to: 4},
+      {from: 5, to: 6},
+    ]);
+    // Crea el Contenedor
+    var container = document.getElementById("mynetwork");
+    //Junta nodos y edges para inicializar el grafo
+    var data = {
+      nodes: nodes,
+      edges: edges,
+    };
+    //Variable que almacena configuraciones del grafo
+    var options = {
+      edges:{
+        arrows:{
+          to:{
+            enabled: true,
+          }
+        }
+      },
+      configure:{
+        enabled:true,
+        container:getElementById("opciones"),
+        showButton: true,
+      }
+    };
+    //inicializa el grafo (Recuadro contenedor,Informacion de vertices y aristas, opciones del grafo)
+    var network = new vis.Network(container, data, options);
+  </script>
+    <section id= "opciones"></section>
 </body>
+
 </html>
