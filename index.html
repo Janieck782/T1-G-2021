@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
 
-<head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trabajo 1</title>
+    <title>Trabajo 1 │ GRAFOS Y LENGUAJES FORMALES</title>
 
     <!--normalize.css-->
     <link rel="preload" href="css/normalize.css" as="style">
@@ -19,30 +19,115 @@
     <!--Llamada a la libreria Vis.js-->
     <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
     <!--Crea el recuadro-->
-</head>
 
-<body>
+    <script
+    type="text/javascript"
+    src="../../../standalone/umd/vis-network.min.js"
+
+  ></script>
+
+  </head>
+
+  <body onload="draw();">
 
     <h1>Trabajo 1 de GRAFOS Y LENGUAJES FORMALES</h1>
+        <!--Llama las funciones JS-->
+        <script src="js/app.js"></script>
 
-    <section class="columnas"><!--Seccion que almacena el grafo-->
-    <div id="mynetwork"></div>
-    <!--Llama las funciones JS-->
-    <script src="js/app.js"></script>
-
-    <div id="opciones">
-    <h3>Parametros</h3>
-    <button type="button" onclick="graph()">Actualizar</button>
-    
-    <div id="optionsContainer"></div>
+        <h2 class="titulo">Grafo</h2>
+        <div id="mynetwork"></div>
+        <h2 class="titulo">Parametros</h2>
+    <div class="parametros">
+    <table>
+      <tr>
+        <td>
+          <h2>Nodos</h2>
+          <table>
+            <tr>
+              <td></td>
+              <td><label for="node-id">Id</label></td>
+              <td><input id="node-id" type="text" value="6" /></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><label for="node-label">Nombre</label></td>
+              <td><input id="node-label" type="text" value="Nodo 6" /></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>Accion</td>
+              <td>
+                <button id="node-add" onclick="addNode();">Añadir</button>
+                <button id="node-update" onclick="updateNode();">Actualizar</button>
+                <button id="node-remove" onclick="removeNode();">Remover</button>
+              </td>
+            </tr>
+          </table>
+        </td>
+        <td>
+          <h2>Aristas</h2>
+          <table>
+            <tr>
+              <td></td>
+              <td><label for="edge-id">Id</label></td>
+              <td><input id="edge-id" type="text" value="5" /></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><label for="edge-from">Desde</label></td>
+              <td><input id="edge-from" type="text" value="3" /></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><label for="edge-to">Hacia</label></td>
+              <td><input id="edge-to" type="text" value="4" /></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>Accion</td>
+              <td>
+                <button id="edge-add" onclick="addEdge();">Añadir</button>
+                <button id="edge-update" onclick="updateEdge();">Actualizar</button>
+                <button id="edge-remove" onclick="removeEdge();">Remover</button>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
 </div>
-    </section>
+
+    <h1 class="titulo">Variables</h1>
+    <div class ="variables"  >
+    <table class="view">
+      <colgroup>
+        <col width="25%" />
+        <col width="25%" />
+        <col width="50%" />
+      </colgroup>
+      <tr>
+        <td>
+          <h2>Nodos</h2>
+          <pre id="nodes"></pre>
+        </td>
+
+        <td>
+          <h2>Aristas</h2>
+          <pre id="edges"></pre>
+        </td>
+
+        <td>
+          
+
+          
+        </td>
+      </tr>
+    </table>
+</div>
 
     <footer class="footer">
         <p>Estudiantes Universidad Tecnologica Metropolitana</p>
     </footer>
 
-
-</body>
-
+  </body>
 </html>
