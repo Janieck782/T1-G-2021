@@ -26,6 +26,7 @@ function updateNode() {
     alert(err);
   }
 }
+
 function removeNode() {
   try {
     nodes.remove({ id: document.getElementById("node-id").value });
@@ -40,6 +41,7 @@ function addEdge() {
       id: document.getElementById("edge-id").value,
       from: document.getElementById("edge-from").value,
       to: document.getElementById("edge-to").value,
+      arrows: "to",
     });
   } catch (err) {
     alert(err);
@@ -96,10 +98,10 @@ function draw() {
   });
 
   edges.add([
-    { id: "1", from: "1", to: "2" },
-    { id: "2", from: "1", to: "3" },
-    { id: "3", from: "2", to: "4" },
-    { id: "4", from: "2", to: "5" },
+    { id: "1", from: "1", to: "2", arrows: "to" },
+    { id: "2", from: "1", to: "3", arrows: "to" },
+    { id: "3", from: "2", to: "4", arrows: "to" },
+    { id: "4", from: "2", to: "5", arrows: "to"  },
   ]);
 
   // create a network
@@ -115,7 +117,9 @@ function draw() {
 
 function UpdMatrix() {
   var Table = document.getElementById("table");
+
   Table.innerHTML = "";
+
   var mapfrom = edges.map((edges) => edges.from);
   console.log(mapfrom);
 
@@ -129,9 +133,6 @@ function UpdMatrix() {
   for (var i = 0; i < mapto.length; i++) {
     mapto[i] = +mapto[i];
   }
-
-  var from = mapfrom.reverse();
-  var to = mapto.reverse();
 
   var a = nodes.length;
 
@@ -175,10 +176,9 @@ function UpdMatrix() {
        cell.innerHTML = matrix[i][j];
      }
    }
-
-
-   
 }
+
+
 
 window.addEventListener("load", () => {
     draw();
