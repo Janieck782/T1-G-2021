@@ -168,14 +168,14 @@ function UpdMatrix() {
 
   console.log(matrix);
 
-   for (var i = 0; i < matrix.length; i++) {
-     var newRow = table.insertRow(table.length);
-     for (var j = 0; j < matrix[i].length; j++) {
-       var cell = newRow.insertCell(j);
+  for (var i = 0; i < matrix.length; i++) {
+    var newRow = table.insertRow(table.length);
+    for (var j = 0; j < matrix[i].length; j++) {
+      var cell = newRow.insertCell(j);
 
-       cell.innerHTML = matrix[i][j];
-     }
-   }
+      cell.innerHTML = matrix[i][j];
+    }
+  }
 }
 
 
