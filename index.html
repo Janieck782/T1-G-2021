@@ -56,9 +56,10 @@
               <td></td>
               <td>Action</td>
               <td>
-                <button id="node-add" onclick="addNode();">Add</button>
-                <button id="node-update" onclick="updateNode();">Update</button>
-                <button id="node-remove" onclick="removeNode();">Remove</button>
+                <button id="node-add" onclick="addNode();">Añadir</button>
+                <button id="node-update" onclick="updateNode();">Actualizar</button>
+                <button id="node-remove" onclick="removeNode();">Remover</button>
+                <!-- <button id="imprimir" onclick="imprimirmatriz();">Imprimir</button> -->
               </td>
             </tr>
           </table>
@@ -85,9 +86,10 @@
               <td></td>
               <td>Action</td>
               <td>
-                <button id="edge-add" onclick="addEdge();">Add</button>
-                <button id="edge-update" onclick="updateEdge();">Update</button>
-                <button id="edge-remove" onclick="removeEdge();">Remove</button>
+                <button id="edge-add" onclick="addEdge();">Añadir</button>
+                <button id="edge-update" onclick="updateEdge();">Actualizar</button>
+                <button id="edge-remove" onclick="removeEdge();">Remover</button>
+                <button id="update" onclick="UpdMatrix();">Actualizar matriz</button>
               </td>
             </tr>
           </table>
@@ -112,13 +114,23 @@
           <h2>Edges</h2>
           <pre id="edges"></pre>
         </td>
-
+        
         <td>
-          <h2>Network</h2>
+          <h2>Matriz</h2>
+          <table id="table"></table>
+        </td>          
 
-          <div id="mynetwork"></div>
-        </td>
       </tr>
     </table>
+
+     
+  </table>
+</div>
+
+
+    <footer class="footer">
+        <p>Estudiantes Universidad Tecnologica Metropolitana</p>
+    </footer>
+
   </body>
 </html>
