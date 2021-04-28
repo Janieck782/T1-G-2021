@@ -50,6 +50,7 @@ table td {
 table table {
   background-color: #f5f5f5;
   border: 1px solid #e5e5e5;
+
 }
 
 table table td {
@@ -105,7 +106,8 @@ pre {
     box-shadow: 0px 5px 15px 0px rgba(143,143,143,0.51);
     padding: 0px;
     border-radius: 5px;
-    margin: 0 auto ;
+    margin: auto ;
+
 }
 
 .variables {
@@ -129,3 +131,17 @@ pre {
     margin: 20px 20px ;
     border: 1px solid #95afc0;
   }
+
+  #table {
+    
+    font-size: 150%;
+    border-radius: 5px;
+    margin: 20px 20px ;
+    border: 1px solid #95afc0;
+    margin: auto;
+    
+
+  }
+
+
+  

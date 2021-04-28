@@ -1,4 +1,4 @@
-var nodes, edges, network;
+var nodes, edges, network, matrix;
 
 // convenience method to stringify a JSON object
 function toJSON(obj) {
@@ -45,6 +45,7 @@ function addEdge() {
     alert(err);
   }
 }
+
 function updateEdge() {
   try {
     edges.update({
@@ -54,8 +55,9 @@ function updateEdge() {
     });
   } catch (err) {
     alert(err);
-  }
+    }
 }
+
 function removeEdge() {
   try {
     edges.remove({ id: document.getElementById("edge-id").value });
@@ -74,6 +76,7 @@ function draw() {
       4
     );
   });
+
   nodes.add([
     { id: "1", label: "Nodo 1" },
     { id: "2", label: "Nodo 2" },
@@ -91,6 +94,7 @@ function draw() {
       4
     );
   });
+
   edges.add([
     { id: "1", from: "1", to: "2" },
     { id: "2", from: "1", to: "3" },
@@ -100,15 +104,82 @@ function draw() {
 
   // create a network
   var container = document.getElementById("mynetwork");
+
   var data = {
     nodes: nodes,
     edges: edges,
   };
   var options = {};
   network = new vis.Network(container, data, options);
+  }
+
+function UpdMatrix() {
+  var Table = document.getElementById("table");
+  Table.innerHTML = "";
+  var mapfrom = edges.map((edges) => edges.from);
+  console.log(mapfrom);
+
+  var mapto = edges.map((edges) => edges.to);
+  console.log(mapto);
+
+  for (var i = 0; i < mapfrom.length; i++) {
+    mapfrom[i] = +mapfrom[i];
+  }
+
+  for (var i = 0; i < mapto.length; i++) {
+    mapto[i] = +mapto[i];
+  }
+
+  var from = mapfrom.reverse();
+  var to = mapto.reverse();
+
+  var a = nodes.length;
+
+  let matrix = new Array(a + 1);
+
+  for (let i = 0; i < matrix.length; i++) {
+    matrix[i] = new Array(matrix.length);
+  }
+
+  for (let i = 0; i < matrix.length; i++) {
+    for (let j = 0; j < matrix[i].length; j++) {
+      matrix[i][j] = 0;
+    }
+  }
+
+  for(let i = 0;i < matrix.length;i++) {
+    matrix[i][0] = i;
+  }
+
+  for(let j = 0;j < matrix.length;j++) {
+    matrix[0][j] = j;
+  }
+
+  for (let c = 0; c <= matrix.length; c++) {
+    for (let i = 0; i < matrix.length; i++) {
+      for (let j = 0; j < matrix[i].length; j++) {
+        if (i === mapfrom[c] && j === mapto[c]) {
+          matrix[i][j] = 1;
+        }
+      }
+    }
+  }
+
+  console.log(matrix);
+
+   for (var i = 0; i < matrix.length; i++) {
+     var newRow = table.insertRow(table.length);
+     for (var j = 0; j < matrix[i].length; j++) {
+       var cell = newRow.insertCell(j);
+
+       cell.innerHTML = matrix[i][j];
+     }
+   }
+
+
+   
 }
 
 window.addEventListener("load", () => {
     draw();
   });
-  

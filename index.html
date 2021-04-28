@@ -89,21 +89,27 @@
                 <button id="edge-add" onclick="addEdge();">Añadir</button>
                 <button id="edge-update" onclick="updateEdge();">Actualizar</button>
                 <button id="edge-remove" onclick="removeEdge();">Remover</button>
+                
               </td>
             </tr>
           </table>
         </td>
+        <td class="buttonM">
+          <h2>  Actualizar Matriz</h2>
+    <button if="matrix" onclick="UpdMatrix();">Matriz</button>
+        </td>
       </tr>
     </table>
+    
 </div>
 
     <h1 class="titulo">Variables</h1>
     <div class ="variables"  >
     <table class="view">
       <colgroup>
-        <col width="25%" />
-        <col width="25%" />
-        <col width="50%" />
+        <col width="33%" />
+        <col width="33%" />
+        <col width="33%" />
       </colgroup>
       <tr>
         <td>
@@ -117,13 +123,12 @@
         </td>
 
         <td>
-          
-
-          
+          <h2 class="nombreM">Matriz</h2>
+          <table id="table" border="1"></table>
         </td>
       </tr>
     </table>
-</div>
+  </div>
 
     <footer class="footer">
         <p>Estudiantes Universidad Tecnologica Metropolitana</p>
