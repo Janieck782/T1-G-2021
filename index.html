@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trabajo 1</title>
+    <title>Trabajo 1 │ GRAFOS Y LENGUAJES FORMALES</title>
 
     <!--normalize.css-->
     <link rel="preload" href="css/normalize.css" as="style">
@@ -29,18 +29,19 @@
   </head>
 
   <body onload="draw();">
-    <p>
-      This example demonstrates dynamically adding, updating and removing nodes
-      and edges using a DataSet.
-    </p>
 
-    <h1>Adjust</h1>
+    <h1>Trabajo 1 de GRAFOS Y LENGUAJES FORMALES</h1>
         <!--Llama las funciones JS-->
         <script src="js/app.js"></script>
+
+        <h2 class="titulo">Grafo</h2>
+        <div id="mynetwork"></div>
+        <h2 class="titulo">Parametros</h2>
+    <div class="parametros">
     <table>
       <tr>
         <td>
-          <h2>Node</h2>
+          <h2>Nodos</h2>
           <table>
             <tr>
               <td></td>
@@ -49,23 +50,22 @@
             </tr>
             <tr>
               <td></td>
-              <td><label for="node-label">Label</label></td>
-              <td><input id="node-label" type="text" value="Node 6" /></td>
+              <td><label for="node-label">Nombre</label></td>
+              <td><input id="node-label" type="text" value="Nodo 6" /></td>
             </tr>
             <tr>
               <td></td>
-              <td>Action</td>
+              <td>Accion</td>
               <td>
                 <button id="node-add" onclick="addNode();">Añadir</button>
                 <button id="node-update" onclick="updateNode();">Actualizar</button>
                 <button id="node-remove" onclick="removeNode();">Remover</button>
-                <!-- <button id="imprimir" onclick="imprimirmatriz();">Imprimir</button> -->
               </td>
             </tr>
           </table>
         </td>
         <td>
-          <h2>Edge</h2>
+          <h2>Aristas</h2>
           <table>
             <tr>
               <td></td>
@@ -74,30 +74,32 @@
             </tr>
             <tr>
               <td></td>
-              <td><label for="edge-from">From</label></td>
+              <td><label for="edge-from">Desde</label></td>
               <td><input id="edge-from" type="text" value="3" /></td>
             </tr>
             <tr>
               <td></td>
-              <td><label for="edge-to">To</label></td>
+              <td><label for="edge-to">Hacia</label></td>
               <td><input id="edge-to" type="text" value="4" /></td>
             </tr>
             <tr>
               <td></td>
-              <td>Action</td>
+              <td>Accion</td>
               <td>
                 <button id="edge-add" onclick="addEdge();">Añadir</button>
                 <button id="edge-update" onclick="updateEdge();">Actualizar</button>
                 <button id="edge-remove" onclick="removeEdge();">Remover</button>
-                <button id="update" onclick="UpdMatrix();">Actualizar matriz</button>
+                <button if="matrix" onclick="UpdMatrix();">Matriz</button>
               </td>
             </tr>
           </table>
         </td>
       </tr>
     </table>
+</div>
 
-    <h1>View</h1>
+    <h1 class="titulo">Variables</h1>
+    <div class ="variables"  >
     <table class="view">
       <colgroup>
         <col width="25%" />
@@ -106,27 +108,23 @@
       </colgroup>
       <tr>
         <td>
-          <h2>Nodes</h2>
+          <h2>Nodos</h2>
           <pre id="nodes"></pre>
         </td>
 
         <td>
-          <h2>Edges</h2>
+          <h2>Aristas</h2>
           <pre id="edges"></pre>
         </td>
-        
+
         <td>
           <h2>Matriz</h2>
-          <table id="table"></table>
-        </td>          
+          <table id="table" border="1">
 
+        </td>
       </tr>
     </table>
-
-     
-  </table>
 </div>
-
 
     <footer class="footer">
         <p>Estudiantes Universidad Tecnologica Metropolitana</p>

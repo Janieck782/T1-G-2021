@@ -119,7 +119,6 @@ function UpdMatrix() {
   var mapfrom = edges.map((edges) => edges.from);
   console.log(mapfrom);
 
-
   var mapto = edges.map((edges) => edges.to);
   console.log(mapto);
 
@@ -184,4 +183,3 @@ function UpdMatrix() {
 window.addEventListener("load", () => {
     draw();
   });
-
