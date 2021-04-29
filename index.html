@@ -69,6 +69,8 @@
           <table>
             <tr>
               <td></td>
+              <input type="Radio" id="nodir" name="tipo" checked> No dirigido
+              <input type="Radio" id="dirigido" name="tipo"> Dirigido
               <td><label for="edge-id">Id</label></td>
               <td><input id="edge-id" type="text" value="5" /></td>
             </tr>
@@ -89,13 +91,17 @@
                 <button id="edge-add" onclick="addEdge();">Añadir</button>
                 <button id="edge-update" onclick="updateEdge();">Actualizar</button>
                 <button id="edge-remove" onclick="removeEdge();">Remover</button>
+                <button id="update-all" onclick="draw();">draw</button>
+                
+                <!-- <button id="camino" onclick="Bellman_Ford();">Camino</button> -->
               </td>
             </tr>
           </table>
         </td>
         <td class="buttonM">
           <h2>  Actualizar Matriz</h2>
-    <button if="matrix" onclick="UpdMatrix();">Matriz</button>
+    <button id="matrix" onclick="UpdMatrix();">Matriz</button>
+    <!-- <button id="matrixcamino" onclick="matrizCamino();">Camino</button> -->
         </td>
       </tr>
     </table>

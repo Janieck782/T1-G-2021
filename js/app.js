@@ -1,4 +1,5 @@
 var nodes, edges, network, matrix;
+const INF = Number.MAX_SAFE_INTEGER;
 
 // convenience method to stringify a JSON object
 function toJSON(obj) {
@@ -36,6 +37,33 @@ function removeNode() {
 }
 
 function addEdge() {
+  var nodir = document.getElementById("nodir");
+  var dirigido = document.getElementById("dirigido");
+  if (nodir.checked == true) {
+    try {
+      edges.add({
+        id: document.getElementById("edge-id").value,
+        from: document.getElementById("edge-from").value,
+        to: document.getElementById("edge-to").value,
+      });
+    } catch (err) {
+      alert(err);
+    }
+  } else if (dirigido.checked == true) {
+    try {
+      edges.add({
+        id: document.getElementById("edge-id").value,
+        from: document.getElementById("edge-from").value,
+        to: document.getElementById("edge-to").value,
+        arrows: "to",
+      });
+    } catch (err) {
+      alert(err);
+    }
+  }
+}
+
+function updateEdge() {
   try {
     edges.add({
       id: document.getElementById("edge-id").value,
@@ -46,18 +74,6 @@ function addEdge() {
   } catch (err) {
     alert(err);
   }
-}
-
-function updateEdge() {
-  try {
-    edges.update({
-      id: document.getElementById("edge-id").value,
-      from: document.getElementById("edge-from").value,
-      to: document.getElementById("edge-to").value,
-    });
-  } catch (err) {
-    alert(err);
-    }
 }
 
 function removeEdge() {
@@ -97,12 +113,25 @@ function draw() {
     );
   });
 
-  edges.add([
-    { id: "1", from: "1", to: "2", arrows: "to" },
-    { id: "2", from: "1", to: "3", arrows: "to" },
-    { id: "3", from: "2", to: "4", arrows: "to" },
-    { id: "4", from: "2", to: "5", arrows: "to"  },
-  ]);
+  var nodir = document.getElementById("nodir");
+  var dirigido = document.getElementById("dirigido");
+
+  if(nodir.checked == true){
+    edges.add([
+      { id: "1", from: "1", to: "2",},
+      { id: "2", from: "1", to: "3",},
+      { id: "3", from: "2", to: "4",},
+      { id: "4", from: "2", to: "5",},
+    ]);
+  } else if(dirigido.checked == true) {
+    edges.add([
+      { id: "1", from: "1", to: "2", arrows: "to"},
+      { id: "2", from: "1", to: "3", arrows: "to"},
+      { id: "3", from: "2", to: "4", arrows: "to"},
+      { id: "4", from: "2", to: "5", arrows: "to"},
+    ]);
+  }
+  
 
   // create a network
   var container = document.getElementById("mynetwork");
@@ -134,12 +163,10 @@ function UpdMatrix() {
     mapto[i] = +mapto[i];
   }
 
-  var a = nodes.length;
+  let matrix = new Array(nodes.length);
 
-  let matrix = new Array(a + 1);
-
-  for (let i = 0; i < matrix.length; i++) {
-    matrix[i] = new Array(matrix.length);
+  for (let i = 0; i < (nodes.length); i++) {
+    matrix[i] = new Array(nodes.length);
   }
 
   for (let i = 0; i < matrix.length; i++) {
@@ -148,24 +175,15 @@ function UpdMatrix() {
     }
   }
 
-  for(let i = 0;i < matrix.length;i++) {
-    matrix[i][0] = i;
-  }
-
-  for(let j = 0;j < matrix.length;j++) {
-    matrix[0][j] = j;
-  }
-
-  for (let c = 0; c <= matrix.length; c++) {
-    for (let i = 0; i < matrix.length; i++) {
-      for (let j = 0; j < matrix[i].length; j++) {
-        if (i === mapfrom[c] && j === mapto[c]) {
+  for (let c = 0; c < matrix.length; c++) {
+    for (let i = 0; i < (matrix.length); i++) {
+      for (let j = 0; j < (matrix[i].length); j++) {
+        if (i+1 === mapfrom[c] && j+1 === mapto[c]) {
           matrix[i][j] = 1;
         }
       }
     }
   }
-
   console.log(matrix);
 
   for (var i = 0; i < matrix.length; i++) {
@@ -175,10 +193,26 @@ function UpdMatrix() {
 
       cell.innerHTML = matrix[i][j];
     }
-  }
+  } 
+
+  dist = matrix;
+    for (let i = 0; i < nodes.length ; i++){
+        for (let j = 0; j < nodes.length; j++){
+            if (i != j && dist[i][j] === 0) dist[i][j] = INF; 
+            //las parejas de nodos sin arco están a distancia inf (p.e. 1e9)
+        }
+    }
+
+    for (var k = 0; k < nodes.length; k++){ //por cada nodo intermedio k
+        for (var i = 0; i < nodes.length; i++){
+            for (var j = 0; j < nodes.length; j++){ //miramos todas las parejas de nodos
+                dist[i][j] = Math.min(dist[i][j], dist[i][k] + dist[k][j]);
+                //Si pasando por k mejoramos el resultado, lo actualizamos
+            }
+        }
+    }
+    console.log(dist);
 }
-
-
 
 window.addEventListener("load", () => {
     draw();
