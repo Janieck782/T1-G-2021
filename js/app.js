@@ -5,6 +5,9 @@ function toJSON(obj) {
   return JSON.stringify(obj, null, 4);
 }
 
+
+
+
 function addNode() {
   try {
     nodes.add({
@@ -109,9 +112,73 @@ function draw() {
     nodes: nodes,
     edges: edges,
   };
-  var options = {};
+  var options = {
+    "nodes": {
+      
+      "shape": "circle",
+      
+    },
+    edges:{
+      arrows:{
+        to:{
+          enabled: false,
+        }
+      }
+    },
+    configure:{
+      enabled: false,
+      container: document.getElementById("parametross"),
+      showButton: true,
+    },
+    //permite interactuar con el grafo
+    "manipulation": {
+      "enabled": false,
+      "initiallyActive": false
+  },
+  
+};
   network = new vis.Network(container, data, options);
   }
+
+  function direv(){
+    var nodir = document.getElementById("nodir");
+    var dirigido = document.getElementById("dirigido");
+    if (nodir.checked == true) {
+      try {
+        options = {
+          edges:{
+            arrows:{
+              to:{
+                enabled: false,
+              }
+            }
+          },
+        
+      };
+      network.setOptions(options);
+      } catch (err) {
+        alert(err);
+      }
+    } else if (dirigido.checked == true) {
+      try {
+         options = {
+          edges:{
+            arrows:{
+              to:{
+                enabled: true,
+              }
+            }
+          },
+        
+      };
+      network.setOptions(options);
+      } catch (err) {
+        alert(err);
+      }
+    }
+  
+  }
+
 
 function UpdMatrix() {
   var Table = document.getElementById("table");
