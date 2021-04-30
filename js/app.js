@@ -170,50 +170,51 @@ function draw() {
   network = new vis.Network(container, data, options);
   }
 
-  function direv(){
-    var nodir = document.getElementById("nodir");
-    var dirigido = document.getElementById("dirigido");
-    if (nodir.checked == true) {
-      try {
-        options = {
-          edges:{
-            arrows:{
-              to:{
-                enabled: false,
-              }
+function direv(){
+  var nodir = document.getElementById("nodir");
+  var dirigido = document.getElementById("dirigido");
+  if (nodir.checked == true) {
+    try {
+      options = {
+        edges:{
+          arrows:{
+            to:{
+              enabled: false,
             }
-          },
-        
-      };
-      network.setOptions(options);
-      } catch (err) {
-        alert(err);
-      }
-    } else if (dirigido.checked == true) {
-      try {
-         options = {
-          edges:{
-            arrows:{
-              to:{
-                enabled: true,
-              }
-            }
-          },
-        
-      };
-      network.setOptions(options);
-      } catch (err) {
-        alert(err);
-      }
+          }
+        },
+      
+    };
+    network.setOptions(options);
+    } catch (err) {
+      alert(err);
     }
-  
+  } else if (dirigido.checked == true) {
+    try {
+        options = {
+        edges:{
+          arrows:{
+            to:{
+              enabled: true,
+            }
+          }
+        },
+      
+    };
+    network.setOptions(options);
+    } catch (err) {
+      alert(err);
+    }
   }
 
+}
 
 function UpdMatrix() {
   var Table = document.getElementById("table");
-
   Table.innerHTML = "";
+
+  var table2 = document.getElementById("table2");
+  table2.innerHTML = "";
 
   var mapfrom = edges.map((edges) => edges.from);
   console.log(mapfrom);
@@ -241,10 +242,32 @@ function UpdMatrix() {
     }
   }
 
+  if (nodir.checked == true) {
+    for (let c = 0; c < matrix.length; c++) {
+      for (let i = 0; i < (matrix.length); i++) {
+        for (let j = 0; j < (matrix[i].length); j++) {
+          if (i + 1 === mapfrom[c] && j + 1 === mapto[c]) {
+            matrix[i][j] = 1;
+            matrix[j][i] = 1;
+          }
+        }
+      }
+    }
+  } else if(dirigido.checked == true) {
+    for (let c = 0; c < matrix.length; c++) {
+      for (let i = 0; i < (matrix.length); i++) {
+        for (let j = 0; j < (matrix[i].length); j++) {
+          if (i + 1 === mapfrom[c] && j + 1 === mapto[c]) {
+            matrix[i][j] = 1;
+          }
+        }
+      }
+    }
+  }
   for (let c = 0; c < matrix.length; c++) {
     for (let i = 0; i < (matrix.length); i++) {
       for (let j = 0; j < (matrix[i].length); j++) {
-        if (i+1 === mapfrom[c] && j+1 === mapto[c]) {
+        if (i + 1 === mapfrom[c] && j + 1 === mapto[c]) {
           matrix[i][j] = 1;
         }
       }
@@ -259,34 +282,38 @@ function UpdMatrix() {
 
       cell.innerHTML = matrix[i][j];
     }
-  } 
+  }
 
   dist = matrix;
-    for (let i = 0; i < nodes.length ; i++){
-        for (let j = 0; j < nodes.length; j++){
-            if (i != j && dist[i][j] === 0) dist[i][j] = INF; 
-            //las parejas de nodos sin arco están a distancia inf (p.e. 1e9)
-        }
+  for (let i = 0; i < nodes.length; i++) {
+    for (let j = 0; j < nodes.length; j++) {
+      if (i != j && dist[i][j] === 0) dist[i][j] = INF;
+      //las parejas de nodos sin arco están a distancia inf (p.e. 1e9)
     }
+  }
 
-    for (var k = 0; k < nodes.length; k++){ //por cada nodo intermedio k
-        for (var i = 0; i < nodes.length; i++){
-            for (var j = 0; j < nodes.length; j++){ //miramos todas las parejas de nodos
-                dist[i][j] = Math.min(dist[i][j], dist[i][k] + dist[k][j]);
-                //Si pasando por k mejoramos el resultado, lo actualizamos
-            }
-        }
+  for (var k = 0; k < nodes.length; k++) { //por cada nodo intermedio k
+    for (var i = 0; i < nodes.length; i++) {
+      for (var j = 0; j < nodes.length; j++) { //miramos todas las parejas de nodos
+        dist[i][j] = Math.min(dist[i][j], dist[i][k] + dist[k][j]);
+        //Si pasando por k mejoramos el resultado, lo actualizamos
+      }
     }
-    console.log(dist);
+  }
+  console.log(dist);
 
   for (var i = 0; i < dist.length; i++) {
     var newRow = table2.insertRow(table2.length);
     for (var j = 0; j < dist[i].length; j++) {
       var cell = newRow.insertCell(j);
 
-      cell.innerHTML = dist[i][j];
+      if (dist[i][j] == INF) {
+        cell.innerHTML = "INF";
+      } else {
+        cell.innerHTML = dist[i][j];
+      }
     }
-  } 
+  }
 }
 
 window.addEventListener("load", () => {
