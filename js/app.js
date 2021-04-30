@@ -62,7 +62,6 @@ function addEdge() {
     }
   }
 }
-
 function updateEdge() {
   try {
     edges.add({
@@ -212,6 +211,15 @@ function UpdMatrix() {
         }
     }
     console.log(dist);
+
+  for (var i = 0; i < dist.length; i++) {
+    var newRow = table2.insertRow(table2.length);
+    for (var j = 0; j < dist[i].length; j++) {
+      var cell = newRow.insertCell(j);
+
+      cell.innerHTML = dist[i][j];
+    }
+  } 
 }
 
 window.addEventListener("load", () => {
