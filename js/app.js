@@ -6,13 +6,15 @@ function toJSON(obj) {
 }
 
 
-
+/*
+  FUNCIONES DE VIS.JS
+*/
 
 function addNode() {
   try {
     nodes.add({
       id: document.getElementById("node-id").value,
-      label: document.getElementById("node-label").value,
+      label: "Nodo "+document.getElementById("node-id").value,
     });
   } catch (err) {
     alert(err);
@@ -23,7 +25,7 @@ function updateNode() {
   try {
     nodes.update({
       id: document.getElementById("node-id").value,
-      label: document.getElementById("node-label").value,
+      label: document.getElementById("node-id").value,
     });
   } catch (err) {
     alert(err);
@@ -180,6 +182,11 @@ function draw() {
   }
 
 
+
+  /*
+    FUNCIONES DE MATRIZ
+  */
+
 function UpdMatrix() {
   var Table = document.getElementById("table");
   Table.innerHTML = "";
@@ -242,11 +249,32 @@ function UpdMatrix() {
        cell.innerHTML = matrix[i][j];
      }
    }
-
-
-   
+   conexo(matrix); 
 }
 
+function conexo(matrix){  
+  document.getElementById("conexo").innerHTML = '';
+  let cont=0;
+  for(let i=1; i<=nodes.length;i++){
+    for(let j=1; j<=nodes.length;j++){
+      console.log(matrix[i][j]);
+      if(matrix[i][j]!=0){
+        cont++;
+      }
+    }
+  }
+
+  if(cont!=0)
+    document.getElementById("conexo").innerHTML +="<p> Este grafo es de tipo conexo</p>";
+
+  else
+     document.getElementById("conexo").innerHTML +="<p> Este grafo es de tipo no conexo</p>";
+}
+
+/*
+  EVENTOS
+*/
 window.addEventListener("load", () => {
     draw();
+    UpdMatrix();
   });
