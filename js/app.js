@@ -127,11 +127,11 @@ function draw() {
         }
       }
     },
-    configure:{
+    /*configure:{
       enabled: false,
-      container: document.getElementById("parametross"),
+      container: null,
       showButton: true,
-    },
+    },*/
     //permite interactuar con el grafo
     "manipulation": {
       "enabled": false,
