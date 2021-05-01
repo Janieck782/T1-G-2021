@@ -173,6 +173,7 @@ function draw() {
 function direv(){
   var nodir = document.getElementById("nodir");
   var dirigido = document.getElementById("dirigido");
+
   if (nodir.checked == true) {
     try {
       options = {
@@ -209,12 +210,9 @@ function direv(){
 
 }
 
-function UpdMatrix() {
+function Adj() {
   var Table = document.getElementById("table");
   Table.innerHTML = "";
-
-  var table2 = document.getElementById("table2");
-  table2.innerHTML = "";
 
   var mapfrom = edges.map((edges) => edges.from);
   console.log(mapfrom);
@@ -230,7 +228,7 @@ function UpdMatrix() {
     mapto[i] = +mapto[i];
   }
 
-  let matrix = new Array(nodes.length);
+  matrix = new Array(nodes.length);
 
   for (let i = 0; i < (nodes.length); i++) {
     matrix[i] = new Array(nodes.length);
@@ -283,8 +281,16 @@ function UpdMatrix() {
       cell.innerHTML = matrix[i][j];
     }
   }
+}
 
-  dist = matrix;
+function Camino() {
+  var table2 = document.getElementById("table2");
+  table2.innerHTML = "";
+
+  console.log(matrix);
+
+  dist = matrix.slice();
+
   for (let i = 0; i < nodes.length; i++) {
     for (let j = 0; j < nodes.length; j++) {
       if (i != j && dist[i][j] === 0) dist[i][j] = INF;
