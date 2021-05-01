@@ -187,9 +187,10 @@ function draw() {
     FUNCIONES DE MATRIZ
   */
 
-function UpdMatrix() {
+function Adj() {
   var Table = document.getElementById("table");
   Table.innerHTML = "";
+  
   var mapfrom = edges.map((edges) => edges.from);
   console.log(mapfrom);
 
@@ -209,7 +210,7 @@ function UpdMatrix() {
 
   var a = nodes.length;
 
-  let matrix = new Array(a + 1);
+  matrix = new Array(a + 1);
 
   for (let i = 0; i < matrix.length; i++) {
     matrix[i] = new Array(matrix.length);
@@ -221,12 +222,14 @@ function UpdMatrix() {
     }
   }
 
-  for(let i = 0;i < matrix.length;i++) {
-    matrix[i][0] = i;
+  matrix[0][0] = "-";
+
+  for(let i = 1;i < matrix.length;i++) {
+    matrix[i][0] = "Nodo " + i;
   }
 
-  for(let j = 0;j < matrix.length;j++) {
-    matrix[0][j] = j;
+  for(let j = 1;j < matrix.length;j++) {
+    matrix[0][j] = "Nodo " + j;
   }
 
   for (let c = 0; c <= matrix.length; c++) {
