@@ -1,4 +1,5 @@
-var nodes, edges, network, matrix;
+var nodes, edges, network, matrix, camino;
+var nodir, dirigido;
 
 // convenience method to stringify a JSON object
 function toJSON(obj) {
@@ -31,6 +32,7 @@ function updateNode() {
     alert(err);
   }
 }
+
 function removeNode() {
   try {
     nodes.remove({ id: document.getElementById("node-id").value });
@@ -143,8 +145,8 @@ function draw() {
   }
 
   function direv(){
-    var nodir = document.getElementById("nodir");
-    var dirigido = document.getElementById("dirigido");
+    nodir = document.getElementById("nodir");
+    dirigido = document.getElementById("dirigido");
     if (nodir.checked == true) {
       try {
         options = {
@@ -190,7 +192,7 @@ function draw() {
 function Adj() {
   var Table = document.getElementById("table");
   Table.innerHTML = "";
-  
+
   var mapfrom = edges.map((edges) => edges.from);
   console.log(mapfrom);
 
@@ -232,11 +234,24 @@ function Adj() {
     matrix[0][j] = "Nodo " + j;
   }
 
-  for (let c = 0; c <= matrix.length; c++) {
-    for (let i = 0; i < matrix.length; i++) {
-      for (let j = 0; j < matrix[i].length; j++) {
-        if (i === mapfrom[c] && j === mapto[c]) {
-          matrix[i][j] = 1;
+  if(nodir.checked == true) {
+    for (let c = 0; c <= matrix.length; c++) {
+      for (let i = 0; i < matrix.length; i++) {
+        for (let j = 0; j < matrix[i].length; j++) {
+          if (i === mapfrom[c] && j === mapto[c]) {
+            matrix[i][j] = 1;
+            matrix[j][i] = 1;
+          }
+        }
+      }
+    }
+  } else if(dirigido.checked == true) {
+    for (let c = 0; c <= matrix.length; c++) {
+      for (let i = 0; i < matrix.length; i++) {
+        for (let j = 0; j < matrix[i].length; j++) {
+          if (i === mapfrom[c] && j === mapto[c]) {
+            matrix[i][j] = 1;
+          }
         }
       }
     }
