@@ -7,13 +7,15 @@ function toJSON(obj) {
 }
 
 
-
+/*
+  FUNCIONES DE VIS.JS
+*/
 
 function addNode() {
   try {
     nodes.add({
       id: document.getElementById("node-id").value,
-      label: document.getElementById("node-label").value,
+      label: "Nodo "+document.getElementById("node-id").value,
     });
   } catch (err) {
     alert(err);
@@ -24,7 +26,7 @@ function updateNode() {
   try {
     nodes.update({
       id: document.getElementById("node-id").value,
-      label: document.getElementById("node-label").value,
+      label: document.getElementById("node-id").value,
     });
   } catch (err) {
     alert(err);
@@ -210,7 +212,12 @@ function direv(){
 
 }
 
-function Adj() {
+
+  /*
+    FUNCIONES DE MATRIZ
+  */
+
+function UpdMatrix() {
   var Table = document.getElementById("table");
   Table.innerHTML = "";
 
@@ -322,6 +329,10 @@ function Camino() {
   }
 }
 
+/*
+  EVENTOS
+*/
 window.addEventListener("load", () => {
     draw();
+    UpdMatrix();
   });
