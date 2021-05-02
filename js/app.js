@@ -1,6 +1,7 @@
 var nodes, edges, network, matrix, camino, matrixcamino;
 var nodir, dirigido;
-
+//matrix = ADYACENTE
+//matrixcamino = CAMINO
 // convenience method to stringify a JSON object
 function toJSON(obj) {
   return JSON.stringify(obj, null, 4);
@@ -296,6 +297,7 @@ function conexo(){
     return false
   };
 }
+
 
 function imprimir_conexo() {
   if(conexo() === true)

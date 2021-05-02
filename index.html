@@ -102,15 +102,35 @@
         <td class="buttonM">
           
     <h2>  Grafo dirigido</h2>
-    <input type="Radio" id="nodir" name="tipo" checked> No dirigido
-              <input type="Radio" id="dirigido" name="tipo"> Dirigido
+    <input type="Radio" id="nodir" name="tipo" checked  onclick="direv(), Adj(), imprimir_conexo()"> No dirigido
+              <input type="Radio" id="dirigido" name="tipo"  onclick="direv(), Adj(), imprimir_conexo()"> Dirigido
               <br>
               <br>
-              <button  onclick="direv(), Adj(), imprimir_conexo()">Actualizar</button>
+              
         </td>
       </tr>
     </table>
     <p>*Para modificar un nodo/arista, por favor ingrese su Id y seleccione remover.</p>
+</div>
+
+<h1 class="titulo">Matrices</h1> 
+<div class = "parametros">
+<table class="view">
+  <colgroup>
+    <col width="50%" />
+    <col width="50%" />
+  </colgroup>
+  <tr>
+</div>    
+
+    <td>
+      <h2 class="nombreM">Matriz Adyacente </h2>
+      <br><br>
+      <table  id="table" border="1"></table>
+      <div id = conexo ></div>
+    </td>
+  </tr>
+</table>
 </div>
 
     <h1 class="titulo">Variables</h1>
@@ -132,13 +152,7 @@
           <pre id="edges"></pre>
         </td>
 
-        <td>
-          <h2 class="nombreM">Matriz</h2>
-          <button if="matrix" onclick="Adj(), imprimir_conexo(),caminoreal();">Actualizar</button>
-          <br><br>
-          <table  id="table" border="1"></table>
-          <div id = conexo ></div>
-        </td>
+        
       </tr>
     </table>
   </div>
