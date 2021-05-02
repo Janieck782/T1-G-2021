@@ -47,6 +47,7 @@ function addEdge() {
       id: document.getElementById("edge-id").value,
       from: document.getElementById("edge-from").value,
       to: document.getElementById("edge-to").value,
+      label: document.getElementById("label-to").value,
     });
   } catch (err) {
     alert(err);
@@ -59,6 +60,7 @@ function updateEdge() {
       id: document.getElementById("edge-id").value,
       from: document.getElementById("edge-from").value,
       to: document.getElementById("edge-to").value,
+      label: document.getElementById("label-to").value,
     });
   } catch (err) {
     alert(err);
@@ -103,10 +105,10 @@ function draw() {
   });
 
   edges.add([
-    { id: "1", from: "1", to: "2" },
-    { id: "2", from: "1", to: "3" },
-    { id: "3", from: "2", to: "4" },
-    { id: "4", from: "2", to: "5" },
+    { id: "1", from: "1", to: "2", label: "1" },
+    { id: "2", from: "1", to: "3", label: "1"  },
+    { id: "3", from: "2", to: "4", label: "1"  },
+    { id: "4", from: "2", to: "5", label: "1"  },
   ]);
 
   // create a network
