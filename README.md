@@ -28,11 +28,11 @@ aplicativo depende de una ruta fija, contrario a lo antes indicado, se considera
 ende, tendrá nota mínima.
 
 Diseñar una aplicación web (página web) que, en base a los contenidos de la asignatura, permita:
-1. Ingresar un grafo a la aplicación (puede ser simple, dirigido, etiquetado, etc.)
+1. Ingresar un grafo a la aplicación (puede ser simple, dirigido, etiquetado, etc.)[check]
 2. A partir del grafo ingresado, debe:
 
 
-a. Mostrar matriz de caminos e indicar si el grafo es o no conexo.
+a. Mostrar matriz de caminos e indicar si el grafo es o no conexo. [check]
 
 b. Mostrar el camino más corto para dos nodos a elección del usuario, mostrando la duración
 y la ruta de dicho camino (nodos por los que pasa).
