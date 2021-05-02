@@ -194,6 +194,7 @@ function draw() {
   */
 
 function Adj() {
+  let i, j, c;
   var Table = document.getElementById("table");
   Table.innerHTML = "";
 
@@ -203,11 +204,11 @@ function Adj() {
   var mapto = edges.map((edges) => edges.to);
   console.log(mapto);
 
-  for (var i = 0; i < mapfrom.length; i++) {
+  for (i = 0; i < mapfrom.length; i++) {
     mapfrom[i] = +mapfrom[i];
   }
 
-  for (var i = 0; i < mapto.length; i++) {
+  for (i = 0; i < mapto.length; i++) {
     mapto[i] = +mapto[i];
   }
 
@@ -215,23 +216,23 @@ function Adj() {
 
   matrix = new Array(a + 1);
 
-  for (let i = 0; i < matrix.length ; i++) {
+  for (i = 0; i < matrix.length ; i++) {
     matrix[i] = new Array(matrix.length);
   }
 
-  for (let i = 0; i < matrix.length; i++) {
-    for (let j = 0; j < matrix[i].length; j++) {
+  for (i = 0; i < matrix.length; i++) {
+    for (j = 0; j < matrix[i].length; j++) {
       matrix[i][j] = 0;
     }
   }
 
   matrix[0][0] = "-";
 
-  for(let i = 1;i < matrix.length;i++) {
+  for(i = 1;i < matrix.length;i++) {
     matrix[i][0] = "Nodo " + i;
   }
 
-  for(let j = 1;j < matrix.length;j++) {
+  for(j = 1;j < matrix.length;j++) {
     matrix[0][j] = "Nodo " + j;
   } 
 
@@ -239,9 +240,9 @@ function Adj() {
   dirigido = document.getElementById("dirigido");
 
   if(nodir.checked == true) {
-    for (let c = 0; c <= matrix.length; c++) {
-      for (let i = 0; i < matrix.length; i++) {
-        for (let j = 0; j < matrix[i].length; j++) {
+    for (c = 0; c <= matrix.length; c++) {
+      for (i = 0; i < matrix.length; i++) {
+        for (j = 0; j < matrix[i].length; j++) {
           if (i  === mapfrom[c] && j  === mapto[c]) {
             matrix[i][j] = 1;
             matrix[j][i] = 1;
@@ -250,9 +251,9 @@ function Adj() {
       }
     }
   } else if(dirigido.checked == true) {
-    for (let c = 0; c <= matrix.length; c++) {
-      for (let i = 0; i < matrix.length; i++) {
-        for (let j = 0; j < matrix[i].length; j++) {
+    for (c = 0; c <= matrix.length; c++) {
+      for (i = 0; i < matrix.length; i++) {
+        for (j = 0; j < matrix[i].length; j++) {
           if (i === mapfrom[c] && j === mapto[c]) {
             matrix[i][j] = 1;
           }
@@ -261,9 +262,9 @@ function Adj() {
     }
   }
 
-  for (var i = 0; i < matrix.length; i++) {
+  for (i = 0; i < matrix.length; i++) {
     var newRow = table.insertRow(table.length);
-    for (var j = 0; j < matrix[i].length; j++) {
+    for (j = 0; j < matrix[i].length; j++) {
       var cell = newRow.insertCell(j);
 
       cell.innerHTML = matrix[i][j];
@@ -272,14 +273,15 @@ function Adj() {
 }
 
 function conexo(){  
+  let i, j;
   document.getElementById("conexo").innerHTML = '';
 
   var x = 0;
   var mat = matrix.slice();
 
   if (mat.length > 0) {
-    for (let i = 1; i < mat.length; i++) {
-      for (let j = 1; j < mat.length; j++) {
+    for (i = 1; i < mat.length; i++) {
+      for (j = 1; j < mat.length; j++) {
         if (i != j) {
           if (mat[i][j] == 0 && mat[j][i] == 0) {
             console.log(x);
@@ -295,13 +297,13 @@ function conexo(){
     return true;
   } else {
     return false
-  };
+  }
 }
 
 
 function imprimir_conexo() {
   if(conexo() === true)
-  document.getElementById("conexo").innerHTML +="<p> Este grafo es de tipo conexo</p>";
+    document.getElementById("conexo").innerHTML +="<p> Este grafo es de tipo conexo</p>";
   else if(conexo() === false) {
     document.getElementById("conexo").innerHTML +="<p> Este grafo es de tipo no conexo</p>";
   }
@@ -309,12 +311,12 @@ function imprimir_conexo() {
 
 
 function caminoreal(){
-
+  let k, i, j;
    matrixcamino = matrix.slice();
 
-  for(let k = 0; k <= matrix.length - 1; k++){
-    for(let i = 0; i <= matrix.length - 1; i++){
-      for(let j = 0; j <= matrix.length -1 ; j++){
+  for(k = 0; k <= matrix.length - 1; k++){
+    for(i = 0; i <= matrix.length - 1; i++){
+      for(j = 0; j <= matrix.length -1 ; j++){
         matrixcamino[i][j] = matrizcamino(i, j, k);
       }
     }
