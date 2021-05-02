@@ -147,6 +147,7 @@ function draw() {
   function direv(){
     nodir = document.getElementById("nodir");
     dirigido = document.getElementById("dirigido");
+
     if (nodir.checked == true) {
       try {
         options = {
@@ -207,9 +208,6 @@ function Adj() {
     mapto[i] = +mapto[i];
   }
 
-  var from = mapfrom.reverse();
-  var to = mapto.reverse();
-
   var a = nodes.length;
 
   matrix = new Array(a + 1);
@@ -234,6 +232,9 @@ function Adj() {
     matrix[0][j] = "Nodo " + j;
   }
 
+  nodir = document.getElementById("nodir");
+  dirigido = document.getElementById("dirigido");
+
   if(nodir.checked == true) {
     for (let c = 0; c <= matrix.length; c++) {
       for (let i = 0; i < matrix.length; i++) {
@@ -257,36 +258,49 @@ function Adj() {
     }
   }
 
-  console.log(matrix);
+  for (var i = 0; i < matrix.length; i++) {
+    var newRow = table.insertRow(table.length);
+    for (var j = 0; j < matrix[i].length; j++) {
+      var cell = newRow.insertCell(j);
 
-   for (var i = 0; i < matrix.length; i++) {
-     var newRow = table.insertRow(table.length);
-     for (var j = 0; j < matrix[i].length; j++) {
-       var cell = newRow.insertCell(j);
-
-       cell.innerHTML = matrix[i][j];
-     }
-   }
-   conexo(matrix); 
-}
-
-function conexo(matrix){  
-  document.getElementById("conexo").innerHTML = '';
-  let cont=0;
-  for(let i=1; i<=nodes.length;i++){
-    for(let j=1; j<=nodes.length;j++){
-      console.log(matrix[i][j]);
-      if(matrix[i][j]!=0){
-        cont++;
-      }
+      cell.innerHTML = matrix[i][j];
     }
   }
+}
 
-  if(cont!=0)
-    document.getElementById("conexo").innerHTML +="<p> Este grafo es de tipo conexo</p>";
+function conexo(){  
+  document.getElementById("conexo").innerHTML = '';
 
-  else
-     document.getElementById("conexo").innerHTML +="<p> Este grafo es de tipo no conexo</p>";
+  var x = 0;
+  var mat = matrix.slice();
+
+  if (mat.length > 0) {
+    for (let i = 1; i < mat.length; i++) {
+      for (let j = 1; j < mat.length; j++) {
+        if (i != j) {
+          if (mat[i][j] == 0 && mat[j][i] == 0) {
+            console.log(x);
+            x++;
+          }
+        }
+      }
+      if (x == (mat.length - 2)) {
+        return false;
+      }
+      x = 0;
+    }
+    return true;
+  } else {
+    return false
+  };
+}
+
+function imprimir_conexo() {
+  if(conexo() === true)
+  document.getElementById("conexo").innerHTML +="<p> Este grafo es de tipo conexo</p>";
+  else if(conexo() === false) {
+    document.getElementById("conexo").innerHTML +="<p> Este grafo es de tipo no conexo</p>";
+  }
 }
 
 /*
@@ -294,5 +308,5 @@ function conexo(matrix){
 */
 window.addEventListener("load", () => {
     draw();
-    UpdMatrix();
+    Adj();
   });
