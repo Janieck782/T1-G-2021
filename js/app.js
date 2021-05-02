@@ -1,4 +1,4 @@
-var nodes, edges, network, matrix, camino;
+var nodes, edges, network, matrix, camino, matrixcamino;
 var nodir, dirigido;
 
 // convenience method to stringify a JSON object
@@ -212,7 +212,7 @@ function Adj() {
 
   matrix = new Array(a + 1);
 
-  for (let i = 0; i < matrix.length; i++) {
+  for (let i = 0; i < matrix.length ; i++) {
     matrix[i] = new Array(matrix.length);
   }
 
@@ -230,7 +230,7 @@ function Adj() {
 
   for(let j = 1;j < matrix.length;j++) {
     matrix[0][j] = "Nodo " + j;
-  }
+  } 
 
   nodir = document.getElementById("nodir");
   dirigido = document.getElementById("dirigido");
@@ -239,7 +239,7 @@ function Adj() {
     for (let c = 0; c <= matrix.length; c++) {
       for (let i = 0; i < matrix.length; i++) {
         for (let j = 0; j < matrix[i].length; j++) {
-          if (i === mapfrom[c] && j === mapto[c]) {
+          if (i  === mapfrom[c] && j  === mapto[c]) {
             matrix[i][j] = 1;
             matrix[j][i] = 1;
           }
@@ -303,6 +303,28 @@ function imprimir_conexo() {
   }
 }
 
+
+function caminoreal(){
+
+   matrixcamino = matrix.slice();
+
+  for(let k = 0; k <= matrix.length - 1; k++){
+    for(let i = 0; i <= matrix.length - 1; i++){
+      for(let j = 0; j <= matrix.length -1 ; j++){
+        matrixcamino[i][j] = matrizcamino(i, j, k);
+      }
+    }
+  }
+  console.log(matrixcamino);
+}
+function matrizcamino(i, j, k){
+  if(matrix[i][j] == 1 || matrix[i][k] == 1 && matrix[k][j] == 1){
+    return 1;
+  }
+  else{
+    return 0;
+  }
+}
 /*
   EVENTOS
 */
