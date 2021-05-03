@@ -112,6 +112,12 @@ pre {
  border: 1px solid black;
 
 }
+
+.aristacs {
+  text-align: justify;
+  padding: 20px;
+}
+
 .variables {
     display: grid;
     grid-template-columns: auto auto;
@@ -150,10 +156,12 @@ pre {
     grid-template-columns: 50% 50%;
   }
 
+  /*
   .contenedormatrizadyacente{
     
     
-  }
+  }*/
+
   #tablamatrizadyacente{
     margin:auto;
     height: auto;
@@ -163,12 +171,13 @@ pre {
     
   }
  
-  
+ /* 
   .contenedorcaminomatriz{
   
     
     
-  }
+  }*/
+  
   #tablacaminomatriz{
   margin: auto;
   position: relative;

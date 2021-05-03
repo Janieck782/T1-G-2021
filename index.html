@@ -40,40 +40,46 @@
     <div>
       <h2>Nodos</h2>
       <label for="node-id">Id</label>
-      <input id="node-id" type="text" value="6" />
+      <input id="node-id" type="text" value="5" />
 
       <h2>Accion</h2>
-      <button id="node-add" onclick="addNode();">Añadir</button>
+      <button id="node-add" onclick="addNode(), Adj(), imprimir_conexo(),caminoreal();">Añadir</button>
       <!--button id="node-update" onclick="updateNode();">Actualizar</!--button-->
-      <button id="node-remove" onclick="removeNode();">Remover</button>
+      <button id="node-remove" onclick="removeNode(), Adj(), imprimir_conexo(),caminoreal();">Remover</button>
     </div>
 
-    <div>
+    <div class = "aristacs">
       <h2>Aristas</h2>
 
       <label for="edge-id">Id</label>
-      <input id="edge-id" type="text" value="5" />
+      <input id="edge-id" type="text" value="4" />
+      <br>
 
       <label for="edge-from">Desde</label>
-      <input id="edge-from" type="text" value="3" />
+      <input id="edge-from" type="text" value="2" />
+      <br>
 
       <label for="edge-to">Hacia</label>
-      <input id="edge-to" type="text" value="4" />
+      <input id="edge-to" type="text" value="5" />
+      <br>
 
       <label for="label-to">Peso</label>
       <input id="label-to" type="text" value="1" />
+      <br>
 
       <h2>Accion</h2>
-      <button id="edge-add" onclick="addEdge();">Añadir</button>
-      <button id="edge-update" onclick="updateEdge();">Actualizar</button>
-      <button id="edge-remove" onclick="removeEdge();">Remover</button>
+      <button id="edge-add" onclick="addEdge(), Adj(), imprimir_conexo(),caminoreal();">Añadir</button>
+      <button id="edge-update" onclick="updateEdge(), Adj(), imprimir_conexo(),caminoreal();">Actualizar</button>
+      <button id="edge-remove" onclick="removeEdge(), Adj(), imprimir_conexo(),caminoreal();">Remover</button>
     </div>
 
     <div>
       <h2>Grafo dirigido</h2>
+      <p>Para el desarrollo de esta aplicacion solo se considera el grafo como no dirigido.</p>
       <input type="Radio" id="nodir" name="tipo" checked onclick="direv(), Adj(), imprimir_conexo(),caminoreal();"> No
       dirigido
       <input type="Radio" id="dirigido" name="tipo" onclick="direv(), Adj(), imprimir_conexo(),caminoreal();"> Dirigido
+      <p id=conexo></p>
       <br>
       <br>
       <p>*Para modificar un nodo/arista, por favor ingrese su Id y seleccione remover.</p>
@@ -88,12 +94,11 @@
 
       <h2 class="nombreM">Matriz Adyacente</h2>
       <table id="tablamatrizadyacente" border="1"></table>
-      <div id=conexo></div>
+      
 
     </div>
 
     <div class="contenedorcaminomatriz">
-
       <h2 class="NombreMatrizCamino">Matriz de camino</h2>
       <table id="tablacaminomatriz" border="1"></table>
 
