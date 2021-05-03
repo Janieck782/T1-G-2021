@@ -118,7 +118,7 @@ function draw() {
     nodes: nodes,
     edges: edges,
   };
-  var options = {
+  options = {
     "nodes": {
 
       "shape": "circle",
@@ -292,14 +292,13 @@ function conexo(){
         }
       }
     }
-    if(x == 0){
-      return true;
-    }
-    else{
-      return false
-    }
-  }
+    // if(x == 0)
+    //   return true;
+    // else
+    //   return false+
 
+    return x == 0;
+  }
 }
 
 function imprimir_conexo() {
@@ -318,12 +317,13 @@ function imprimir_conexo() {
 function caminoreal() {
   var tabla2 = document.getElementById("tablacaminomatriz");
   tabla2.innerHTML = "";
+  let k, i, j, n, m;
 
   matrixcamino = matrix.slice();
 
-  for (let k = 0; k <= matrix.length - 1; k++) {
-    for (let i = 0; i <= matrix.length - 1; i++) {
-      for (let j = 0; j <= matrix.length - 1; j++) {
+  for (k = 0; k <= matrix.length - 1; k++) {
+    for (i = 0; i <= matrix.length - 1; i++) {
+      for (j = 0; j <= matrix.length - 1; j++) {
         matrixcamino[i][j] = matrizcamino(i, j, k);
 
       }
@@ -340,9 +340,9 @@ function caminoreal() {
     matrix[0][j] = "Nodo " + j;
   }
   //FIN NOMBRES FILASXCOLUMNAS
-  for (var n = 0; n < matrix.length; n++) {
+  for (n = 0; n < matrix.length; n++) {
     var newRow = tabla2.insertRow(tabla2.length);
-    for (var m = 0; m < matrix[n].length; m++) {
+    for (m = 0; m < matrix[n].length; m++) {
       var cell = newRow.insertCell(m);
 
       cell.innerHTML = matrix[n][m];
