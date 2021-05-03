@@ -99,28 +99,34 @@ pre {
 }
 
 .parametros {
-    border: 1px solid  #95afc0;
+    display: grid;
     background-color: white;
-    -webkit-box-shadow: 0px 5px 15px 0px rgba(143,143,143,0.51);
-    -moz-box-shadow: 0px 5px 15px 0px rgba(143,143,143,0.51);
-    box-shadow: 0px 5px 15px 0px rgba(143,143,143,0.51);
-    padding: 0px;
-    border-radius: 5px;
-    margin: auto ;
+    grid-template-columns: auto auto auto;
 
+}
+.parametros div{
+ 
+ text-align: center;
+ padding: 10px;
+ 
+ border: 1px solid black;
+
+}
+
+.aristacs {
+  text-align: justify;
+  padding: 20px;
 }
 
 .variables {
-    border: 1px solid  #95afc0;
+    display: grid;
+    grid-template-columns: auto auto;
     background-color: white;
-    -webkit-box-shadow: 0px 5px 15px 0px rgba(143,143,143,0.51);
-    -moz-box-shadow: 0px 5px 15px 0px rgba(143,143,143,0.51);
-    box-shadow: 0px 5px 15px 0px rgba(143,143,143,0.51);
-    padding: 0px;
-    border-radius: 5px;
-    margin: 0 auto ;
 }
-
+.variables div{
+    
+    padding: 20px;
+}
 .footer {
     padding: px;
     color: #95afc0;
@@ -132,7 +138,7 @@ pre {
     border: 1px solid #95afc0;
   }
 
-  #table {
+  /*#table {
     
     font-size: 150%;
     border-radius: 5px;
@@ -141,7 +147,43 @@ pre {
     margin: auto;
     
 
+  }*/
+
+  .contenedormatrices{
+    background-color:white;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 50% 50%;
   }
 
+  /*
+  .contenedormatrizadyacente{
+    
+    
+  }*/
+
+  #tablamatrizadyacente{
+    margin:auto;
+    height: auto;
+    width: 45%;
+    
+    position: relative;
+    
+  }
+ 
+ /* 
+  .contenedorcaminomatriz{
+  
+    
+    
+  }*/
+  
+  #tablacaminomatriz{
+  margin: auto;
+  position: relative;
+  height: auto;
+  width: 45%;
+ 
+  }
 
   

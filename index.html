@@ -1,163 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
 
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trabajo 1 │ GRAFOS Y LENGUAJES FORMALES</title>
+<head>
+  
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trabajo 1 │ GRAFOS Y LENGUAJES FORMALES</title>
 
-    <!--normalize.css-->
-    <link rel="preload" href="css/normalize.css" as="style">
-    <link rel="stylesheet" href="css/normalize.css">
-    <!--Fuente Noto Sans-->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
-    <!--LLamada a css-->
-    <link rel="preload" href="css/styles.css" as="style">
-    <link rel="stylesheet" href="css/styles.css">
-    <!--Llamada a la libreria Vis.js-->
-    <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
-    <!--Crea el recuadro-->
+  <!--normalize.css-->
+  <link rel="preload" href="css/normalize.css" as="style">
+  <link rel="stylesheet" href="css/normalize.css">
+  <!--Fuente Noto Sans-->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
+  <!--LLamada a css-->
+  <link rel="preload" href="css/styles.css" as="style">
+  <link rel="stylesheet" href="css/styles.css">
+  <!--Llamada a la libreria Vis.js-->
+  <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+  <!--Crea el recuadro-->
 
-    <script
-    type="text/javascript"
-    src="../../../standalone/umd/vis-network.min.js"
+  <script type="text/javascript" src="../../../standalone/umd/vis-network.min.js"></script>
 
-  ></script>
-
-  </head>
+</head>
 
   <body onload="draw();">
 
     <h1>Trabajo 1 de GRAFOS Y LENGUAJES FORMALES</h1>
-        <!--Llama las funciones JS-->
-        <script src="js/app.js"></script>
+    <!--Llama las funciones JS-->
+    <script src="js/app.js"></script>
 
-        <h2 class="titulo">Grafo</h2>
-        <div id="mynetwork"></div>
-        <h2 class="titulo">Parametros</h2>
-    <div class="parametros">
-    <table>
-      <colgroup>
-        <col width="33%" />
-        <col width="33%" />
-        <col width="33%" />
-      </colgroup>
-      <tr>
-        <td>
+    <h2 class="titulo">Grafo</h2>
+    <div id="mynetwork"></div>
+
+      <h2 class="titulo">Parametros</h2>
+      <div class="parametros">
+
+        <div>
           <h2>Nodos</h2>
-          <table>
-            <tr>
-              <td></td>
-              <td><label for="node-id">Id</label></td>
-              <td><input id="node-id" type="text" value="6" /></td>
-            </tr>
-            
-            <tr>
-              <td></td>
-              <td>Accion</td>
-              <td>
-                <button id="node-add" onclick="addNode();">Añadir</button>
-                <!--button id="node-update" onclick="updateNode();">Actualizar</!--button-->
-                <button id="node-remove" onclick="removeNode();">Remover</button>
-              </td>
-            </tr>
-          </table>
-        </td>
-        <td>
-          <h2>Aristas</h2>
-          <table>
-            <tr>
-              <td></td>
-              <input type="Radio" id="nodir" name="tipo" checked> No dirigido
-              <input type="Radio" id="dirigido" name="tipo"> Dirigido
-              <button  onclick="direv(), Adj(), Camino()">Actualizar</button>
-              <td><label for="edge-id">Id</label></td>
-              <td><input id="edge-id" type="text" value="5" /></td>
-            </tr>
-            <tr>
-              <td></td>
-              <td><label for="edge-from">Desde</label></td>
-              <td><input id="edge-from" type="text" value="3" /></td>
-            </tr>
-            <tr>
-              <td></td>
-              <td><label for="edge-to">Hacia</label></td>
-              <td><input id="edge-to" type="text" value="4" /></td>
-            </tr>
-            <tr>
-              <td></td>
-              <td>Accion</td>
-              <td>
-                <button id="edge-add" onclick="addEdge();">Añadir</button>
-                <button id="edge-update" onclick="updateEdge();">Actualizar</button>
-                <button id="edge-remove" onclick="removeEdge();">Remover</button>
-                <button id="update-all" onclick="draw();">draw</button>
-                
-                <!-- <button id="camino" onclick="Bellman_Ford();">Camino</button> -->
-              </td>
-            </tr>
-          </table>
-        </td>
-               </td>
-            </tr>
-          </table>
-        </td>
-        <td class="buttonM">
-          
-    <h2>  Grafo dirigido</h2>
-    <input type="Radio" id="nodir" name="tipo" checked> No dirigido
-              <input type="Radio" id="dirigido" name="tipo"> Dirigido
-              <br>
-              <br>
-              <button  onclick="direv()">Actualizar</button>
-        </td>
-      </tr>
-    </table>
-    <p>*Para modificar un nodo/arista, por favor ingrese su Id y seleccione remover.</p>
-</div>
+          <label for="node-id">Id</label>
+          <input id="node-id" type="text" value="5" />
 
-    <h1 class="titulo">Variables</h1>
-    <div class ="variables"  >
-    <table class="view">
-      <colgroup>
-        <col width="33%" />
-        <col width="33%" />
-        <col width="33%" />
-      </colgroup>
-      <tr>
-        <td>
+          <h2>Accion</h2>
+          <button id="node-add" onclick="addNode(), Adj(), caminoreal(), imprimir_conexo();">Añadir</button>
+          <!--button id="node-update" onclick="updateNode();">Actualizar</!--button-->
+          <button id="node-remove" onclick="removeNode(), Adj(), caminoreal(), imprimir_conexo();">Remover</button>
+        </div>
+
+        <div class = "aristacs">
+          <h2>Aristas</h2>
+
+          <label for="edge-id">Id</label>
+          <input id="edge-id" type="text" value="4" />
+          <br>
+
+          <label for="edge-from">Desde</label>
+          <input id="edge-from" type="text" value="2" />
+          <br>
+
+          <label for="edge-to">Hacia</label>
+          <input id="edge-to" type="text" value="5" />
+          <br>
+
+          <label for="label-to">Peso</label>
+          <input id="label-to" type="text" value="1" />
+          <br>
+
+          <h2>Accion</h2>
+          <button id="edge-add" onclick="addEdge(), Adj(), caminoreal(), imprimir_conexo();">Añadir</button>
+          <button id="edge-update" onclick="updateEdge(), Adj(), caminoreal(), imprimir_conexo();">Actualizar</button>
+          <button id="edge-remove" onclick="removeEdge(), Adj(), caminoreal(), imprimir_conexo();">Remover</button>
+        </div>
+
+        <div>
+          <h2>Grafo dirigido</h2>
+          <p>Para el desarrollo de esta aplicacion solo se considera el grafo como no dirigido.</p>
+          <input type="Radio" id="nodir" name="tipo" checked onclick="direv(), Adj(), caminoreal(), imprimir_conexo();"> No
+          dirigido
+          <input type="Radio" id="dirigido" name="tipo" onclick="direv(), Adj(), caminoreal(), imprimir_conexo();"> Dirigido
+          <p id=conexo></p>
+          <br>
+          <br>
+          <p>*Para modificar un nodo/arista, por favor ingrese su Id y seleccione remover.</p>
+        </div>
+      </div>
+
+      <h1 class="titulo">Matrices</h1>
+
+      <div class="contenedormatrices">
+
+        <div class="contenedormatrizadyacente">
+
+          <h2 class="nombreM">Matriz Adyacente</h2>
+          <table id="tablamatrizadyacente" border="1">
+            <caption>Matriz de Adyacencia</caption>
+            <tr>
+              <th>Adyacente</th>
+            </tr>
+          </table>
+          
+
+        </div>
+
+        <div class="contenedorcaminomatriz">
+          <h2 class="NombreMatrizCamino">Matriz de camino</h2>
+          <table id="tablacaminomatriz" border="1">
+            <caption>Matriz de Caminos</caption>
+            <tr>
+              <th>Camino</th>
+            </tr>
+          </table>
+
+        </div>
+
+      </div>
+
+      <h1 class="titulo">Variables</h1>
+      <div class="variables">
+        <div>
           <h2>Nodos</h2>
           <pre id="nodes"></pre>
-        </td>
-
-        <td>
+        </div>
+        <div>
           <h2>Aristas</h2>
           <pre id="edges"></pre>
-        </td>
+        </div>
+      </div>
 
-        <td>
-          <h2 class="nombreM">Matriz</h2>
-          <button if="matrix" onclick="UpdMatrix();">Actualizar</button>
-          <br><br>
-          <table  id="table" border="1"></table>
-          <div id = conexo ></div>
-        </td>
-
-        <td>
-          <h2 class="nombreM">Matriz de Caminos</h2>
-          <table id="table2" border="1"></table>
-        </td>
-      </tr>
-    </table>
-  </div>
-
-  
-
-    <footer class="footer">
-        <p>Estudiantes Universidad Tecnologica Metropolitana</p>
-    </footer>
+      <footer class="footer">
+          <p>Estudiantes Universidad Tecnologica Metropolitana</p>
+      </footer>
 
   </body>
 </html>

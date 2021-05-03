@@ -1,5 +1,7 @@
-var nodes, edges, network, matrix;
-const INF = Number.MAX_SAFE_INTEGER;
+var nodes, edges, network, matrix, camino, matrixcamino, options;
+var nodir, dirigido;
+//matrix = ADYACENTE
+//matrixcamino = CAMINO
 
 // convenience method to stringify a JSON object
 function toJSON(obj) {
@@ -15,7 +17,7 @@ function addNode() {
   try {
     nodes.add({
       id: document.getElementById("node-id").value,
-      label: "Nodo "+document.getElementById("node-id").value,
+      label: "Nodo " + document.getElementById("node-id").value,
     });
   } catch (err) {
     alert(err);
@@ -42,38 +44,25 @@ function removeNode() {
 }
 
 function addEdge() {
-  var nodir = document.getElementById("nodir");
-  var dirigido = document.getElementById("dirigido");
-  if (nodir.checked == true) {
-    try {
-      edges.add({
-        id: document.getElementById("edge-id").value,
-        from: document.getElementById("edge-from").value,
-        to: document.getElementById("edge-to").value,
-      });
-    } catch (err) {
-      alert(err);
-    }
-  } else if (dirigido.checked == true) {
-    try {
-      edges.add({
-        id: document.getElementById("edge-id").value,
-        from: document.getElementById("edge-from").value,
-        to: document.getElementById("edge-to").value,
-        arrows: "to",
-      });
-    } catch (err) {
-      alert(err);
-    }
-  }
-}
-function updateEdge() {
   try {
     edges.add({
       id: document.getElementById("edge-id").value,
       from: document.getElementById("edge-from").value,
       to: document.getElementById("edge-to").value,
-      arrows: "to",
+      label: document.getElementById("label-to").value,
+    });
+  } catch (err) {
+    alert(err);
+  }
+}
+
+function updateEdge() {
+  try {
+    edges.update({
+      id: document.getElementById("edge-id").value,
+      from: document.getElementById("edge-from").value,
+      to: document.getElementById("edge-to").value,
+      label: document.getElementById("label-to").value,
     });
   } catch (err) {
     alert(err);
@@ -100,11 +89,10 @@ function draw() {
   });
 
   nodes.add([
-    { id: "1", label: "Node 1" },
-    { id: "2", label: "Node 2" },
-    { id: "3", label: "Node 3" },
-    { id: "4", label: "Node 4" },
-    { id: "5", label: "Node 5" },
+    { id: "1", label: "Nodo 1" },
+    { id: "2", label: "Nodo 2" },
+    { id: "3", label: "Nodo 3" },
+    { id: "4", label: "Nodo 4" },
   ]);
 
   // create an array with edges
@@ -117,25 +105,11 @@ function draw() {
     );
   });
 
-  var nodir = document.getElementById("nodir");
-  var dirigido = document.getElementById("dirigido");
-
-  if(nodir.checked == true){
-    edges.add([
-      { id: "1", from: "1", to: "2",},
-      { id: "2", from: "1", to: "3",},
-      { id: "3", from: "2", to: "4",},
-      { id: "4", from: "2", to: "5",},
-    ]);
-  } else if(dirigido.checked == true) {
-    edges.add([
-      { id: "1", from: "1", to: "2", arrows: "to"},
-      { id: "2", from: "1", to: "3", arrows: "to"},
-      { id: "3", from: "2", to: "4", arrows: "to"},
-      { id: "4", from: "2", to: "5", arrows: "to"},
-    ]);
-  }
-  
+  edges.add([
+    { id: "1", from: "1", to: "2", label: "1" },
+    { id: "2", from: "1", to: "3", label: "1" },
+    { id: "3", from: "2", to: "4", label: "1" },
+  ]);
 
   // create a network
   var container = document.getElementById("mynetwork");
@@ -146,13 +120,13 @@ function draw() {
   };
   var options = {
     "nodes": {
-      
+
       "shape": "circle",
-      
+
     },
-    edges:{
-      arrows:{
-        to:{
+    edges: {
+      arrows: {
+        to: {
           enabled: false,
         }
       }
@@ -166,45 +140,49 @@ function draw() {
     "manipulation": {
       "enabled": false,
       "initiallyActive": false
-  },
-  
-};
-  network = new vis.Network(container, data, options);
-  }
+    },
 
-function direv(){
-  var nodir = document.getElementById("nodir");
-  var dirigido = document.getElementById("dirigido");
+  };
+  network = new vis.Network(container, data, options);
+}
+
+/*
+    Funcion para dirigir o no el grafo
+*/
+
+function direv() {
+  nodir = document.getElementById("nodir");
+  dirigido = document.getElementById("dirigido");
 
   if (nodir.checked == true) {
     try {
       options = {
-        edges:{
-          arrows:{
-            to:{
+        edges: {
+          arrows: {
+            to: {
               enabled: false,
             }
           }
         },
-      
-    };
-    network.setOptions(options);
+
+      };
+      network.setOptions(options);
     } catch (err) {
       alert(err);
     }
   } else if (dirigido.checked == true) {
     try {
-        options = {
-        edges:{
-          arrows:{
-            to:{
+      options = {
+        edges: {
+          arrows: {
+            to: {
               enabled: true,
             }
           }
         },
-      
-    };
-    network.setOptions(options);
+
+      };
+      network.setOptions(options);
     } catch (err) {
       alert(err);
     }
@@ -213,76 +191,85 @@ function direv(){
 }
 
 
-  /*
-    FUNCIONES DE MATRIZ
-  */
 
-function UpdMatrix() {
-  var Table = document.getElementById("table");
+/*
+  FUNCIONES DE MATRIZ
+*/
+
+
+//Funcion para generar la matriz adyacente y su tabla correspondiente
+function Adj() {
+  let i, j, c;
+  var Table = document.getElementById("tablamatrizadyacente");
   Table.innerHTML = "";
 
-  var mapfrom = edges.map((edges) => edges.from);
+  var mapfrom = edges.map((edge) => edge.from);
   console.log(mapfrom);
 
-  var mapto = edges.map((edges) => edges.to);
+  var mapto = edges.map((edge) => edge.to);
   console.log(mapto);
 
-  for (var i = 0; i < mapfrom.length; i++) {
+  for (i = 0; i < mapfrom.length; i++) {
     mapfrom[i] = +mapfrom[i];
   }
 
-  for (var i = 0; i < mapto.length; i++) {
+  for (i = 0; i < mapto.length; i++) {
     mapto[i] = +mapto[i];
   }
 
-  matrix = new Array(nodes.length);
+  var a = nodes.length;
 
-  for (let i = 0; i < (nodes.length); i++) {
-    matrix[i] = new Array(nodes.length);
+  matrix = new Array(a + 1);
+
+  for (i = 0; i < matrix.length; i++) {
+    matrix[i] = new Array(matrix.length);
   }
 
-  for (let i = 0; i < matrix.length; i++) {
-    for (let j = 0; j < matrix[i].length; j++) {
+  for (i = 0; i < matrix.length; i++) {
+    for (j = 0; j < matrix[i].length; j++) {
       matrix[i][j] = 0;
     }
   }
 
+  matrix[0][0] = "-";
+
+  for (i = 1; i < matrix.length; i++) {
+    matrix[i][0] = "Nodo " + i;
+  }
+
+  for (j = 1; j < matrix.length; j++) {
+    matrix[0][j] = "Nodo " + j;
+  }
+
+  nodir = document.getElementById("nodir");
+  dirigido = document.getElementById("dirigido");
+
   if (nodir.checked == true) {
-    for (let c = 0; c < matrix.length; c++) {
-      for (let i = 0; i < (matrix.length); i++) {
-        for (let j = 0; j < (matrix[i].length); j++) {
-          if (i + 1 === mapfrom[c] && j + 1 === mapto[c]) {
+    for (c = 0; c <= matrix.length; c++) {
+      for (i = 0; i < matrix.length; i++) {
+        for (j = 0; j < matrix[i].length; j++) {
+          if (i === mapfrom[c] && j === mapto[c]) {
             matrix[i][j] = 1;
             matrix[j][i] = 1;
           }
         }
       }
     }
-  } else if(dirigido.checked == true) {
-    for (let c = 0; c < matrix.length; c++) {
-      for (let i = 0; i < (matrix.length); i++) {
-        for (let j = 0; j < (matrix[i].length); j++) {
-          if (i + 1 === mapfrom[c] && j + 1 === mapto[c]) {
+  } else if (dirigido.checked == true) {
+    for (c = 0; c <= matrix.length; c++) {
+      for (i = 0; i < matrix.length; i++) {
+        for (j = 0; j < matrix[i].length; j++) {
+          if (i === mapfrom[c] && j === mapto[c]) {
             matrix[i][j] = 1;
           }
         }
       }
     }
   }
-  for (let c = 0; c < matrix.length; c++) {
-    for (let i = 0; i < (matrix.length); i++) {
-      for (let j = 0; j < (matrix[i].length); j++) {
-        if (i + 1 === mapfrom[c] && j + 1 === mapto[c]) {
-          matrix[i][j] = 1;
-        }
-      }
-    }
-  }
-  console.log(matrix);
 
-  for (var i = 0; i < matrix.length; i++) {
-    var newRow = table.insertRow(table.length);
-    for (var j = 0; j < matrix[i].length; j++) {
+  for (i = 0; i < matrix.length; i++) {
+    var newRow = Table.insertRow(Table.length);
+    for (j = 0; j < matrix[i].length; j++) {
       var cell = newRow.insertCell(j);
 
       cell.innerHTML = matrix[i][j];
@@ -290,49 +277,94 @@ function UpdMatrix() {
   }
 }
 
-function Camino() {
-  var table2 = document.getElementById("table2");
-  table2.innerHTML = "";
 
-  console.log(matrix);
+function conexo(){  
+  document.getElementById("conexo").innerHTML = '';
 
-  dist = matrix.slice();
+  var x = 0;
+  var mat = matrixcamino.slice();
 
-  for (let i = 0; i < nodes.length; i++) {
-    for (let j = 0; j < nodes.length; j++) {
-      if (i != j && dist[i][j] === 0) dist[i][j] = INF;
-      //las parejas de nodos sin arco están a distancia inf (p.e. 1e9)
+  if (mat.length > 0) {
+    for(let i =1; i < mat.length; i++){
+      for(let j =1; j < mat.length; j++){
+        if(mat[i][j]  == 0 && mat[j][i] == 0){
+          x++;
+        }
+      }
+    }
+    if(x == 0){
+      return true;
+    }
+    else{
+      return false
     }
   }
 
-  for (var k = 0; k < nodes.length; k++) { //por cada nodo intermedio k
-    for (var i = 0; i < nodes.length; i++) {
-      for (var j = 0; j < nodes.length; j++) { //miramos todas las parejas de nodos
-        dist[i][j] = Math.min(dist[i][j], dist[i][k] + dist[k][j]);
-        //Si pasando por k mejoramos el resultado, lo actualizamos
-      }
-    }
-  }
-  console.log(dist);
+}
 
-  for (var i = 0; i < dist.length; i++) {
-    var newRow = table2.insertRow(table2.length);
-    for (var j = 0; j < dist[i].length; j++) {
-      var cell = newRow.insertCell(j);
+function imprimir_conexo() {
+  nodir = document.getElementById("nodir");
+  dirigido = document.getElementById("dirigido");
+  let a = conexo();
 
-      if (dist[i][j] == INF) {
-        cell.innerHTML = "INF";
-      } else {
-        cell.innerHTML = dist[i][j];
-      }
-    }
+
+  if(a == true)
+    document.getElementById("conexo").innerHTML +="<p> Este grafo es de tipo conexo</p>";
+  else if(a == false) {
+    document.getElementById("conexo").innerHTML +="<p> Este grafo es de tipo no conexo</p>";
   }
 }
 
+function caminoreal() {
+  var tabla2 = document.getElementById("tablacaminomatriz");
+  tabla2.innerHTML = "";
+
+  matrixcamino = matrix.slice();
+
+  for (let k = 0; k <= matrix.length - 1; k++) {
+    for (let i = 0; i <= matrix.length - 1; i++) {
+      for (let j = 0; j <= matrix.length - 1; j++) {
+        matrixcamino[i][j] = matrizcamino(i, j, k);
+
+      }
+    }
+  }
+  // NOMBRES DE FILAS Y COLUMNAS
+  matrix[0][0] = "-";
+
+  for (i = 1; i < matrix.length; i++) {
+    matrix[i][0] = "Nodo " + i;
+  }
+
+  for (j = 1; j < matrix.length; j++) {
+    matrix[0][j] = "Nodo " + j;
+  }
+  //FIN NOMBRES FILASXCOLUMNAS
+  for (var n = 0; n < matrix.length; n++) {
+    var newRow = tabla2.insertRow(tabla2.length);
+    for (var m = 0; m < matrix[n].length; m++) {
+      var cell = newRow.insertCell(m);
+
+      cell.innerHTML = matrix[n][m];
+    }
+  }
+  console.log(matrixcamino);
+}
+
+function matrizcamino(i, j, k) {
+  if (matrix[i][j] == 1 || matrix[i][k] == 1 && matrix[k][j] == 1) {
+    return 1;
+  }
+  else {
+    return 0;
+  }
+}
 /*
   EVENTOS
 */
 window.addEventListener("load", () => {
-    draw();
-    UpdMatrix();
-  });
+  draw();
+  Adj();
+  caminoreal();
+  imprimir_conexo();
+});
