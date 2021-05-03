@@ -69,11 +69,7 @@ pre {
 }
 
 .titulo{
-    color: #95afc0;
     font-size: 200%;
-    color: #95afc0;
-    background-color: #535c68;
-    padding: px;
     color: #95afc0;
     background-color: #535c68;
     text-align: center;
@@ -154,6 +150,7 @@ pre {
     width: 100%;
     display: grid;
     grid-template-columns: 50% 50%;
+    padding: 20px;
   }
 
   /*

@@ -1,4 +1,4 @@
-var nodes, edges, network, matrix, camino, matrixcamino;
+var nodes, edges, network, matrix, camino, matrixcamino, matrixpeso;
 var nodir, dirigido;
 //matrix = ADYACENTE
 //matrixcamino = CAMINO
@@ -107,9 +107,8 @@ function draw() {
 
   edges.add([
     { id: "1", from: "1", to: "2", label: "1" },
-    { id: "2", from: "1", to: "3", label: "1" },
+    { id: "2", from: "1", to: "3", label: "2" },
     { id: "3", from: "2", to: "4", label: "1" },
-    { id: "4", from: "2", to: "5", label: "1" },
   ]);
 
   // create a network
@@ -211,11 +210,11 @@ function Adj() {
   console.log(mapto);
 
   for (i = 0; i < mapfrom.length; i++) {
-    mapfrom[i] = +mapfrom[i];
+    mapfrom[i] = + Number.parseInt(mapfrom[i]);
   }
 
   for (i = 0; i < mapto.length; i++) {
-    mapto[i] = +mapto[i];
+    mapto[i] =  Number.parseInt(mapto[i]);
   }
 
   var a = nodes.length;
@@ -356,6 +355,7 @@ function caminoreal() {
     }
   }
   console.log(matrixcamino);
+
 }
 
 function matrizcamino(i, j, k) {
@@ -366,6 +366,44 @@ function matrizcamino(i, j, k) {
     return 0;
   }
 }
+
+function matrizPeso(){
+   matrixpeso = matrix.slice();
+  var maplabel = edges.map((edge) => edge.label);
+
+  for (i = 0; i < maplabel.length; i++) {
+    maplabel[i] =+ Number.parseInt(maplabel[i]);
+  }
+  console.table(matrixpeso);
+  console.log(maplabel);
+
+  let x=0;
+    for (let i = 1; i < matrixpeso.length; i++) {
+      for (let j = 1; j < matrixpeso.length; j++) {
+        if (matrixpeso[i][j] != 0 && matrixpeso[j][i]!=0) {
+          matrixpeso[i][j] = maplabel[x];
+          matrixpeso[j][i] = maplabel[x];
+          x++;
+        }
+      }
+    }
+    console.table(matrixpeso[3][1]);
+
+    return matrixpeso;
+}
+
+function caminoCorto(x){
+
+  matriz= matrizPeso();
+ 
+
+
+}
+
+
+
+
+
 /*
   EVENTOS
 */
@@ -374,4 +412,6 @@ window.addEventListener("load", () => {
   Adj();
   caminoreal();
   imprimir_conexo();
+  matrizPeso();
+  caminoCorto();
 });
