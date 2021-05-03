@@ -359,6 +359,48 @@ function matrizcamino(i, j, k) {
     return 0;
   }
 }
+
+function kruskal() {
+  const aux = matrix.length;
+  const parent = [];
+  let ne = 0;
+  let a; let b; let u; let v;
+  const cost = matrix.slice(); // {1}
+  while (ne < a - 1) { // {2}
+    for (let i = 1, min = INF; i < aux; i++) { // {3}
+      for (let j = 1; j < aux; j++) {
+        if (cost[i][j] < min) {
+          min = cost[i][j];
+          a = u = i;
+          b = v = j;
+        }
+      }
+    }
+    u = find(u, parent); // {4}
+    v = find(v, parent); // {5}
+    if (union(u, v, parent)) { // {6}
+      ne++;
+    }
+    cost[a][b] = cost[b][a] = INF; // {7}
+  }
+  console.log(parent);
+};
+
+const find = (i, parent) => {
+  while (parent[i]) {
+    i = parent[i];
+  }
+  return i;
+};
+
+const union = (i, j, parent) => {
+  if (i !== j) {
+    parent[j] = i;
+    return true;
+  }
+  return false;
+};
+
 /*
   EVENTOS
 */
