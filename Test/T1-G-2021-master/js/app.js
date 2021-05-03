@@ -16,7 +16,7 @@ function addNode() {
   try {
     nodes.add({
       id: document.getElementById("node-id").value,
-      label: "Nodo " + document.getElementById("node-id").value,
+      label: "Nodo "+document.getElementById("node-id").value,
     });
   } catch (err) {
     alert(err);
@@ -65,7 +65,7 @@ function updateEdge() {
     });
   } catch (err) {
     alert(err);
-  }
+    }
 }
 
 function removeEdge() {
@@ -92,6 +92,7 @@ function draw() {
     { id: "2", label: "Nodo 2" },
     { id: "3", label: "Nodo 3" },
     { id: "4", label: "Nodo 4" },
+    { id: "5", label: "Nodo 5" },
   ]);
 
   // create an array with edges
@@ -106,9 +107,9 @@ function draw() {
 
   edges.add([
     { id: "1", from: "1", to: "2", label: "1" },
-    { id: "2", from: "1", to: "3", label: "1" },
-    { id: "3", from: "2", to: "4", label: "1" },
-    { id: "4", from: "2", to: "5", label: "1" },
+    { id: "2", from: "1", to: "3", label: "1"  },
+    { id: "3", from: "2", to: "4", label: "1"  },
+    { id: "4", from: "2", to: "5", label: "1"  },
   ]);
 
   // create a network
@@ -120,13 +121,13 @@ function draw() {
   };
   var options = {
     "nodes": {
-
+      
       "shape": "circle",
-
+      
     },
-    edges: {
-      arrows: {
-        to: {
+    edges:{
+      arrows:{
+        to:{
           enabled: false,
         }
       }
@@ -140,57 +141,57 @@ function draw() {
     "manipulation": {
       "enabled": false,
       "initiallyActive": false
-    },
-
-  };
+  },
+  
+};
   network = new vis.Network(container, data, options);
-}
-
-function direv() {
-  nodir = document.getElementById("nodir");
-  dirigido = document.getElementById("dirigido");
-
-  if (nodir.checked == true) {
-    try {
-      options = {
-        edges: {
-          arrows: {
-            to: {
-              enabled: false,
-            }
-          }
-        },
-
-      };
-      network.setOptions(options);
-    } catch (err) {
-      alert(err);
-    }
-  } else if (dirigido.checked == true) {
-    try {
-      options = {
-        edges: {
-          arrows: {
-            to: {
-              enabled: true,
-            }
-          }
-        },
-
-      };
-      network.setOptions(options);
-    } catch (err) {
-      alert(err);
-    }
   }
 
-}
+  function direv(){
+    nodir = document.getElementById("nodir");
+    dirigido = document.getElementById("dirigido");
+
+    if (nodir.checked == true) {
+      try {
+        options = {
+          edges:{
+            arrows:{
+              to:{
+                enabled: false,
+              }
+            }
+          },
+        
+      };
+      network.setOptions(options);
+      } catch (err) {
+        alert(err);
+      }
+    } else if (dirigido.checked == true) {
+      try {
+         options = {
+          edges:{
+            arrows:{
+              to:{
+                enabled: true,
+              }
+            }
+          },
+        
+      };
+      network.setOptions(options);
+      } catch (err) {
+        alert(err);
+      }
+    }
+  
+  }
 
 
 
-/*
-  FUNCIONES DE MATRIZ
-*/
+  /*
+    FUNCIONES DE MATRIZ
+  */
 
 function Adj() {
   let i, j, c;
@@ -215,7 +216,7 @@ function Adj() {
 
   matrix = new Array(a + 1);
 
-  for (i = 0; i < matrix.length; i++) {
+  for (i = 0; i < matrix.length ; i++) {
     matrix[i] = new Array(matrix.length);
   }
 
@@ -227,29 +228,29 @@ function Adj() {
 
   matrix[0][0] = "-";
 
-  for (i = 1; i < matrix.length; i++) {
+  for(i = 1;i < matrix.length;i++) {
     matrix[i][0] = "Nodo " + i;
   }
 
-  for (j = 1; j < matrix.length; j++) {
+  for(j = 1;j < matrix.length;j++) {
     matrix[0][j] = "Nodo " + j;
-  }
+  } 
 
   nodir = document.getElementById("nodir");
   dirigido = document.getElementById("dirigido");
 
-  if (nodir.checked == true) {
+  if(nodir.checked == true) {
     for (c = 0; c <= matrix.length; c++) {
       for (i = 0; i < matrix.length; i++) {
         for (j = 0; j < matrix[i].length; j++) {
-          if (i === mapfrom[c] && j === mapto[c]) {
+          if (i  === mapfrom[c] && j  === mapto[c]) {
             matrix[i][j] = 1;
             matrix[j][i] = 1;
           }
         }
       }
     }
-  } else if (dirigido.checked == true) {
+  } else if(dirigido.checked == true) {
     for (c = 0; c <= matrix.length; c++) {
       for (i = 0; i < matrix.length; i++) {
         for (j = 0; j < matrix[i].length; j++) {
@@ -271,7 +272,7 @@ function Adj() {
   }
 }
 
-function conexo() {
+function conexo(){  
   let i, j;
   document.getElementById("conexo").innerHTML = '';
 
@@ -301,62 +302,53 @@ function conexo() {
 
 
 function imprimir_conexo() {
-  if (conexo() === true)
-    document.getElementById("conexo").innerHTML += "<p> Este grafo es de tipo conexo</p>";
-  else if (conexo() === false) {
-    document.getElementById("conexo").innerHTML += "<p> Este grafo es de tipo no conexo</p>";
+  if(conexo() === true)
+    document.getElementById("conexo").innerHTML +="<p> Este grafo es de tipo conexo</p>";
+  else if(conexo() === false) {
+    document.getElementById("conexo").innerHTML +="<p> Este grafo es de tipo no conexo</p>";
   }
 }
 
 
-function caminoreal() {
+function caminoreal(){
   var tabla2 = document.getElementById("tablacaminomatriz");
-  tabla2.innerHTML = "";
-
-  matrixcamino = matrix.slice();
-
-  for (let k = 0; k <= matrix.length - 1; k++) {
-    for (let i = 0; i <= matrix.length - 1; i++) {
-      for (let j = 0; j <= matrix.length - 1; j++) {
-        matrixcamino[i][j] = matrizcamino(i, j, k);
-
-      }
-    }
-  }
-  // NOMBRES DE FILAS Y COLUMNAS
-  matrix[0][0] = "-";
-
-  for (i = 1; i < matrix.length; i++) {
-    matrix[i][0] = "Nodo " + i;
-  }
-
-  for (j = 1; j < matrix.length; j++) {
-    matrix[0][j] = "Nodo " + j;
-  }
-  //FIN NOMBRES FILASXCOLUMNAS
-  for (var n = 0; n < matrix.length; n++) {
-    var newRow = tabla2.insertRow(tabla2.length);
-    for (var m = 0; m < matrix[n].length; m++) {
-      var cell = newRow.insertCell(m);
-
-      cell.innerHTML = matrix[n][m];
-    }
-  }
-  console.log(matrixcamino);
-}
-function matrizcamino(i, j, k) {
-  if (matrix[i][j] == 1 || matrix[i][k] == 1 && matrix[k][j] == 1) {
-    return 1;
-  }
-  else {
-    return 0;
-  }
-}
+  tabla2.innerHTML="";
+ 
+    matrixcamino = matrix.slice();
+ 
+   for(let k = 0; k <= matrix.length - 1; k++){
+     for(let i = 0; i <= matrix.length - 1; i++){
+       for(let j = 0; j <= matrix.length -1 ; j++){
+         matrixcamino[i][j] = matrizcamino(i, j, k);
+   
+       }
+     }
+   }
+ 
+   
+ 
+   for (var n = 0; n < matrix.length; n++) {
+     var newRow = tabla2.insertRow(tabla2.length);
+     for (var m = 0; m < matrix[n].length; m++) {
+       var cell = newRow.insertCell(m);
+ 
+       cell.innerHTML = matrix[n][m];
+     }
+   }
+   console.log(matrixcamino);
+ }
+ function matrizcamino(i, j, k){
+   if(matrix[i][j] == 1 || matrix[i][k] == 1 && matrix[k][j] == 1){
+     return 1;
+   }
+   else{
+     return 0;
+   }
+ }
 /*
   EVENTOS
 */
 window.addEventListener("load", () => {
-  draw();
-  Adj();
-  caminoreal();
-});
+    draw();
+    Adj();
+  });

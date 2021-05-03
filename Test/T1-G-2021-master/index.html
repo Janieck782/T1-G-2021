@@ -33,51 +33,50 @@
 
   <h2 class="titulo">Grafo</h2>
   <div id="mynetwork"></div>
-
   <h2 class="titulo">Parametros</h2>
   <div class="parametros">
+    <colgroup>
+      <col width="33%" />
+      <col width="33%" />
+      <col width="33%" />
+    </colgroup>
 
-    <div>
-      <h2>Nodos</h2>
-      <label for="node-id">Id</label>
-      <input id="node-id" type="text" value="6" />
+    <h2>Nodos</h2>
+    <label for="node-id">Id</label>
+    <input id="node-id" type="text" value="6" />
 
-      <h2>Accion</h2>
-      <button id="node-add" onclick="addNode();">Añadir</button>
-      <!--button id="node-update" onclick="updateNode();">Actualizar</!--button-->
-      <button id="node-remove" onclick="removeNode();">Remover</button>
-    </div>
+    <h2>Accion</h2>
+    <button id="node-add" onclick="addNode();">Añadir</button>
+    <!--button id="node-update" onclick="updateNode();">Actualizar</!--button-->
+    <button id="node-remove" onclick="removeNode();">Remover</button>
 
-    <div>
-      <h2>Aristas</h2>
 
-      <label for="edge-id">Id</label>
-      <input id="edge-id" type="text" value="5" />
+    <h2>Aristas</h2>
 
-      <label for="edge-from">Desde</label>
-      <input id="edge-from" type="text" value="3" />
+    <label for="edge-id">Id</label>
+    <input id="edge-id" type="text" value="5" />
 
-      <label for="edge-to">Hacia</label>
-      <input id="edge-to" type="text" value="4" />
+    <label for="edge-from">Desde</label>
+    <input id="edge-from" type="text" value="3" />
 
-      <label for="label-to">Peso</label>
-      <input id="label-to" type="text" value="1" />
+    <label for="edge-to">Hacia</label>
+    <input id="edge-to" type="text" value="4" />
 
-      <h2>Accion</h2>
-      <button id="edge-add" onclick="addEdge();">Añadir</button>
-      <button id="edge-update" onclick="updateEdge();">Actualizar</button>
-      <button id="edge-remove" onclick="removeEdge();">Remover</button>
-    </div>
+    <label for="label-to">Peso</label>
+    <input id="label-to" type="text" value="1" />
 
-    <div>
-      <h2>Grafo dirigido</h2>
-      <input type="Radio" id="nodir" name="tipo" checked onclick="direv(), Adj(), imprimir_conexo(),caminoreal();"> No
-      dirigido
-      <input type="Radio" id="dirigido" name="tipo" onclick="direv(), Adj(), imprimir_conexo(),caminoreal();"> Dirigido
-      <br>
-      <br>
-      <p>*Para modificar un nodo/arista, por favor ingrese su Id y seleccione remover.</p>
-    </div>
+    <h2>Accion</h2>
+
+    <button id="edge-add" onclick="addEdge();">Añadir</button>
+    <button id="edge-update" onclick="updateEdge();">Actualizar</button>
+    <button id="edge-remove" onclick="removeEdge();">Remover</button>
+
+    <h2>Grafo dirigido</h2>
+    <input type="Radio" id="nodir" name="tipo" checked onclick="direv(), Adj(), imprimir_conexo(),caminoreal();"> No dirigido
+    <input type="Radio" id="dirigido" name="tipo" onclick="direv(), Adj(), imprimir_conexo(),caminoreal();"> Dirigido
+    <br>
+    <br>
+    <p>*Para modificar un nodo/arista, por favor ingrese su Id y seleccione remover.</p>
   </div>
 
   <h1 class="titulo">Matrices</h1>
@@ -103,14 +102,16 @@
 
   <h1 class="titulo">Variables</h1>
   <div class="variables">
-    <div>
-      <h2>Nodos</h2>
-      <pre id="nodes"></pre>
-    </div>
-    <div>
-      <h2>Aristas</h2>
-      <pre id="edges"></pre>
-    </div>
+    <colgroup>
+      <col width="33%" />
+      <col width="33%" />
+      <col width="33%" />
+    </colgroup>
+    <h2>Nodos</h2>
+    <pre id="nodes"></pre>
+
+    <h2>Aristas</h2>
+    <pre id="edges"></pre>
   </div>
 
   <footer class="footer">
