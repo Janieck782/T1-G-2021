@@ -72,37 +72,37 @@
     <button id="edge-remove" onclick="removeEdge();">Remover</button>
 
     <h2>Grafo dirigido</h2>
-    <input type="Radio" id="nodir" name="tipo" checked onclick="direv(), Adj(), imprimir_conexo()"> No dirigido
-    <input type="Radio" id="dirigido" name="tipo" onclick="direv(), Adj(), imprimir_conexo()"> Dirigido
+    <input type="Radio" id="nodir" name="tipo" checked onclick="direv(), Adj(), imprimir_conexo(),caminoreal();"> No
+    dirigido
+    <input type="Radio" id="dirigido" name="tipo" onclick="direv(), Adj(), imprimir_conexo(),caminoreal();"> Dirigido
     <br>
     <br>
     <p>*Para modificar un nodo/arista, por favor ingrese su Id y seleccione remover.</p>
   </div>
 
   <h1 class="titulo">Matrices</h1>
-  <div class="parametros">
-    <colgroup>
-      <col width="50%" />
-      <col width="50%" />
-    </colgroup>
-  </div>
 
-  <h2 class="nombreM">Matriz Adyacente </h2>
-  <br><br>
-  <table id="table" border="1">
-    <caption>Matriz</caption>
-    <th id="Adjyacente">Matriz Adyacente</th>
-  </table>
-  <div id=conexo></div>
+  <div class="contenedormatrices">
+
+    <div class="contenedormatrizadyacente">
+
+      <h2 class="nombreM">Matriz Adyacente</h2>
+      <table id="tablamatrizadyacente" border="1"></table>
+      <div id=conexo></div>
+
+    </div>
+
+    <div class="contenedorcaminomatriz">
+
+      <h2 class="NombreMatrizCamino">Matriz de camino</h2>
+      <table id="tablacaminomatriz" border="1"></table>
+
+    </div>
+
   </div>
 
   <h1 class="titulo">Variables</h1>
   <div class="variables">
-    <colgroup>
-      <col width="33%" />
-      <col width="33%" />
-      <col width="33%" />
-    </colgroup>
     <h2>Nodos</h2>
     <pre id="nodes"></pre>
 

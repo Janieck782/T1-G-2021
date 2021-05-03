@@ -195,7 +195,7 @@ function draw() {
 
 function Adj() {
   let i, j, c;
-  var Table = document.getElementById("table");
+  var Table = document.getElementById("tablamatrizadyacente");
   Table.innerHTML = "";
 
   var mapfrom = edges.map((edges) => edges.from);
@@ -263,7 +263,7 @@ function Adj() {
   }
 
   for (i = 0; i < matrix.length; i++) {
-    var newRow = table.insertRow(table.length);
+    var newRow = Table.insertRow(Table.length);
     for (j = 0; j < matrix[i].length; j++) {
       var cell = newRow.insertCell(j);
 
@@ -311,26 +311,40 @@ function imprimir_conexo() {
 
 
 function caminoreal(){
-  let k, i, j;
-   matrixcamino = matrix.slice();
-
-  for(k = 0; k <= matrix.length - 1; k++){
-    for(i = 0; i <= matrix.length - 1; i++){
-      for(j = 0; j <= matrix.length -1 ; j++){
-        matrixcamino[i][j] = matrizcamino(i, j, k);
-      }
-    }
-  }
-  console.log(matrixcamino);
-}
-function matrizcamino(i, j, k){
-  if(matrix[i][j] == 1 || matrix[i][k] == 1 && matrix[k][j] == 1){
-    return 1;
-  }
-  else{
-    return 0;
-  }
-}
+  var tabla2 = document.getElementById("tablacaminomatriz");
+  tabla2.innerHTML="";
+ 
+    matrixcamino = matrix.slice();
+ 
+   for(let k = 0; k <= matrix.length - 1; k++){
+     for(let i = 0; i <= matrix.length - 1; i++){
+       for(let j = 0; j <= matrix.length -1 ; j++){
+         matrixcamino[i][j] = matrizcamino(i, j, k);
+   
+       }
+     }
+   }
+ 
+   
+ 
+   for (var n = 0; n < matrix.length; n++) {
+     var newRow = tabla2.insertRow(tabla2.length);
+     for (var m = 0; m < matrix[n].length; m++) {
+       var cell = newRow.insertCell(m);
+ 
+       cell.innerHTML = matrix[n][m];
+     }
+   }
+   console.log(matrixcamino);
+ }
+ function matrizcamino(i, j, k){
+   if(matrix[i][j] == 1 || matrix[i][k] == 1 && matrix[k][j] == 1){
+     return 1;
+   }
+   else{
+     return 0;
+   }
+ }
 /*
   EVENTOS
 */
