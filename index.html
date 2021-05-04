@@ -43,8 +43,8 @@
           <input id="node-id" type="text" value="5" />
 
           <h2>Accion</h2>
-          <button id="node-add" onclick="addNode(), Adj(), caminoreal(), imprimir_conexo();">Añadir</button>
-          <button id="node-remove" onclick="removeNode(), Adj(), caminoreal(), imprimir_conexo();">Remover</button>
+          <button id="node-add" onclick="addNode(), Adj(),  Imprime();">Añadir</button>
+          <button id="node-remove" onclick="removeNode(), Adj(), Imprime();">Remover</button>
         </div>
 
         <div class = "aristacs">
@@ -67,17 +67,17 @@
           <br>
 
           <h2>Accion</h2>
-          <button id="edge-add" onclick="addEdge(), Adj(), caminoreal(), imprimir_conexo();">Añadir</button>
-          <button id="edge-update" onclick="updateEdge(), Adj(), caminoreal(), imprimir_conexo();">Actualizar</button>
-          <button id="edge-remove" onclick="removeEdge(), Adj(), caminoreal(), imprimir_conexo();">Remover</button>
+          <button id="edge-add" onclick="addEdge(), Adj(), Imprime();">Añadir</button>
+          <button id="edge-update" onclick="updateEdge(), Adj(), Imprime();">Actualizar</button>
+          <button id="edge-remove" onclick="removeEdge(), Adj(), Imprime();">Remover</button>
         </div>
 
         <div>
           <h2>Grafo dirigido</h2>
           <p>Para el desarrollo de esta aplicacion solo se considera el grafo como no dirigido.</p>
-          <input type="Radio" id="nodir" name="tipo" checked onclick="direv(), Adj(), caminoreal(), imprimir_conexo();"> No
+          <input type="Radio" id="nodir" name="tipo" checked onclick="direv(), Adj(), Imprime();"> No
           dirigido
-          <input type="Radio" id="dirigido" name="tipo" onclick="direv(), Adj(), caminoreal(), imprimir_conexo();"> Dirigido
+          <input type="Radio" id="dirigido" name="tipo" onclick="direv(), Adj(), Imprime();"> Dirigido
           <p id=conexo></p>
           <br>
           <br>
