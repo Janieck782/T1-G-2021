@@ -43,9 +43,9 @@
       <input id="node-id" type="text" value="5" />
 
       <h2>Accion</h2>
-      <button id="node-add" onclick="addNode(), Adj(), imprimir_conexo(),caminoreal();">Añadir</button>
+      <button id="node-add" onclick="addNode(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso();">Añadir</button>
       <!--button id="node-update" onclick="updateNode();">Actualizar</!--button-->
-      <button id="node-remove" onclick="removeNode(), Adj(), imprimir_conexo(),caminoreal();">Remover</button>
+      <button id="node-remove" onclick="removeNode(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso();">Remover</button>
     </div>
 
     <div class = "aristacs">
@@ -68,17 +68,17 @@
       <br>
 
       <h2>Accion</h2>
-      <button id="edge-add" onclick="addEdge(), Adj(), imprimir_conexo(),caminoreal();">Añadir</button>
-      <button id="edge-update" onclick="updateEdge(), Adj(), imprimir_conexo(),caminoreal();">Actualizar</button>
-      <button id="edge-remove" onclick="removeEdge(), Adj(), imprimir_conexo(),caminoreal();">Remover</button>
+      <button id="edge-add" onclick="addEdge(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso();">Añadir</button>
+      <button id="edge-update" onclick="updateEdge(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso();">Actualizar</button>
+      <button id="edge-remove" onclick="removeEdge(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso();">Remover</button>
     </div>
 
     <div>
       <h2>Grafo dirigido</h2>
       <p>Para el desarrollo de esta aplicacion solo se considera el grafo como no dirigido.</p>
-      <input type="Radio" id="nodir" name="tipo" checked onclick="direv(), Adj(), imprimir_conexo(),caminoreal();"> No
+      <input type="Radio" id="nodir" name="tipo" checked onclick="direv(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso();"> No
       dirigido
-      <input type="Radio" id="dirigido" name="tipo" onclick="direv(), Adj(), imprimir_conexo(),caminoreal();"> Dirigido
+      <input type="Radio" id="dirigido" name="tipo" onclick="direv(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso();"> Dirigido
       <p id=conexo></p>
       <br>
       <br>

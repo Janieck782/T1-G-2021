@@ -209,12 +209,20 @@ function Adj() {
   var mapto = edges.map((edges) => edges.to);
   console.log(mapto);
 
+    var maplabel = edges.map((edge) => edge.label);
+  console.log("Peso");
+  console.log(maplabel);
+
   for (i = 0; i < mapfrom.length; i++) {
-    mapfrom[i] = + Number.parseInt(mapfrom[i]);
+    mapfrom[i] = +mapfrom[i];
   }
 
   for (i = 0; i < mapto.length; i++) {
-    mapto[i] =  Number.parseInt(mapto[i]);
+    mapto[i] = +mapto[i];
+  }
+
+  for (i = 0; i < maplabel.length; i++) {
+    maplabel[i] = +maplabel[i];
   }
 
   var a = nodes.length;
@@ -240,11 +248,11 @@ function Adj() {
   for (j = 1; j < matrix.length; j++) {
     matrix[0][j] = "Nodo " + j;
   }
-/* 
+
   nodir = document.getElementById("nodir");
   dirigido = document.getElementById("dirigido");
 
-  if (nodir.checked == true) {*/
+  if (nodir.checked == true) {
     for (c = 0; c <= matrix.length; c++) {
       for (i = 0; i < matrix.length; i++) {
         for (j = 0; j < matrix[i].length; j++) {
@@ -255,7 +263,7 @@ function Adj() {
         }
       }
     }
-  /*} else if (dirigido.checked == true) {
+  } else if (dirigido.checked == true) {
     for (c = 0; c <= matrix.length; c++) {
       for (i = 0; i < matrix.length; i++) {
         for (j = 0; j < matrix[i].length; j++) {
@@ -265,7 +273,7 @@ function Adj() {
         }
       }
     }
-  }*/
+  }
 
   for (i = 0; i < matrix.length; i++) {
     var newRow = Table.insertRow(Table.length);
@@ -277,13 +285,40 @@ function Adj() {
   }
 }
 
+function matrizPeso(){
+  matrixpeso = JSON.parse(JSON.stringify(matrix));
+  var maplabel = edges.map((edge) => edge.label);
 
+ for (i = 0; i < maplabel.length; i++) {
+   maplabel[i] =+ Number.parseInt(maplabel[i]);
+ }
+ 
+ console.log("Matriz Peso antes");
+ console.log(matrixpeso);
+ console.log("Pesos");
+ console.log(maplabel);
+
+ let x =0;
+  for (let i = 1; i < matrixpeso.length; i++) {
+    for (let j = 1; j < matrixpeso.length; j++) {
+      if (matrixpeso[i][j] != 0 && matrixpeso[j][i]!=0) {
+        matrixpeso[i][j] = maplabel[x];
+        matrixpeso[j][i] = maplabel[x];
+        x++;
+      }
+    }
+  }
+  console.log("Matriz Peso")
+  console.table(matrixpeso);
+
+  return matrixpeso;
+}
 
 function conexo(){  
   document.getElementById("conexo").innerHTML = '';
 
   var x = 0;
-  var mat = matrixcamino.slice();
+  mat = JSON.parse(JSON.stringify(matrixcamino));
 
   if (mat.length > 0) {
     for(let i =1; i < mat.length; i++){
@@ -300,7 +335,6 @@ function conexo(){
       return false
     }
   }
-
 }
 
 
@@ -308,17 +342,11 @@ function imprimir_conexo() {
   nodir = document.getElementById("nodir");
   dirigido = document.getElementById("dirigido");
   let a = conexo();
-  if(nodir.checked == true){
-
   if(a == true)
-  document.getElementById("conexo").innerHTML +="<p> Este grafo es de tipo conexo</p>";
+    document.getElementById("conexo").innerHTML +="<p> Este grafo es de tipo conexo</p>";
   else if(a == false) {
     document.getElementById("conexo").innerHTML +="<p> Este grafo es de tipo no conexo</p>";
   }
-}
-if(dirigido.checked == true){
-  document.getElementById("conexo").innerHTML ="<p>";
-}
 }
 
 function caminoreal() {
@@ -365,31 +393,6 @@ function matrizcamino(i, j, k) {
   else {
     return 0;
   }
-}
-
-function matrizPeso(){
-   matrixpeso = matrix.slice();
-  var maplabel = edges.map((edge) => edge.label);
-
-  for (i = 0; i < maplabel.length; i++) {
-    maplabel[i] =+ Number.parseInt(maplabel[i]);
-  }
-  console.table(matrixpeso);
-  console.log(maplabel);
-
-  let x=0;
-    for (let i = 1; i < matrixpeso.length; i++) {
-      for (let j = 1; j < matrixpeso.length; j++) {
-        if (matrixpeso[i][j] != 0 && matrixpeso[j][i]!=0) {
-          matrixpeso[i][j] = maplabel[x];
-          matrixpeso[j][i] = maplabel[x];
-          x++;
-        }
-      }
-    }
-    console.table(matrixpeso[3][1]);
-
-    return matrixpeso;
 }
 
 function caminoCorto(x){
