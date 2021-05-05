@@ -1,4 +1,4 @@
-var nodes, edges, network, matrix, camino, matrixcamino, matrixpeso;
+var nodes, edges, network, matrix, camino, matrixcamino, matrixpeso, mapfrom, mapto, maplabel;
 var nodir, dirigido;
 //matrix = ADYACENTE
 //matrixcamino = CAMINO
@@ -108,7 +108,7 @@ function draw() {
   edges.add([
     { id: "1", from: "1", to: "2", label: "1" },
     { id: "2", from: "1", to: "3", label: "2" },
-    { id: "3", from: "2", to: "4", label: "1" },
+    { id: "3", from: "2", to: "4", label: "6" },
   ]);
 
   // create a network
@@ -144,6 +144,31 @@ function draw() {
 
   };
   network = new vis.Network(container, data, options);
+}
+
+function save_data() {
+  mapfrom = edges.map((edges) => edges.from);
+  console.log(mapfrom);
+
+  mapto = edges.map((edges) => edges.to);
+  console.log(mapto);
+
+  maplabel = edges.map((edge) => edge.label);
+  console.log("Peso");
+  console.log(maplabel);
+
+  for (i = 0; i < mapfrom.length; i++) {
+    mapfrom[i] = +mapfrom[i];
+  }
+
+  for (i = 0; i < mapto.length; i++) {
+    mapto[i] = +mapto[i];
+  }
+
+  for (i = 0; i < maplabel.length; i++) {
+    maplabel[i] = +maplabel[i];
+  }
+
 }
 
 /*
@@ -190,8 +215,6 @@ function direv() {
 
 }
 
-
-
 /*
   FUNCIONES DE MATRIZ
 */
@@ -202,28 +225,6 @@ function Adj() {
   let i, j, c;
   var Table = document.getElementById("tablamatrizadyacente");
   Table.innerHTML = "";
-
-  var mapfrom = edges.map((edges) => edges.from);
-  console.log(mapfrom);
-
-  var mapto = edges.map((edges) => edges.to);
-  console.log(mapto);
-
-    var maplabel = edges.map((edge) => edge.label);
-  console.log("Peso");
-  console.log(maplabel);
-
-  for (i = 0; i < mapfrom.length; i++) {
-    mapfrom[i] = +mapfrom[i];
-  }
-
-  for (i = 0; i < mapto.length; i++) {
-    mapto[i] = +mapto[i];
-  }
-
-  for (i = 0; i < maplabel.length; i++) {
-    maplabel[i] = +maplabel[i];
-  }
 
   var a = nodes.length;
 
@@ -287,27 +288,46 @@ function Adj() {
 
 function matrizPeso(){
   matrixpeso = JSON.parse(JSON.stringify(matrix));
-  var maplabel = edges.map((edge) => edge.label);
 
- for (i = 0; i < maplabel.length; i++) {
-   maplabel[i] =+ Number.parseInt(maplabel[i]);
- }
+//   var maplabel = edges.map((edge) => edge.label);
+
+//  for (i = 0; i < maplabel.length; i++) {
+//    maplabel[i] = +maplabel[i];
+//  }
  
- console.log("Matriz Peso antes");
- console.log(matrixpeso);
- console.log("Pesos");
- console.log(maplabel);
+  console.log("Matrix");
+  console.log(matrix);
+  console.log("Matriz Peso antes");
+  console.log(matrixpeso);
+  console.log("Pesos");
+  console.log(maplabel);
 
- let x =0;
-  for (let i = 1; i < matrixpeso.length; i++) {
-    for (let j = 1; j < matrixpeso.length; j++) {
-      if (matrixpeso[i][j] != 0 && matrixpeso[j][i]!=0) {
-        matrixpeso[i][j] = maplabel[x];
-        matrixpeso[j][i] = maplabel[x];
-        x++;
+  nodir = document.getElementById("nodir");
+  dirigido = document.getElementById("dirigido");
+
+  if (nodir.checked == true) {
+    for (c = 0; c <= matrixpeso.length; c++) {
+      for (i = 0; i < matrixpeso.length; i++) {
+        for (j = 0; j < matrixpeso[i].length; j++) {
+          if (i === mapfrom[c] && j === mapto[c]) {
+            matrixpeso[i][j] = maplabel[c];
+            matrixpeso[j][i] = maplabel[c];
+          }
+        }
+      }
+    }
+  } else if (dirigido.checked == true) {
+    for (c = 0; c <= matrixpeso.length; c++) {
+      for (i = 0; i < matrixpeso.length; i++) {
+        for (j = 0; j < matrixpeso[i].length; j++) {
+          if (i === mapfrom[c] && j === mapto[c]) {
+            matrixpeso[i][j] = maplabel[c];
+          }
+        }
       }
     }
   }
+
   console.log("Matriz Peso")
   console.table(matrixpeso);
 
@@ -353,41 +373,43 @@ function caminoreal() {
   var tabla2 = document.getElementById("tablacaminomatriz");
   tabla2.innerHTML = "";
 
-  matrixcamino = matrix.slice();
+  matrixcamino = JSON.parse(JSON.stringify(matrix));
 
-  for (let k = 0; k <= matrix.length - 1; k++) {
-    for (let i = 0; i <= matrix.length - 1; i++) {
-      for (let j = 0; j <= matrix.length - 1; j++) {
-        matrixcamino[i][j] = matrizcamino(i, j, k);
+  // matrixcamino = matrix.slice();
+
+  for (let k = 0; k <= matrixcamino.length - 1; k++) {
+    for (let i = 0; i <= matrixcamino.length - 1; i++) {
+      for (let j = 0; j <= matrixcamino.length - 1; j++) {
+        matrixcamino[i][j] = matriz_camino(i, j, k);
 
       }
     }
   }
   // NOMBRES DE FILAS Y COLUMNAS
-  matrix[0][0] = "-";
+  matrixcamino[0][0] = "-";
 
-  for (i = 1; i < matrix.length; i++) {
-    matrix[i][0] = "Nodo " + i;
+  for (i = 1; i < matrixcamino.length; i++) {
+    matrixcamino[i][0] = "Nodo " + i;
   }
 
-  for (j = 1; j < matrix.length; j++) {
-    matrix[0][j] = "Nodo " + j;
+  for (j = 1; j < matrixcamino.length; j++) {
+    matrixcamino[0][j] = "Nodo " + j;
   }
   //FIN NOMBRES FILASXCOLUMNAS
-  for (var n = 0; n < matrix.length; n++) {
+  for (var n = 0; n < matrixcamino.length; n++) {
     var newRow = tabla2.insertRow(tabla2.length);
-    for (var m = 0; m < matrix[n].length; m++) {
+    for (var m = 0; m < matrixcamino[n].length; m++) {
       var cell = newRow.insertCell(m);
 
-      cell.innerHTML = matrix[n][m];
+      cell.innerHTML = matrixcamino[n][m];
     }
   }
   console.log(matrixcamino);
 
 }
 
-function matrizcamino(i, j, k) {
-  if (matrix[i][j] == 1 || matrix[i][k] == 1 && matrix[k][j] == 1) {
+function matriz_camino(i, j, k) {
+  if (matrixcamino[i][j] == 1 || matrixcamino[i][k] == 1 && matrixcamino[k][j] == 1) {
     return 1;
   }
   else {
@@ -398,20 +420,14 @@ function matrizcamino(i, j, k) {
 function caminoCorto(x){
 
   matriz= matrizPeso();
- 
-
-
 }
-
-
-
-
 
 /*
   EVENTOS
 */
 window.addEventListener("load", () => {
   draw();
+  save_data();
   Adj();
   caminoreal();
   imprimir_conexo();
