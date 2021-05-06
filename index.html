@@ -43,9 +43,8 @@
       <input id="node-id" type="text" value="5" />
 
       <h2>Accion</h2>
-      <button id="node-add" onclick="addNode(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso();">Añadir</button>
-      <!--button id="node-update" onclick="updateNode();">Actualizar</!--button-->
-      <button id="node-remove" onclick="removeNode(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso();">Remover</button>
+      <button id="node-add" onclick="addNode(),save_data(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso();">Añadir</button>
+      <button id="node-remove" onclick="removeNode(),save_data(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso();">Remover</button>
     </div>
 
     <div class = "aristacs">
@@ -68,17 +67,17 @@
       <br>
 
       <h2>Accion</h2>
-      <button id="edge-add" onclick="addEdge(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso();">Añadir</button>
-      <button id="edge-update" onclick="updateEdge(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso();">Actualizar</button>
-      <button id="edge-remove" onclick="removeEdge(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso();">Remover</button>
+      <button id="edge-add" onclick="addEdge(),save_data(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso();">Añadir</button>
+      <button id="edge-update" onclick="updateEdge(),save_data(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso();">Actualizar</button>
+      <button id="edge-remove" onclick="removeEdge(),save_data(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso();">Remover</button>
     </div>
 
     <div>
       <h2>Grafo dirigido</h2>
       <p>Para el desarrollo de esta aplicacion solo se considera el grafo como no dirigido.</p>
-      <input type="Radio" id="nodir" name="tipo" checked onclick="direv(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso();"> No
+      <input type="Radio" id="nodir" name="tipo" checked onclick="direv(),save_data(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso();"> No
       dirigido
-      <input type="Radio" id="dirigido" name="tipo" onclick="direv(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso();"> Dirigido
+      <input type="Radio" id="dirigido" name="tipo" onclick="direv(),save_data(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso();"> Dirigido
       <p id=conexo></p>
       <br>
       <br>
@@ -93,18 +92,27 @@
     <div class="contenedormatrizadyacente">
 
       <h2 class="nombreM">Matriz Adyacente</h2>
-      <table id="tablamatrizadyacente" border="1"></table>
+      <table id="tablamatrizadyacente" border="1">
+        <caption>Matriz de Adyacencia</caption>
+        <tr>
+          <td></td>
+          <th scope="Titu">Adyacente</th>
+        </tr>
+      </table>
       
 
     </div>
 
     <div class="contenedorcaminomatriz">
       <h2 class="NombreMatrizCamino">Matriz de camino</h2>
-      <table id="tablacaminomatriz" border="1"></table>
-
+      <table id="tablacaminomatriz" border="1">
+        <caption>Matriz de Caminos</caption>
+        <tr>
+          <td></td>
+          <th scope="Titu">Camino</th>
+        </tr>
+      </table>
     </div>
-
-
 
   </div>
 

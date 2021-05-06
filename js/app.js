@@ -1,12 +1,10 @@
-var nodes, edges, network, matrix, camino, matrixcamino, matrixpeso, mapfrom, mapto, maplabel;
-var nodir, dirigido;
+var nodes, edges, network, matrix, camino, matrixcamino, matrixpeso, mapfrom, mapto, maplabel, options, nodir, dirigido;
+
 //matrix = ADYACENTE
 //matrixcamino = CAMINO
 
 // convenience method to stringify a JSON object
-function toJSON(obj) {
-  return JSON.stringify(obj, null, 4);
-}
+function toJSON(obj) { return JSON.stringify(obj, null, 4);}
 
 
 /*
@@ -69,6 +67,33 @@ function updateEdge() {
   }
 }
 
+function save_data() {
+  let i;
+
+  mapfrom = edges.map((edge) => edge.from);
+  console.log(mapfrom);
+
+  mapto = edges.map((edge) => edge.to);
+  console.log(mapto);
+
+  maplabel = edges.map((edge) => edge.label);
+  console.log("Peso");
+  console.log(maplabel);
+
+  for (i = 0; i < mapfrom.length; i++) {
+    mapfrom[i] = +mapfrom[i];
+  }
+
+  for (i = 0; i < mapto.length; i++) {
+    mapto[i] = +mapto[i];
+  }
+
+  for (i = 0; i < maplabel.length; i++) {
+    maplabel[i] = +maplabel[i];
+  }
+
+}
+
 function removeEdge() {
   try {
     edges.remove({ id: document.getElementById("edge-id").value });
@@ -118,7 +143,7 @@ function draw() {
     nodes: nodes,
     edges: edges,
   };
-  var options = {
+  options = {
     "nodes": {
 
       "shape": "circle",
@@ -146,30 +171,7 @@ function draw() {
   network = new vis.Network(container, data, options);
 }
 
-function save_data() {
-  mapfrom = edges.map((edges) => edges.from);
-  console.log(mapfrom);
 
-  mapto = edges.map((edges) => edges.to);
-  console.log(mapto);
-
-  maplabel = edges.map((edge) => edge.label);
-  console.log("Peso");
-  console.log(maplabel);
-
-  for (i = 0; i < mapfrom.length; i++) {
-    mapfrom[i] = +mapfrom[i];
-  }
-
-  for (i = 0; i < mapto.length; i++) {
-    mapto[i] = +mapto[i];
-  }
-
-  for (i = 0; i < maplabel.length; i++) {
-    maplabel[i] = +maplabel[i];
-  }
-
-}
 
 /*
     Funcion para dirigir o no el grafo
@@ -287,6 +289,7 @@ function Adj() {
 }
 
 function matrizPeso(){
+  let c, i, j;
   matrixpeso = JSON.parse(JSON.stringify(matrix));
 
 //   var maplabel = edges.map((edge) => edge.label);
@@ -338,7 +341,7 @@ function conexo(){
   document.getElementById("conexo").innerHTML = '';
 
   var x = 0;
-  mat = JSON.parse(JSON.stringify(matrixcamino));
+  var mat = JSON.parse(JSON.stringify(matrixcamino));
 
   if (mat.length > 0) {
     for(let i =1; i < mat.length; i++){
@@ -348,12 +351,13 @@ function conexo(){
         }
       }
     }
-    if(x == 0){
-      return true;
-    }
-    else{
-      return false
-    }
+    return (x == 0);
+    // if(x == 0){
+    //   return true;
+    // }
+    // else{
+    //   return false
+    // }
   }
 }
 
@@ -370,6 +374,7 @@ function imprimir_conexo() {
 }
 
 function caminoreal() {
+  let i, j, k, n, m;
   var tabla2 = document.getElementById("tablacaminomatriz");
   tabla2.innerHTML = "";
 
@@ -377,9 +382,9 @@ function caminoreal() {
 
   // matrixcamino = matrix.slice();
 
-  for (let k = 0; k <= matrixcamino.length - 1; k++) {
-    for (let i = 0; i <= matrixcamino.length - 1; i++) {
-      for (let j = 0; j <= matrixcamino.length - 1; j++) {
+  for ( k = 0; k <= matrixcamino.length - 1; k++) {
+    for ( i = 0; i <= matrixcamino.length - 1; i++) {
+      for ( j = 0; j <= matrixcamino.length - 1; j++) {
         matrixcamino[i][j] = matriz_camino(i, j, k);
 
       }
@@ -396,9 +401,9 @@ function caminoreal() {
     matrixcamino[0][j] = "Nodo " + j;
   }
   //FIN NOMBRES FILASXCOLUMNAS
-  for (var n = 0; n < matrixcamino.length; n++) {
+  for ( n = 0; n < matrixcamino.length; n++) {
     var newRow = tabla2.insertRow(tabla2.length);
-    for (var m = 0; m < matrixcamino[n].length; m++) {
+    for (m = 0; m < matrixcamino[n].length; m++) {
       var cell = newRow.insertCell(m);
 
       cell.innerHTML = matrixcamino[n][m];
@@ -417,10 +422,10 @@ function matriz_camino(i, j, k) {
   }
 }
 
-function caminoCorto(x){
+// function caminoCorto(x){
 
-  matriz= matrizPeso();
-}
+//   var matriz= matrizPeso();
+// }
 
 /*
   EVENTOS
@@ -432,5 +437,5 @@ window.addEventListener("load", () => {
   caminoreal();
   imprimir_conexo();
   matrizPeso();
-  caminoCorto();
+  // caminoCorto();
 });
