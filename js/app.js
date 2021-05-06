@@ -417,7 +417,7 @@ function matriz_camino(i, j, k) {
 
 
 function Hamilton() {
-  hamil = JSON.parse(JSON.stringify(matrix));
+  let hamil = JSON.parse(JSON.stringify(matrix));
   var cont;
   var aux = nodes.length/2;
 
@@ -452,6 +452,7 @@ function imprimir_hamilton() {
 
 function Eureliano() {
   let con = conexo();
+  var cont;
 
   if(con == true && nodir.checked == true) {
     for(let i = 1; i < matrix.length; i++){
@@ -459,7 +460,7 @@ function Eureliano() {
 
       for(let j = 1; j < matrix.length; j++){
 
-        if(hamil[i][j] === 1) cont++;
+        if(matrix[i][j] === 1) cont++;
       }
       if (cont % 2 != 0) return false;
     }
