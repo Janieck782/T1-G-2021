@@ -171,8 +171,6 @@ function draw() {
   network = new vis.Network(container, data, options);
 }
 
-
-
 /*
     Funcion para dirigir o no el grafo
 */
@@ -297,7 +295,7 @@ function matrizPeso(){
 //  for (i = 0; i < maplabel.length; i++) {
 //    maplabel[i] = +maplabel[i];
 //  }
- 
+
   console.log("Matrix");
   console.log(matrix);
   console.log("Matriz Peso antes");
@@ -337,9 +335,7 @@ function matrizPeso(){
   return matrixpeso;
 }
 
-function conexo(){  
-  document.getElementById("conexo").innerHTML = '';
-
+function conexo(){
   var x = 0;
   var mat = JSON.parse(JSON.stringify(matrixcamino));
 
@@ -352,20 +348,17 @@ function conexo(){
       }
     }
     return (x == 0);
-    // if(x == 0){
-    //   return true;
-    // }
-    // else{
-    //   return false
-    // }
   }
 }
 
 
 function imprimir_conexo() {
+  document.getElementById("conexo").innerHTML = '';
+
   nodir = document.getElementById("nodir");
   dirigido = document.getElementById("dirigido");
-  let a = conexo();
+
+  var a = conexo();
   if(a == true)
     document.getElementById("conexo").innerHTML +="<p> Este grafo es de tipo conexo</p>";
   else if(a == false) {
@@ -422,10 +415,69 @@ function matriz_camino(i, j, k) {
   }
 }
 
-// function caminoCorto(x){
 
-//   var matriz= matrizPeso();
-// }
+function Hamilton() {
+  hamil = JSON.parse(JSON.stringify(matrix));
+  var cont;
+  var aux = nodes.length/2;
+
+  if(nodes.length>=3 && conexo() == true){
+
+    for(let i = 1; i < hamil.length; i++){
+      cont = 0;
+
+      for(let j = 1; j < hamil.length; j++){
+
+        if(hamil[i][j] === 1) cont++;
+      }
+      if (cont < aux) return false;
+    }
+  }
+  else return false;
+
+  return true;
+}
+
+function imprimir_hamilton() {
+  document.getElementById("hamilton").innerHTML = '';
+
+  var a = Hamilton();
+
+  if(a == true)
+    document.getElementById("hamilton").innerHTML +="<p> Este grafo es Hamiltoniano</p>";
+  else if(a == false) {
+    document.getElementById("hamilton").innerHTML +="<p> Este grafo NO es Hamiltoniano</p>";
+  }
+}
+
+function Eureliano() {
+  let con = conexo();
+
+  if(con == true && nodir.checked == true) {
+    for(let i = 1; i < matrix.length; i++){
+      cont = 0;
+
+      for(let j = 1; j < matrix.length; j++){
+
+        if(hamil[i][j] === 1) cont++;
+      }
+      if (cont % 2 != 0) return false;
+    }
+    return true;
+  }
+}
+
+function imprimir_eureliano() {
+  document.getElementById("eureliano").innerHTML = " ";
+
+  var a = Eureliano();
+
+  if(a == true)
+    document.getElementById("eureliano").innerHTML +="<p> Este grafo es Eureliano</p>";
+  else if(a == false) {
+    document.getElementById("eureliano").innerHTML +="<p> Este grafo NO es Eureliano</p>";
+  }
+}
 
 /*
   EVENTOS
@@ -437,5 +489,7 @@ window.addEventListener("load", () => {
   caminoreal();
   imprimir_conexo();
   matrizPeso();
+  imprimir_hamilton();
+  imprimir_eureliano()
   // caminoCorto();
 });

@@ -43,8 +43,8 @@
       <input id="node-id" type="text" value="5" />
 
       <h2>Accion</h2>
-      <button id="node-add" onclick="addNode(),save_data(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso();">Añadir</button>
-      <button id="node-remove" onclick="removeNode(),save_data(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso();">Remover</button>
+      <button id="node-add" onclick="addNode(),save_data(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso(), imprimir_hamilton(), imprimir_eureliano();">Añadir</button>
+      <button id="node-remove" onclick="removeNode(),save_data(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso(), imprimir_hamilton(), imprimir_eureliano();">Remover</button>
     </div>
 
     <div class = "aristacs">
@@ -67,21 +67,29 @@
       <br>
 
       <h2>Accion</h2>
-      <button id="edge-add" onclick="addEdge(),save_data(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso();">Añadir</button>
-      <button id="edge-update" onclick="updateEdge(),save_data(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso();">Actualizar</button>
-      <button id="edge-remove" onclick="removeEdge(),save_data(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso();">Remover</button>
+      <button id="edge-add" onclick="addEdge(),save_data(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso(), imprimir_hamilton(), imprimir_eureliano();">Añadir</button>
+      <button id="edge-update" onclick="updateEdge(),save_data(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso(), imprimir_hamilton(), imprimir_eureliano();">Actualizar</button>
+      <button id="edge-remove" onclick="removeEdge(),save_data(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso(), imprimir_hamilton(), imprimir_eureliano();">Remover</button>
     </div>
 
     <div>
       <h2>Grafo dirigido</h2>
-      <p>Para el desarrollo de esta aplicacion solo se considera el grafo como no dirigido.</p>
-      <input type="Radio" id="nodir" name="tipo" checked onclick="direv(),save_data(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso();"> No
+      <input type="Radio" id="nodir" name="tipo" checked onclick="direv(),save_data(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso(), imprimir_hamilton(), imprimir_eureliano();"> No
       dirigido
-      <input type="Radio" id="dirigido" name="tipo" onclick="direv(),save_data(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso();"> Dirigido
+      <input type="Radio" id="dirigido" name="tipo" onclick="direv(),save_data(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso(), imprimir_hamilton(), imprimir_eureliano();"> Dirigido
       <p id=conexo></p>
       <br>
       <br>
       <p>*Para modificar un nodo/arista, por favor ingrese su Id y seleccione remover.</p>
+    </div>
+
+    <div>
+      <h2>Hamiltoniano/Eureliano</h2>
+      
+      <p id=hamilton></p>
+      <br>
+      <p id=eureliano></p>
+      <br>
     </div>
   </div>
 
