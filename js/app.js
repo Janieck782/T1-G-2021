@@ -24,6 +24,7 @@ function addNode() {
   } catch (err) {
     alert(err);
   }
+  //asd
 }
 
 function updateNode() {
