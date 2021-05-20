@@ -486,6 +486,15 @@ function imprimir_eureliano() {
     document.getElementById("eureliano").innerHTML += "<p> Este grafo NO es Eureliano</p>";
   }
 }
+function resultadocaminomascorto(){
+  var asi = 2;
+  document.getElementById("mostrarcaminomascorto").innerHTML = "";
+
+  document.getElementById("mostrarcaminomascorto").innerHTML = "Nodos del camino más corto: "+camino;
+
+
+  
+}
 // FUNCION CAMINO MÁS CORTO-------------------------
 function addConexion(nodoInicial, nodoFinal, valorDistancia) {
   var arrayaux;
@@ -541,21 +550,8 @@ function shortestPath() {
   });
   console.log('pruebcamino',camino);
 
- // console.log('pruebagrafo', grafoDijkstra);
-
-  /*var nodoiaux = document.getElementsByName("node-id")[0].value; //NodoInicial
-  var nodofaux = document.getElementsByName("nodoFinal")[0].value; //NodoFinal
-  var auxiliar1;
-  var auxiliar2;
-  var i =nodoiaux.toString();
-  var f =nodofaux.toString();
-  var auxiliar;
-  auxiliar1 = g.shortestPath(i, f)
-  auxiliar2 = auxiliar1.concat(i);
   
-  console.log('definitiva?',camino);
-  console.log('definitiva2?',g.shortestPath(i, f));
-  camino = g.shortestPath(i, f).concat(i).reverse(); */
+
 }
 
 

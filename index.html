@@ -17,12 +17,12 @@
   <!--LLamada a css-->
   <link rel="preload" href="css/styles.css" as="style">
   <link rel="stylesheet" href="css/styles.css">
-   <!--Llamada libreria short -->
-   <script src="https://raw.githubusercontent.com/mburst/dijkstras-algorithm/master/dijkstras.js"></script>
+  <!--Llamada libreria short -->
+  <script src="https://raw.githubusercontent.com/mburst/dijkstras-algorithm/master/dijkstras.js"></script>
   <!--Llamada a la libreria Vis.js-->
   <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
- 
-  
+
+
   <!--Crea el recuadro-->
 
   <script type="text/javascript" src="../../../standalone/umd/vis-network.min.js"></script>
@@ -35,7 +35,7 @@
   <!--Llama las funciones JS-->
   <script src="js/dijkstras.js"></script>
   <script src="js/app.js"></script>
-  
+
 
   <h2 class="titulo">Grafo</h2>
   <div id="mynetwork"></div>
@@ -49,11 +49,13 @@
       <input id="node-id" type="text" value="5" />
 
       <h2>Accion</h2>
-      <button id="node-add" onclick="addNode(),save_data(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso(), imprimir_hamilton(), imprimir_eureliano();">Añadir</button>
-      <button id="node-remove" onclick="removeNode(),save_data(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso(), imprimir_hamilton(), imprimir_eureliano();">Remover</button>
+      <button id="node-add"
+        onclick="addNode(),save_data(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso(), imprimir_hamilton(), imprimir_eureliano();">Añadir</button>
+      <button id="node-remove"
+        onclick="removeNode(),save_data(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso(), imprimir_hamilton(), imprimir_eureliano();">Remover</button>
     </div>
 
-    <div class = "aristacs">
+    <div class="aristacs">
       <h2>Aristas</h2>
 
       <label for="edge-id">Id</label>
@@ -73,16 +75,23 @@
       <br>
 
       <h2>Accion</h2>
-      <button id="edge-add" onclick="addEdge(),save_data(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso(), imprimir_hamilton(), imprimir_eureliano();">Añadir</button>
-      <button id="edge-update" onclick="updateEdge(),save_data(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso(), imprimir_hamilton(), imprimir_eureliano();">Actualizar</button>
-      <button id="edge-remove" onclick="removeEdge(),save_data(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso(), imprimir_hamilton(), imprimir_eureliano();">Remover</button>
+      <button id="edge-add"
+        onclick="addEdge(),save_data(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso(), imprimir_hamilton(), imprimir_eureliano();">Añadir</button>
+      <button id="edge-update"
+        onclick="updateEdge(),save_data(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso(), imprimir_hamilton(), imprimir_eureliano();">Actualizar</button>
+      <button id="edge-remove"
+        onclick="removeEdge(),save_data(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso(), imprimir_hamilton(), imprimir_eureliano();">Remover</button>
     </div>
 
     <div>
       <h2>Grafo dirigido</h2>
-      <input type="Radio" id="nodir" name="tipo" checked onclick="direv(),save_data(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso(), imprimir_hamilton(), imprimir_eureliano();"> No
+      <input type="Radio" id="nodir" name="tipo" checked
+        onclick="direv(),save_data(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso(), imprimir_hamilton(), imprimir_eureliano();">
+      No
       dirigido
-      <input type="Radio" id="dirigido" name="tipo" onclick="direv(),save_data(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso(), imprimir_hamilton(), imprimir_eureliano();"> Dirigido
+      <input type="Radio" id="dirigido" name="tipo"
+        onclick="direv(),save_data(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso(), imprimir_hamilton(), imprimir_eureliano();">
+      Dirigido
       <p id=conexo></p>
       <br>
       <br>
@@ -96,15 +105,20 @@
       <p id=eureliano></p>
       <br>
     </div>
-    <div>
+    <div class="caminomascorto">
       <h2>Camino más corto</h2>
-      <h2>Nodo inicial</h2>
-      <form name="form" method="get">
-      <input type="text" name="nodoI"/>
-      <h2>Nodo final</h2>
-      <input type="text" name="nodoF"/>
-      </form>
-      <button id="caminomascorto" onclick="shortestPath();">Mostrar</button>
+      <div class="contentcaminomascorto">
+        <form name="form" method="get">
+          <p style=";">Nodo incial
+          <p>
+            <input type="text" name="nodoI" />
+            <br>
+          <p>Nodo final</p>
+          <input type="text" name="nodoF" />
+        </form>
+        <button id="caminomascorto" onclick="shortestPath(),resultadocaminomascorto();" style="margin: 10px;">Mostrar</button>
+        <p id="mostrarcaminomascorto"></p>
+      </div>
     </div>
   </div>
 
@@ -122,7 +136,7 @@
           <th scope="Titu">Adyacente</th>
         </tr>
       </table>
-      
+
 
     </div>
 
