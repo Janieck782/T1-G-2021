@@ -1,4 +1,4 @@
-var nodes, edges, network, matrix, camino, matrixcamino, matrixpeso, mapfrom, mapto, maplabel, options, nodir, dirigido, matrizcopia;
+var nodes, edges, network, matrix, camino, matrixcamino, matrixpeso, mapfrom, mapto, maplabel, options, nodir, dirigido, matrizcopia, grafoDijkstra;
 
 //matrix = ADYACENTE
 //matrixcamino = CAMINO
@@ -526,7 +526,6 @@ function imprimir_eureliano() {
 }
 
 function resultadocaminomascorto(){
-  var asi = 2;
   document.getElementById("mostrarcaminomascorto").innerHTML = "";
 
   document.getElementById("mostrarcaminomascorto").innerHTML = "Nodos del camino más corto: "+camino;
@@ -535,9 +534,9 @@ function resultadocaminomascorto(){
 function addConexion(nodoInicial, nodoFinal, valorDistancia) {
   valorDistancia = parseInt(valorDistancia, 10);
 
-  buscarNodo = grafoDijkstra.filter(item => item.origen === nodoInicial);
+  var buscarNodo = grafoDijkstra.filter(item => item.origen === nodoInicial);
   if (buscarNodo.length === 0) {
-    conexion = [];
+    var conexion = [];
     conexion.push({
       destino: nodoFinal,
       distancia: valorDistancia
@@ -551,14 +550,14 @@ function addConexion(nodoInicial, nodoFinal, valorDistancia) {
       destino: nodoFinal,
       distancia: valorDistancia
     });
-  };
+  }
 
-};
+}
 
 // camino = [];
 
 function shortestPath() {
-  grafoDijkstra = [];
+  grafoDijkstra = new Array(nodes.length);
   var dataedge = edges.get();
   var enlaces;
 
@@ -567,10 +566,11 @@ function shortestPath() {
     addConexion(dataedge[xzy].to, dataedge[xzy].from, dataedge[xzy].label);
   }
   var g = new Graph();
-  grafoDijkstra.forEach(function (value, key, array) {
+  
+  grafoDijkstra.forEach(function (value) {
     enlaces = {};
 
-    value.conexiones.forEach(function (conexion, key, array) {
+    value.conexiones.forEach(function (conexion) {
       enlaces[conexion.destino] = conexion.distancia;
     });
     var nodoiaux = document.getElementsByName("nodoI")[0].value; //NodoInicial
