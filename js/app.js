@@ -392,7 +392,7 @@ function imprimir_conexo() {
   if (a == true)
     document.getElementById("conexo").innerHTML += "<p> Este grafo es de tipo conexo</p>";
   else if (a == false) {
-    document.getElementById("conexo").innerHTML += "<p> Este grafo es de tipo no conexo</p>";
+    document.getElementById("conexo").innerHTML += "<p> Este grafo es de tipo NO conexo</p>";
   }
 }
 
@@ -448,8 +448,20 @@ function Hamilton() {
   let hamil = JSON.parse(JSON.stringify(matrix));
   var cont;
   var aux = nodes.length / 2;
+  aux = Math.trunc(aux);
 
-  if (nodes.length >= 3 && conexo() == true) {
+  console.log("Cantidad de nodos: ");
+  console.log(nodes.length);
+  console.log("Hamilton");
+  console.log(hamil);
+
+  console.log("Es conexo?: ");
+  console.log(conexo());
+
+  console.log("Tamaño Hamil: ");
+  console.log(hamil.length);
+
+  if (nodes.length >= 3 && conexo() === true) {
 
     for (let i = 1; i < hamil.length; i++) {
       cont = 0;
@@ -457,12 +469,17 @@ function Hamilton() {
       for (let j = 1; j < hamil.length; j++) {
 
         if (hamil[i][j] === 1) cont++;
+
       }
+      console.log("Cont: ");
+      console.log(cont);
+      console.log("Aux: ");
+      console.log(aux);
       if (cont < aux) return false;
     }
+    return true;
   } else return false;
 
-  return true;
 }
 
 function imprimir_hamilton() {
@@ -481,7 +498,8 @@ function Eureliano() {
   let con = conexo();
   var cont;
 
-  if (con == true && nodir.checked == true) {
+  if(conexo() === false) return false;
+  else if (con === true && nodir.checked === true) {
     for (let i = 1; i < matrix.length; i++) {
       cont = 0;
 
@@ -515,7 +533,6 @@ function resultadocaminomascorto(){
 }
 
 function addConexion(nodoInicial, nodoFinal, valorDistancia) {
-  var arrayaux;
   valorDistancia = parseInt(valorDistancia, 10);
 
   buscarNodo = grafoDijkstra.filter(item => item.origen === nodoInicial);
@@ -544,9 +561,7 @@ function shortestPath() {
   grafoDijkstra = [];
   var dataedge = edges.get();
   var enlaces;
-  var valores;
 
-  var cantidadid = nodes.getIds;
   for (var xzy = 0; xzy < dataedge.length; xzy++) {
     addConexion(dataedge[xzy].from, dataedge[xzy].to, dataedge[xzy].label);
     addConexion(dataedge[xzy].to, dataedge[xzy].from, dataedge[xzy].label);
