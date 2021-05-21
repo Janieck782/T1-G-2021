@@ -1,10 +1,12 @@
-var nodes, edges, network, matrix, camino, matrixcamino, matrixpeso, mapfrom, mapto, maplabel, options, nodir, dirigido;
+var nodes, edges, network, matrix, camino, matrixcamino, matrixpeso, mapfrom, mapto, maplabel, options, nodir, dirigido, matrizcopia;
 
 //matrix = ADYACENTE
 //matrixcamino = CAMINO
 
 // convenience method to stringify a JSON object
-function toJSON(obj) { return JSON.stringify(obj, null, 4);}
+function toJSON(obj) {
+  return JSON.stringify(obj, null, 4);
+}
 
 
 /*
@@ -35,7 +37,9 @@ function updateNode() {
 
 function removeNode() {
   try {
-    nodes.remove({ id: document.getElementById("node-id").value });
+    nodes.remove({
+      id: document.getElementById("node-id").value
+    });
   } catch (err) {
     alert(err);
   }
@@ -96,7 +100,9 @@ function save_data() {
 
 function removeEdge() {
   try {
-    edges.remove({ id: document.getElementById("edge-id").value });
+    edges.remove({
+      id: document.getElementById("edge-id").value
+    });
   } catch (err) {
     alert(err);
   }
@@ -113,11 +119,22 @@ function draw() {
     );
   });
 
-  nodes.add([
-    { id: "1", label: "Nodo 1" },
-    { id: "2", label: "Nodo 2" },
-    { id: "3", label: "Nodo 3" },
-    { id: "4", label: "Nodo 4" },
+  nodes.add([{
+      id: "1",
+      label: "Nodo 1"
+    },
+    {
+      id: "2",
+      label: "Nodo 2"
+    },
+    {
+      id: "3",
+      label: "Nodo 3"
+    },
+    {
+      id: "4",
+      label: "Nodo 4"
+    },
   ]);
 
   // create an array with edges
@@ -130,10 +147,24 @@ function draw() {
     );
   });
 
-  edges.add([
-    { id: "1", from: "1", to: "2", label: "1" },
-    { id: "2", from: "1", to: "3", label: "2" },
-    { id: "3", from: "2", to: "4", label: "6" },
+  edges.add([{
+      id: "1",
+      from: "1",
+      to: "2",
+      label: "1"
+    },
+    {
+      id: "2",
+      from: "1",
+      to: "3",
+      label: "2"
+    },
+    {
+      id: "3",
+      from: "2",
+      to: "4",
+      label: "6"
+    },
   ]);
 
   // create a network
@@ -286,15 +317,15 @@ function Adj() {
   }
 }
 
-function matrizPeso(){
+function matrizPeso() {
   let c, i, j;
   matrixpeso = JSON.parse(JSON.stringify(matrix));
 
-//   var maplabel = edges.map((edge) => edge.label);
+  //   var maplabel = edges.map((edge) => edge.label);
 
-//  for (i = 0; i < maplabel.length; i++) {
-//    maplabel[i] = +maplabel[i];
-//  }
+  //  for (i = 0; i < maplabel.length; i++) {
+  //    maplabel[i] = +maplabel[i];
+  //  }
 
   console.log("Matrix");
   console.log(matrix);
@@ -335,14 +366,14 @@ function matrizPeso(){
   return matrixpeso;
 }
 
-function conexo(){
+function conexo() {
   var x = 0;
   var mat = JSON.parse(JSON.stringify(matrixcamino));
 
   if (mat.length > 0) {
-    for(let i =1; i < mat.length; i++){
-      for(let j =1; j < mat.length; j++){
-        if(mat[i][j]  == 0 && mat[j][i] == 0){
+    for (let i = 1; i < mat.length; i++) {
+      for (let j = 1; j < mat.length; j++) {
+        if (mat[i][j] == 0 && mat[j][i] == 0) {
           x++;
         }
       }
@@ -351,7 +382,6 @@ function conexo(){
   }
 }
 
-
 function imprimir_conexo() {
   document.getElementById("conexo").innerHTML = '';
 
@@ -359,10 +389,10 @@ function imprimir_conexo() {
   dirigido = document.getElementById("dirigido");
 
   var a = conexo();
-  if(a == true)
-    document.getElementById("conexo").innerHTML +="<p> Este grafo es de tipo conexo</p>";
-  else if(a == false) {
-    document.getElementById("conexo").innerHTML +="<p> Este grafo es de tipo no conexo</p>";
+  if (a == true)
+    document.getElementById("conexo").innerHTML += "<p> Este grafo es de tipo conexo</p>";
+  else if (a == false) {
+    document.getElementById("conexo").innerHTML += "<p> Este grafo es de tipo no conexo</p>";
   }
 }
 
@@ -375,9 +405,9 @@ function caminoreal() {
 
   // matrixcamino = matrix.slice();
 
-  for ( k = 0; k <= matrixcamino.length - 1; k++) {
-    for ( i = 0; i <= matrixcamino.length - 1; i++) {
-      for ( j = 0; j <= matrixcamino.length - 1; j++) {
+  for (k = 0; k <= matrixcamino.length - 1; k++) {
+    for (i = 0; i <= matrixcamino.length - 1; i++) {
+      for (j = 0; j <= matrixcamino.length - 1; j++) {
         matrixcamino[i][j] = matriz_camino(i, j, k);
 
       }
@@ -394,7 +424,7 @@ function caminoreal() {
     matrixcamino[0][j] = "Nodo " + j;
   }
   //FIN NOMBRES FILASXCOLUMNAS
-  for ( n = 0; n < matrixcamino.length; n++) {
+  for (n = 0; n < matrixcamino.length; n++) {
     var newRow = tabla2.insertRow(tabla2.length);
     for (m = 0; m < matrixcamino[n].length; m++) {
       var cell = newRow.insertCell(m);
@@ -409,31 +439,28 @@ function caminoreal() {
 function matriz_camino(i, j, k) {
   if (matrixcamino[i][j] == 1 || matrixcamino[i][k] == 1 && matrixcamino[k][j] == 1) {
     return 1;
-  }
-  else {
+  } else {
     return 0;
   }
 }
 
-
 function Hamilton() {
   let hamil = JSON.parse(JSON.stringify(matrix));
   var cont;
-  var aux = nodes.length/2;
+  var aux = nodes.length / 2;
 
-  if(nodes.length>=3 && conexo() == true){
+  if (nodes.length >= 3 && conexo() == true) {
 
-    for(let i = 1; i < hamil.length; i++){
+    for (let i = 1; i < hamil.length; i++) {
       cont = 0;
 
-      for(let j = 1; j < hamil.length; j++){
+      for (let j = 1; j < hamil.length; j++) {
 
-        if(hamil[i][j] === 1) cont++;
+        if (hamil[i][j] === 1) cont++;
       }
       if (cont < aux) return false;
     }
-  }
-  else return false;
+  } else return false;
 
   return true;
 }
@@ -443,10 +470,10 @@ function imprimir_hamilton() {
 
   var a = Hamilton();
 
-  if(a == true)
-    document.getElementById("hamilton").innerHTML +="<p> Este grafo es Hamiltoniano</p>";
-  else if(a == false) {
-    document.getElementById("hamilton").innerHTML +="<p> Este grafo NO es Hamiltoniano</p>";
+  if (a == true)
+    document.getElementById("hamilton").innerHTML += "<p> Este grafo es Hamiltoniano</p>";
+  else if (a == false) {
+    document.getElementById("hamilton").innerHTML += "<p> Este grafo NO es Hamiltoniano</p>";
   }
 }
 
@@ -454,13 +481,13 @@ function Eureliano() {
   let con = conexo();
   var cont;
 
-  if(con == true && nodir.checked == true) {
-    for(let i = 1; i < matrix.length; i++){
+  if (con == true && nodir.checked == true) {
+    for (let i = 1; i < matrix.length; i++) {
       cont = 0;
 
-      for(let j = 1; j < matrix.length; j++){
+      for (let j = 1; j < matrix.length; j++) {
 
-        if(matrix[i][j] === 1) cont++;
+        if (matrix[i][j] === 1) cont++;
       }
       if (cont % 2 != 0) return false;
     }
@@ -473,12 +500,79 @@ function imprimir_eureliano() {
 
   var a = Eureliano();
 
-  if(a == true)
-    document.getElementById("eureliano").innerHTML +="<p> Este grafo es Eureliano</p>";
-  else if(a == false) {
-    document.getElementById("eureliano").innerHTML +="<p> Este grafo NO es Eureliano</p>";
+  if (a == true)
+    document.getElementById("eureliano").innerHTML += "<p> Este grafo es Eureliano</p>";
+  else if (a == false) {
+    document.getElementById("eureliano").innerHTML += "<p> Este grafo NO es Eureliano</p>";
   }
 }
+
+function resultadocaminomascorto(){
+  var asi = 2;
+  document.getElementById("mostrarcaminomascorto").innerHTML = "";
+
+  document.getElementById("mostrarcaminomascorto").innerHTML = "Nodos del camino más corto: "+camino;
+}
+
+function addConexion(nodoInicial, nodoFinal, valorDistancia) {
+  var arrayaux;
+  valorDistancia = parseInt(valorDistancia, 10);
+
+  buscarNodo = grafoDijkstra.filter(item => item.origen === nodoInicial);
+  if (buscarNodo.length === 0) {
+    conexion = [];
+    conexion.push({
+      destino: nodoFinal,
+      distancia: valorDistancia
+    });
+    grafoDijkstra.push({
+      origen: nodoInicial,
+      conexiones: conexion
+    });
+  } else {
+    buscarNodo[0].conexiones.push({
+      destino: nodoFinal,
+      distancia: valorDistancia
+    });
+  };
+
+};
+
+// camino = [];
+
+function shortestPath() {
+  grafoDijkstra = [];
+  var dataedge = edges.get();
+  var enlaces;
+  var valores;
+
+  var cantidadid = nodes.getIds;
+  for (var xzy = 0; xzy < dataedge.length; xzy++) {
+    addConexion(dataedge[xzy].from, dataedge[xzy].to, dataedge[xzy].label);
+    addConexion(dataedge[xzy].to, dataedge[xzy].from, dataedge[xzy].label);
+  }
+  var g = new Graph();
+  grafoDijkstra.forEach(function (value, key, array) {
+    enlaces = {};
+
+    value.conexiones.forEach(function (conexion, key, array) {
+      enlaces[conexion.destino] = conexion.distancia;
+    });
+    var nodoiaux = document.getElementsByName("nodoI")[0].value; //NodoInicial
+    var nodofaux = document.getElementsByName("nodoF")[0].value; //NodoFinal
+    var i = nodoiaux.toString();
+    var f = nodofaux.toString();
+    g.addVertex(value.origen, enlaces);
+
+    camino = g.shortestPath(i, f).concat(i).reverse();
+
+  });
+  console.log('pruebcamino', camino);
+
+
+
+}
+
 
 /*
   EVENTOS

@@ -103,6 +103,10 @@ pre {
 
 }
 
+.caminomascorto div{
+  border: white;
+}
+
 .aristacs {
   text-align: justify;
   padding: 20px;
