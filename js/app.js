@@ -120,21 +120,30 @@ function draw() {
   });
 
   nodes.add([{
+    
       id: "1",
       label: "Nodo 1"
-    },
-    {
+  },
+  {
       id: "2",
       label: "Nodo 2"
-    },
-    {
+  },
+  {
       id: "3",
       label: "Nodo 3"
-    },
-    {
+  },
+  {
       id: "4",
       label: "Nodo 4"
-    },
+  },
+  {
+      id: "5",
+      "label": "Nodo 5"
+  },
+  {
+      id: "6",
+      label: "Nodo 6"
+  },
   ]);
 
   // create an array with edges
@@ -148,23 +157,96 @@ function draw() {
   });
 
   edges.add([{
+    
       id: "1",
       from: "1",
       to: "2",
-      label: "1"
-    },
-    {
+      label: "12"
+  },
+  {
       id: "2",
+      from: "2",
+      to: "3",
+      label: "23"
+  },
+  {
+      id: "3",
+      from: "1",
+      to: "4",
+      label: "14"
+  },
+  {
+      id: "4",
+      from: "4",
+      to: "5",
+      label: "20"
+  },
+  {
+      id: "5",
+      from: "5",
+      to: "6",
+      label: "15"
+  },
+  {
+      id: "6",
+      from: "3",
+      to: "6",
+      label: "12"
+  },
+  {
+      id: "7",
+      from: "2",
+      to: "6",
+      label: "8"
+  },
+  {
+      id: "8",
+      from: "3",
+      to: "5",
+      label: "16"
+  },
+  {
+      id: "9",
+      from: "2",
+      to: "5",
+      label: "13"
+  },
+  {
+      id: "10",
       from: "1",
       to: "3",
-      label: "2"
-    },
-    {
-      id: "3",
+      label: "20"
+  },
+  {
+      id: "11",
       from: "2",
       to: "4",
-      label: "6"
-    },
+      label: "7"
+  },
+  {
+      id: "12",
+      from: "4",
+      to: "6",
+      label: "9"
+  },
+  {
+      id: "13",
+      from: "1",
+      to: "6",
+      label: "25"
+  },
+  {
+      id: "14",
+      from: "1",
+      to: "5",
+      label: "15"
+  },
+  {
+      id: "15",
+      from: "3",
+      to: "4",
+      label: "16"
+  },
   ]);
 
   // create a network
@@ -589,6 +671,30 @@ function shortestPath() {
 }
 
 
+function Kruskal(){
+
+  var nodoA = new Array(), nodoB = new Array(), arcos = new Array(), minimo=1000;
+  matrixKruskal = JSON.parse(JSON.stringify(matrixpeso));
+  console.log(matrixKruskal);
+  
+  
+  for(let j=1;j <= matrixKruskal.length; j++){
+    for(let i=1;i <= matrixKruskal.length; i++){
+        if(matrixKruskal[j][i]){
+
+        }
+  
+          }
+        }
+    
+  
+  
+  console.log(matrixKruskal);
+  
+  
+  }
+
+
 /*
   EVENTOS
 */
@@ -600,6 +706,7 @@ window.addEventListener("load", () => {
   imprimir_conexo();
   matrizPeso();
   imprimir_hamilton();
-  imprimir_eureliano()
+  imprimir_eureliano();
+  Kruskal();
   // caminoCorto();
 });
