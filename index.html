@@ -47,8 +47,8 @@
       <input id="node-id" type="text" value="5" />
 
       <h2>Accion</h2>
-      <button id="node-add" onclick="addNode(),save_data(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso(), imprimir_hamilton(), imprimir_eureliano();">Añadir</button>
-      <button id="node-remove" onclick="removeNode(),save_data(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso(), imprimir_hamilton(), imprimir_eureliano();">Remover</button>
+      <button id="node-add" onclick="addNode(),save_data(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso(), imprimir_hamilton(), imprimir_eureliano(), fulker();">Añadir</button>
+      <button id="node-remove" onclick="removeNode(),save_data(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso(), imprimir_hamilton(), imprimir_eureliano(), fulker();">Remover</button>
     </div>
 
     <div class = "aristacs">
@@ -72,7 +72,7 @@
 
       <h2>Accion</h2>
       <button id="edge-add" onclick="addEdge(),save_data(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso(), imprimir_hamilton(), imprimir_eureliano();">Añadir</button>
-      <button id="edge-update" onclick="updateEdge(),save_data(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso(), imprimir_hamilton(), imprimir_eureliano();">Actualizar</button>
+      <button id="edge-update" onclick="updateEdge(),save_data(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso(), imprimir_hamilton(), imprimir_eureliano(), fulker();">Actualizar</button>
       <button id="edge-remove" onclick="removeEdge(),save_data(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso(), imprimir_hamilton(), imprimir_eureliano();">Remover</button>
     </div>
 
@@ -111,6 +111,18 @@
       <p id="mostrarcaminomascorto"></p>
     </div>
 
+    <div class="contentcaminomascorto">
+      <h2>Flujo máximo</h2>
+      <form name="form" method="get">
+          <label for="nodoOrigen">Nodo origen</label>
+          <input type="text" id="nodoOrigen" />
+          <br>
+          <label for="nodoDestino">Nodo destino</label>
+         <input type="text" id="nodoDestino" />
+      </form>
+      <button id="caminomascorto" onclick="fulker();" style="margin: 10px;">Mostrar</button>
+      <p id="mostrarflujo"></p>
+    </div>
   </div>
 
   <h1 class="titulo">Matrices</h1>
@@ -118,7 +130,6 @@
   <div class="contenedormatrices">
 
     <div class="contenedormatrizadyacente">
-
       <h2 class="nombreM">Matriz Adyacente</h2>
       <table id="tablamatrizadyacente" border="1">
         <caption>Matriz de Adyacencia</caption>
@@ -127,8 +138,6 @@
           <th scope="Titu">Adyacente</th>
         </tr>
       </table>
-      
-
     </div>
 
     <div class="contenedorcaminomatriz">
