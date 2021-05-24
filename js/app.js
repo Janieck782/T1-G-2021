@@ -6,8 +6,6 @@ var nodir, dirigido;
 
 //matrix = ADYACENTE
 //matrixcamino = CAMINO
-Logger.useDefaults();
-
 
 function toJSON(obj) {
   return JSON.stringify(obj, null, 4);
