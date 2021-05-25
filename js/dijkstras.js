@@ -101,4 +101,4 @@ g.addVertex('H', {E: 1, F: 3});
 
 // Log test, with the addition of reversing the path and prepending the first node so it's more readable
 
-// console.log(g.shortestPath('A', 'H').concat(['A']).reverse());
+console.log(g.shortestPath('A', 'H').concat(['A']).reverse());

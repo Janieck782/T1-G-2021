@@ -1,12 +1,9 @@
-var nodes, edges, network;
-var matrix, camino, matrixcamino, matrixpeso, matrizcopia, grafoDijkstra, matrizpesoreal;
-var mapfrom, mapto, maplabel;
-var options;
-var nodir, dirigido;
+var nodes, edges, network, matrix, camino, matrixcamino, matrixpeso, mapfrom, mapto, maplabel, options, nodir, dirigido, matrizcopia, grafoDijkstra;
 
 //matrix = ADYACENTE
 //matrixcamino = CAMINO
 
+// convenience method to stringify a JSON object
 function toJSON(obj) {
   return JSON.stringify(obj, null, 4);
 }
@@ -17,17 +14,13 @@ function toJSON(obj) {
 */
 
 function addNode() {
-  var aux = document.getElementById("node-id").value;
   try {
     nodes.add({
-      id: aux,
+      id: document.getElementById("node-id").value,
       label: "Nodo " + document.getElementById("node-id").value,
     });
-    console.trace("Nodo " + aux + " añadido");
-
   } catch (err) {
     alert(err);
-    console.error(" Nodo " + aux + " ya existe");
   }
 }
 
@@ -40,8 +33,6 @@ function updateNode() {
   } catch (err) {
     alert(err);
   }
-  var aux = document.getElementById("node-id").value;
-  console.log("Nodo " + aux + " actualizado");
 }
 
 function removeNode() {
@@ -52,26 +43,18 @@ function removeNode() {
   } catch (err) {
     alert(err);
   }
-  var aux = document.getElementById("node-id").value
-  console.log("Nodo " + aux + " eliminado");
 }
 
 function addEdge() {
-  var aux = document.getElementById("edge-id").value;
-  var aux1 = document.getElementById("edge-from").value;
-  var aux2 = document.getElementById("edge-to").value;
-  var aux3 = document.getElementById("label-to").value;
   try {
     edges.add({
-      id: aux,
-      from: aux1,
-      to: aux2,
-      label: aux3,
+      id: document.getElementById("edge-id").value,
+      from: document.getElementById("edge-from").value,
+      to: document.getElementById("edge-to").value,
+      label: document.getElementById("label-to").value,
     });
-    console.log("Arista " + aux + " desde el nodo " + aux1 + " hasta " + aux2 + " de peso " + aux3 + " añadida");
   } catch (err) {
     alert(err);
-    console.error(" Arista " + aux + " ya existe");
   }
 }
 
@@ -86,18 +69,20 @@ function updateEdge() {
   } catch (err) {
     alert(err);
   }
-  var aux = document.getElementById("edge-id").value;
-  console.log("Arista " + aux + " actualizada");
 }
 
 function save_data() {
   let i;
 
   mapfrom = edges.map((edge) => edge.from);
+  console.log(mapfrom);
 
   mapto = edges.map((edge) => edge.to);
+  console.log(mapto);
 
   maplabel = edges.map((edge) => edge.label);
+  console.log("Peso");
+  console.log(maplabel);
 
   for (i = 0; i < mapfrom.length; i++) {
     mapfrom[i] = +mapfrom[i];
@@ -114,13 +99,10 @@ function save_data() {
 }
 
 function removeEdge() {
-  var aux = document.getElementById("edge-id").value;
-
   try {
     edges.remove({
-      id: aux
+      id: document.getElementById("edge-id").value
     });
-    console.log("Arista " + aux + " removida");
   } catch (err) {
     alert(err);
   }
@@ -137,36 +119,32 @@ function draw() {
     );
   });
 
-  nodes.add([
-    {
-        id: "1",
-        label: "Nodo 1"
-    },
-    {
-        id: "2",
-        label: "Nodo 2"
-    },
-    {
-        id: "3",
-        label: "Nodo 3"
-    },
-    {
-        id: "4",
-        label: "Nodo 4"
-    },
-    {
-        id: "5",
-        label: "Nodo 5"
-    },
-    {
-        id: "6",
-        label: "Nodo 6"
-    },
-    {
-        id: "7",
-        label: "Nodo 7"
-    }
-]);
+  nodes.add([{
+    
+      id: "1",
+      label: "Nodo 1"
+  },
+  {
+      id: "2",
+      label: "Nodo 2"
+  },
+  {
+      id: "3",
+      label: "Nodo 3"
+  },
+  {
+      id: "4",
+      label: "Nodo 4"
+  },
+  {
+      id: "5",
+      "label": "Nodo 5"
+  },
+  {
+      id: "6",
+      label: "Nodo 6"
+  },
+  ]);
 
   // create an array with edges
   edges = new vis.DataSet();
@@ -178,80 +156,98 @@ function draw() {
     );
   });
 
-  edges.add([
-    {
-        id: "1",
-        from: "1",
-        to: "2",
-        label: "8"
-    },
-    {
-        id: "2",
-        from: "1",
-        to: "4",
-        label: "4"
-    },
-    {
-        id: "3",
-        from: "2",
-        to: "3",
-        label: "1"
-    },
-    {
-        id: "4",
-        from: "2",
-        to: "5",
-        label: "3"
-    },
-    {
-        id: "5",
-        from: "5",
-        to: "7",
-        label: "9"
-    },
-    {
-        id: "6",
-        from: "6",
-        to: "5",
-        label: "1"
-    },
-    {
-        id: "7",
-        from: "6",
-        to: "7",
-        label: "6"
-    },
-    {
-        id: "8",
-        from: "3",
-        to: "4",
-        label: "2"
-    },
-    {
-        id: "9",
-        from: "4",
-        to: "6",
-        label: "4"
-    },
-    {
-        id: "10",
-        from: "1",
-        to: "3",
-        label: "7"
-    },
-    {
-        id: "11",
-        from: "3",
-        to: "5",
-        label: "4"
-    },
-    {
-        id: "12",
-        from: "3",
-        to: "6",
-        label: "5"
-    }
-]);
+  edges.add([{
+    
+      id: "1",
+      from: "1",
+      to: "2",
+      label: "12"
+  },
+  {
+      id: "2",
+      from: "2",
+      to: "3",
+      label: "23"
+  },
+  {
+      id: "3",
+      from: "1",
+      to: "4",
+      label: "14"
+  },
+  {
+      id: "4",
+      from: "4",
+      to: "5",
+      label: "20"
+  },
+  {
+      id: "5",
+      from: "5",
+      to: "6",
+      label: "15"
+  },
+  {
+      id: "6",
+      from: "3",
+      to: "6",
+      label: "12"
+  },
+  {
+      id: "7",
+      from: "2",
+      to: "6",
+      label: "8"
+  },
+  {
+      id: "8",
+      from: "3",
+      to: "5",
+      label: "16"
+  },
+  {
+      id: "9",
+      from: "2",
+      to: "5",
+      label: "13"
+  },
+  {
+      id: "10",
+      from: "1",
+      to: "3",
+      label: "20"
+  },
+  {
+      id: "11",
+      from: "2",
+      to: "4",
+      label: "7"
+  },
+  {
+      id: "12",
+      from: "4",
+      to: "6",
+      label: "9"
+  },
+  {
+      id: "13",
+      from: "1",
+      to: "6",
+      label: "25"
+  },
+  {
+      id: "14",
+      from: "1",
+      to: "5",
+      label: "15"
+  },
+  {
+      id: "15",
+      from: "3",
+      to: "4",
+      label: "16"
+  },
+  ]);
 
   // create a network
   var container = document.getElementById("mynetwork");
@@ -382,7 +378,7 @@ function Adj() {
       }
     }
   } else if (dirigido.checked == true) {
-    for (c = 0; c <= edges.length; c++) {
+    for (c = 0; c <= matrix.length; c++) {
       for (i = 0; i < matrix.length; i++) {
         for (j = 0; j < matrix[i].length; j++) {
           if (i === mapfrom[c] && j === mapto[c]) {
@@ -413,12 +409,12 @@ function matrizPeso() {
   //    maplabel[i] = +maplabel[i];
   //  }
 
-  // console.log("Matrix");
-  // console.log(matrix);
-  // console.log("Matriz Peso antes");
-  // console.log(matrixpeso);
-  // console.log("Pesos");
-  // console.log(maplabel);
+  console.log("Matrix");
+  console.log(matrix);
+  console.log("Matriz Peso antes");
+  console.log(matrixpeso);
+  console.log("Pesos");
+  console.log(maplabel);
 
   nodir = document.getElementById("nodir");
   dirigido = document.getElementById("dirigido");
@@ -435,7 +431,7 @@ function matrizPeso() {
       }
     }
   } else if (dirigido.checked == true) {
-    for (c = 0; c <= edges.length; c++) {
+    for (c = 0; c <= matrixpeso.length; c++) {
       for (i = 0; i < matrixpeso.length; i++) {
         for (j = 0; j < matrixpeso[i].length; j++) {
           if (i === mapfrom[c] && j === mapto[c]) {
@@ -445,8 +441,10 @@ function matrizPeso() {
       }
     }
   }
-  // console.log("Matriz Peso")
-  // console.table(matrixpeso);
+
+  console.log("Matriz Peso")
+  console.table(matrixpeso);
+
   return matrixpeso;
 }
 
@@ -467,7 +465,6 @@ function conexo() {
 }
 
 function imprimir_conexo() {
-  console.log("Función conexo");
   document.getElementById("conexo").innerHTML = '';
 
   nodir = document.getElementById("nodir");
@@ -517,6 +514,8 @@ function caminoreal() {
       cell.innerHTML = matrixcamino[n][m];
     }
   }
+  console.log(matrixcamino);
+
 }
 
 function matriz_camino(i, j, k) {
@@ -533,6 +532,17 @@ function Hamilton() {
   var aux = nodes.length / 2;
   aux = Math.trunc(aux);
 
+  console.log("Cantidad de nodos: ");
+  console.log(nodes.length);
+  console.log("Hamilton");
+  console.log(hamil);
+
+  console.log("Es conexo?: ");
+  console.log(conexo());
+
+  console.log("Tamaño Hamil: ");
+  console.log(hamil.length);
+
   if (nodes.length >= 3 && conexo() === true) {
 
     for (let i = 1; i < hamil.length; i++) {
@@ -543,7 +553,10 @@ function Hamilton() {
         if (hamil[i][j] === 1) cont++;
 
       }
-
+      console.log("Cont: ");
+      console.log(cont);
+      console.log("Aux: ");
+      console.log(aux);
       if (cont < aux) return false;
     }
     return true;
@@ -594,100 +607,6 @@ function imprimir_eureliano() {
   }
 }
 
-function matrizpesor() {
-  var matrizpesoreal = JSON.parse(JSON.stringify(matrixpeso));
-
-  matrizpesoreal.shift();
-  
-  for (var i = 0; i < matrizpesoreal.length; i++) { matrizpesoreal[i].splice( 0, 1 ); }
-  console.log("Matriz peso real: ");
-  console.log(matrizpesoreal);
-}
-
-function bfs(rGraph, s, t, parent) {
-  var visited = [];
-  var queue = [];
-  var V = rGraph.length;
-  
-  for(let i = 0; i < V; i++) {
-    visited[i] = false;
-  }
-
-  queue.push(s);
-  visited[s] = true;
-  parent[s] = -1;
-
-  while(queue.length != 0) {
-    var u = queue.shift();
-    for(let v = 0; v < V; v++) {
-      if(visited[v] == false && rGraph[u][v] > 0) {
-        queue.push(v);
-        parent[v] = u;
-        visited[v] = true;
-      }
-    }
-  }
-
-  return (visited[t] == true);
-}
-
-function fordFulkerson(graph, s, t) {
-  console.log(graph);
-  if (s < 0 || t < 0 || s > graph.length-1 || t > graph.length-1){
-    return 0;
-  }
-  if(graph.length === 0){
-    return 0;
-  }
-	var rGraph = [];
-	for (var u = 0; u < graph.length; u++) {
-		var temp = [];
-    if(graph[u].length !== graph.length){
-      return 0;
-    }
-		for (v = 0; v < graph.length; v++) {
-			temp.push(graph[u][v]);
-		}
-		rGraph.push(temp);
-	}
-	var parent = [];
-	var maxFlow = 0;
-
-	while (bfs(rGraph, s, t, parent)) {
-		var pathFlow = Number.MAX_VALUE;
-		for (var v = t; v != s; v = parent[v]) {
-			u = parent[v];
-			pathFlow = Math.min(pathFlow, rGraph[u][v]);
-		}
-		for (v = t; v != s; v = parent[v]) {
-			u = parent[v];
-			rGraph[u][v] -= pathFlow;
-			rGraph[v][u] += pathFlow;
-		}
-
-		maxFlow += pathFlow;
-	}
-
-	return maxFlow;
-}
-
-function fulker() {
-  var ori = document.getElementById("nodoOrigen").value;
-  var des = document.getElementById("nodoDestino").value;
-
-  try {
-    var aux = fordFulkerson(matrixpeso, ori,des)
-  } catch (err) {
-    alert(err);
-  }
-
-  document.getElementById("mostrarflujo").innerHTML = "";
-
-  
-
-  document.getElementById("mostrarflujo").innerHTML = "Flujo máximo: " + aux;
-}
-
 function resultadocaminomascorto(){
   document.getElementById("mostrarcaminomascorto").innerHTML = "";
 
@@ -717,8 +636,9 @@ function addConexion(nodoInicial, nodoFinal, valorDistancia) {
 
 }
 
+// camino = [];
+
 function shortestPath() {
-  var nodoiaux, nodofaux;
   grafoDijkstra = new Array(nodes.length);
   var dataedge = edges.get();
   var enlaces;
@@ -728,24 +648,79 @@ function shortestPath() {
     addConexion(dataedge[xzy].to, dataedge[xzy].from, dataedge[xzy].label);
   }
   var g = new Graph();
-
+  
   grafoDijkstra.forEach(function (value) {
     enlaces = {};
 
     value.conexiones.forEach(function (conexion) {
       enlaces[conexion.destino] = conexion.distancia;
     });
-    nodoiaux = document.getElementsByName("nodoI")[0].value; //NodoInicial
-    nodofaux = document.getElementsByName("nodoF")[0].value; //NodoFinal
+    var nodoiaux = document.getElementsByName("nodoI")[0].value; //NodoInicial
+    var nodofaux = document.getElementsByName("nodoF")[0].value; //NodoFinal
     var i = nodoiaux.toString();
     var f = nodofaux.toString();
     g.addVertex(value.origen, enlaces);
 
     camino = g.shortestPath(i, f).concat(i).reverse();
-  });
-  console.log(" Función camino más corto entre nodo " + nodoiaux + " y nodo " + nodofaux);
 
-  // console.log('pruebcamino', camino);
+  });
+  console.log('pruebcamino', camino);
+
+
+
+}
+
+
+function Kruskal() {
+
+  var nodoA = new Array(),
+    nodoB = new Array(),
+    arcos = new Array(),
+    minimo = 1000;
+  matrixKruskal = JSON.parse(JSON.stringify(matrixpeso));
+  console.log("Kruskal");
+  console.log(matrixKruskal);
+  var nodeaux1 = 0,
+    nodeaux2 = 0,
+    arcaux = 0;
+  var aux = 1;
+  var longitud = matrixKruskal.length;
+  var fico = 1;
+
+
+  for (let k = 1; k < nodes.length; k++) {
+    for(let j = 1; j < longitud; j++){
+      if(aux%2 == 0){
+        if (matrixKruskal[fico][j] < minimo && matrixKruskal[fico][j] != 0){
+          minimo = matrixKruskal[fico][j];
+          nodeaux = j;
+        }
+      }
+      else{
+        if (matrixKruskal[j][fico] < minimo && matrixKruskal[j][fico] != 0){
+          minimo = matrixKruskal[j][fico];
+          nodeaux = j;
+        }
+
+      }
+
+    }
+    if(minimo != 0 || minimo != 1000){
+    nodoA.push(fico);
+    nodoB.push(nodeaux);
+    arcos.push(minimo);
+    matrixKruskal[fico][nodeaux] = 0;
+    matrixKruskal[nodeaux][fico] = 0;
+    fico=nodeaux;
+    minimo=1000;
+  
+   
+    
+
+    }
+
+  }
+  console.log(nodoA,nodoB,arcos);
 }
 
 
@@ -760,6 +735,10 @@ window.addEventListener("load", () => {
   imprimir_conexo();
   matrizPeso();
   imprimir_hamilton();
-  imprimir_eureliano()
+  imprimir_eureliano();
+  Kruskal();
+  
   // caminoCorto();
 });
+
+
