@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trabajo 1 │ GRAFOS Y LENGUAJES FORMALES</title>
+
+  <!--normalize.css-->
+  <link rel="preload" href="css/normalize.css" as="style">
+  <link rel="stylesheet" href="css/normalize.css">
+  <!--Fuente Noto Sans-->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
+  <!--LLamada a css-->
+  <link rel="preload" href="css/styles.css" as="style">
+  <link rel="stylesheet" href="css/styles.css">
+  <!--Llamada libreria short -->
+  <script src="https://raw.githubusercontent.com/mburst/dijkstras-algorithm/master/dijkstras.js"></script>
+  <!--Llamada a la libreria Vis.js-->
+  <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+  <!--Crea el recuadro-->
+
+  <script type="text/javascript" src="../../../standalone/umd/vis-network.min.js"></script>
+
+</head>
+
+<body onload="draw();">
+
+  <h1>Trabajo 1 de GRAFOS Y LENGUAJES FORMALES</h1>
+  <!--Llama las funciones JS-->
+  <script src="js/app.js"></script>
+  <script src="js/dijkstras.js"></script>
+
+
+  <h2 class="titulo">Grafo</h2>
+  <div id="mynetwork"></div>
+
+  <h2 class="titulo">Parametros</h2>
+  <div class="parametros">
+
+    <div>
+      <h2>Nodos</h2>
+      <label for="node-id">Id</label>
+      <input id="node-id" type="text" value="5" onkeypress="return solonumeros(event)" onpaste="return false"/>
+
+      <h2>Accion</h2>
+      <button id="node-add" onclick="addNode(),save_data(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso(), imprimir_hamilton(), imprimir_eureliano(), fulker();">Añadir</button>
+      <button id="node-remove" onclick="removeNode(),save_data(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso(), imprimir_hamilton(), imprimir_eureliano(), fulker();">Remover</button>
+    </div>
+
+    <div class = "aristacs">
+      <h2>Aristas</h2>
+
+      <label for="edge-id">Id</label>
+      <input id="edge-id" type="text" value="2" onkeypress="return solonumeros(event)" onpaste="return false"/>
+      <br>
+
+      <label for="edge-from">Desde</label>
+      <input id="edge-from" type="text" value="2" onkeypress="return solonumeros(event)" onpaste="return false" />
+      <br>
+
+      <label for="edge-to">Hacia</label>
+      <input id="edge-to" type="text" value="5" onkeypress="return solonumeros(event)" onpaste="return false"/>
+      <br>
+
+      <label for="label-to">Peso</label>
+      <input id="label-to" type="text" value="1" onkeypress="return solonumeros(event)" onpaste="return false"/>
+      <br>
+
+      <h2>Accion</h2>
+      <button id="edge-add" onclick="addEdge(),save_data(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso(), imprimir_hamilton(), imprimir_eureliano();">Añadir</button>
+      <button id="edge-update" onclick="updateEdge(),save_data(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso(), imprimir_hamilton(), imprimir_eureliano(), fulker();">Actualizar</button>
+      <button id="edge-remove" onclick="removeEdge(),save_data(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso(), imprimir_hamilton(), imprimir_eureliano();">Remover</button>
+    </div>
+
+    <div>
+      <h2>Grafo dirigido</h2>
+      <input type="Radio" id="nodir" name="tipo" checked onclick="direv(),save_data(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso(), imprimir_hamilton(), imprimir_eureliano();"> No
+      dirigido
+      <input type="Radio" id="dirigido" name="tipo" onclick="direv(),save_data(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso(), imprimir_hamilton(), imprimir_eureliano();"> Dirigido
+      <p id=conexo></p>
+      <br>
+      <br>
+      <p>*Para modificar un nodo/arista, por favor ingrese su Id y seleccione remover.</p>
+    </div>
+
+    <div>
+      <h2>Hamiltoniano/Eureliano</h2>
+      
+      <p id=hamilton></p>
+      <br>
+      <p id=eureliano></p>
+      <br>
+    </div>
+
+    
+    <div class="contentcaminomascorto">
+      <h2>Camino más corto</h2>
+      <form name="form" method="get">
+        <p>Nodo incial
+        <p>
+          <input type="text" name="nodoI" onkeypress="return solonumeros(event)" onpaste="return false"/>
+          <br>
+        <p>Nodo final</p>
+        <input type="text" name="nodoF" onkeypress="return solonumeros(event)" onpaste="return false"/>
+      </form>
+      <button id="caminomascorto" onclick="shortestPath(),resultadocaminomascorto();" style="margin: 10px;">Mostrar</button>
+      <p id="mostrarcaminomascorto"></p>
+    </div>
+
+    <div class="contentcaminomascorto">
+      <h2>Flujo máximo</h2>
+      <form name="form" method="get">
+          <label for="nodoOrigen">Nodo origen</label>
+          <input type="text" id="nodoOrigen" onkeypress="return solonumeros(event)" onpaste="return false" />
+          <br>
+          <label for="nodoDestino">Nodo destino</label>
+         <input type="text" id="nodoDestino" onkeypress="return solonumeros(event)" onpaste="return false" />
+      </form>
+      <button id="caminomascorto" onclick="fulker();" style="margin: 10px;">Mostrar</button>
+      <p id="mostrarflujo"></p>
+    </div>
+  </div>
+
+  <h1 class="titulo">Matrices</h1>
+
+  <div class="contenedormatrices">
+
+    <div class="contenedormatrizadyacente">
+      <h2 class="nombreM">Matriz Adyacente</h2>
+      <table id="tablamatrizadyacente" border="1">
+        <caption>Matriz de Adyacencia</caption>
+        <tr>
+          <td></td>
+          <th scope="Titu">Adyacente</th>
+        </tr>
+      </table>
+    </div>
+
+    <div class="contenedorcaminomatriz">
+      <h2 class="NombreMatrizCamino">Matriz de camino</h2>
+      <table id="tablacaminomatriz" border="1">
+        <caption>Matriz de Caminos</caption>
+        <tr>
+          <td></td>
+          <th scope="Titu">Camino</th>
+        </tr>
+      </table>
+    </div>
+
+  </div>
+
+  <h1 class="titulo">Variables</h1>
+  <div class="variables">
+    <div>
+      <h2>Nodos</h2>
+      <pre id="nodes"></pre>
+    </div>
+    <div>
+      <h2>Aristas</h2>
+      <pre id="edges"></pre>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>Estudiantes Universidad Tecnologica Metropolitana</p>
+  </footer>
+
+</body>
+
+</html>
