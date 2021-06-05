@@ -47,8 +47,8 @@
       <input id="node-id" type="text" value="5" />
 
       <h2>Accion</h2>
-      <button id="node-add" onclick="addNode(),save_data(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso(), imprimir_hamilton(), imprimir_eureliano(), fulker();">Añadir</button>
-      <button id="node-remove" onclick="removeNode(),save_data(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso(), imprimir_hamilton(), imprimir_eureliano(), fulker();">Remover</button>
+      <button id="node-add" onclick="addNode(),save_data(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso(), imprimir_hamilton(), imprimir_eureliano(), fulker(),Kruskal();">Añadir</button>
+      <button id="node-remove" onclick="removeNode(),save_data(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso(), imprimir_hamilton(), imprimir_eureliano(), fulker(),Kruskal();">Remover</button>
     </div>
 
     <div class = "aristacs">
@@ -71,16 +71,16 @@
       <br>
 
       <h2>Accion</h2>
-      <button id="edge-add" onclick="addEdge(),save_data(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso(), imprimir_hamilton(), imprimir_eureliano();">Añadir</button>
-      <button id="edge-update" onclick="updateEdge(),save_data(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso(), imprimir_hamilton(), imprimir_eureliano(), fulker();">Actualizar</button>
-      <button id="edge-remove" onclick="removeEdge(),save_data(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso(), imprimir_hamilton(), imprimir_eureliano();">Remover</button>
+      <button id="edge-add" onclick="addEdge(),save_data(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso(), imprimir_hamilton(), imprimir_eureliano(),Kruskal();">Añadir</button>
+      <button id="edge-update" onclick="updateEdge(),save_data(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso(), imprimir_hamilton(), imprimir_eureliano(), fulker(),Kruskal();">Actualizar</button>
+      <button id="edge-remove" onclick="removeEdge(),save_data(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso(), imprimir_hamilton(), imprimir_eureliano(),Kruskal();">Remover</button>
     </div>
 
     <div>
       <h2>Grafo dirigido</h2>
-      <input type="Radio" id="nodir" name="tipo" checked onclick="direv(),save_data(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso(), imprimir_hamilton(), imprimir_eureliano();"> No
+      <input type="Radio" id="nodir" name="tipo" checked onclick="direv(),save_data(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso(), imprimir_hamilton(), imprimir_eureliano(),Kruskal();"> No
       dirigido
-      <input type="Radio" id="dirigido" name="tipo" onclick="direv(),save_data(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso(), imprimir_hamilton(), imprimir_eureliano();"> Dirigido
+      <input type="Radio" id="dirigido" name="tipo" onclick="direv(),save_data(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso(), imprimir_hamilton(), imprimir_eureliano(),Kruskal();"> Dirigido
       <p id=conexo></p>
       <br>
       <br>
@@ -122,6 +122,11 @@
       </form>
       <button id="caminomascorto" onclick="fulker();" style="margin: 10px;">Mostrar</button>
       <p id="mostrarflujo"></p>
+    </div>
+    <div class="contKruskal">
+      <h2>Kruskal: Arbol generador minimo</h2>
+      <p id="resultadoKruskal"> </p>
+
     </div>
   </div>
 

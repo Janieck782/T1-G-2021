@@ -302,6 +302,12 @@ function draw() {
   network = new vis.Network(container, data, options);
 }
 
+
+
+
+
+
+
 /*
     Funcion para dirigir o no el grafo
 */
@@ -778,19 +784,22 @@ function Kruskal() {
   var fico = 1;
 
   for (let k = 1; k < nodes.length; k++) {
-    for (let j = 1; j < longitud; j++) {
-      if (aux % 2 == 0) {
-        if (matrixKruskal[fico][j] < minimo && matrixKruskal[fico][j] != 0) {
-          minimo = matrixKruskal[fico][j];
-          nodeaux = j;
+    for (let j = 1; j < longitud; j++){
+      
+        if (aux % 2 == 0) {
+          if (matrixKruskal[fico][j] < minimo && matrixKruskal[fico][j] != 0 ) {
+            minimo = matrixKruskal[fico][j];
+            nodeaux = j;
+          }
+        } else {
+          if (matrixKruskal[j][fico] < minimo && matrixKruskal[j][fico] != 0 ) {
+            minimo = matrixKruskal[j][fico];
+            nodeaux = j;
+          }
         }
-      } else {
-        if (matrixKruskal[j][fico] < minimo && matrixKruskal[j][fico] != 0) {
-          minimo = matrixKruskal[j][fico];
-          nodeaux = j;
-        }
-      }
+      
     }
+    console.log(matrixKruskal);
     if (minimo != 0 || minimo != 1000) {
       nodoA.push(fico);
       nodoB.push(nodeaux);
@@ -799,10 +808,39 @@ function Kruskal() {
       matrixKruskal[nodeaux][fico] = 0;
       fico = nodeaux;
       minimo = 1000;
+      aux++;
+    }
+
+var a = conexo();
+
+if(a = true){
+    document.getElementById("resultadoKruskal").innerHTML = "";
+    for(let g = 0; g < nodoA.length; g++){
+      document.getElementById("resultadoKruskal").innerHTML += "<p>"+"Desde " + nodoA[g]+" hasta "+ nodoB[g]+".</p>";
     }
   }
+  else{
+    document.getElementById("resultadoKruskal").innerHTML = "No es conexo";
+
+  }
+
+  }
+
+
   console.log(nodoA, nodoB, arcos);
+
+  //generar arbol de expansion minimo
+
+
+
+
+  
 }
+
+
+
+
+
 
 
 /*
@@ -816,7 +854,7 @@ window.addEventListener("load", () => {
   imprimir_conexo();
   matrizPeso();
   imprimir_hamilton();
-  imprimir_eureliano()
+  imprimir_eureliano();
   Kruskal();
   // caminoCorto();
 });
