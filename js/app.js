@@ -1,5 +1,5 @@
 var nodes, edges, network;
-var matrix, camino, matrixcamino, matrixpeso, matrizcopia, grafoDijkstra, matrizpesoreal;
+var matrix, camino, matrixcamino, matrixpeso, matrizcopia, grafoDijkstra, matrizpesoreal, matrixKruskal;
 var mapfrom, mapto, maplabel;
 var options;
 var nodir, dirigido;
@@ -137,33 +137,32 @@ function draw() {
     );
   });
 
-  nodes.add([
-    {
-    
+  nodes.add([{
+
       id: "1",
       label: "Nodo 1"
-  },
-  {
+    },
+    {
       id: "2",
       label: "Nodo 2"
-  },
-  {
+    },
+    {
       id: "3",
       label: "Nodo 3"
-  },
-  {
+    },
+    {
       id: "4",
       label: "Nodo 4"
-  },
-  {
+    },
+    {
       id: "5",
       "label": "Nodo 5"
-  },
-  {
+    },
+    {
       id: "6",
       label: "Nodo 6"
-  },
-]);
+    },
+  ]);
 
   // create an array with edges
   edges = new vis.DataSet();
@@ -176,96 +175,96 @@ function draw() {
   });
 
   edges.add([{
-    id: "1",
-    from: "1",
-    to: "2",
-    label: "12"
-},
-{
-    id: "2",
-    from: "2",
-    to: "3",
-    label: "23"
-},
-{
-    id: "3",
-    from: "1",
-    to: "4",
-    label: "14"
-},
-{
-    id: "4",
-    from: "4",
-    to: "5",
-    label: "20"
-},
-{
-    id: "5",
-    from: "5",
-    to: "6",
-    label: "15"
-},
-{
-    id: "6",
-    from: "3",
-    to: "6",
-    label: "12"
-},
-{
-    id: "7",
-    from: "2",
-    to: "6",
-    label: "8"
-},
-{
-    id: "8",
-    from: "3",
-    to: "5",
-    label: "16"
-},
-{
-    id: "9",
-    from: "2",
-    to: "5",
-    label: "13"
-},
-{
-    id: "10",
-    from: "1",
-    to: "3",
-    label: "20"
-},
-{
-    id: "11",
-    from: "2",
-    to: "4",
-    label: "7"
-},
-{
-    id: "12",
-    from: "4",
-    to: "6",
-    label: "9"
-},
-{
-    id: "13",
-    from: "1",
-    to: "6",
-    label: "25"
-},
-{
-    id: "14",
-    from: "1",
-    to: "5",
-    label: "15"
-},
-{
-    id: "15",
-    from: "3",
-    to: "4",
-    label: "16"
-},
-]);
+      id: "1",
+      from: "1",
+      to: "2",
+      label: "12"
+    },
+    {
+      id: "2",
+      from: "2",
+      to: "3",
+      label: "23"
+    },
+    {
+      id: "3",
+      from: "1",
+      to: "4",
+      label: "14"
+    },
+    {
+      id: "4",
+      from: "4",
+      to: "5",
+      label: "20"
+    },
+    {
+      id: "5",
+      from: "5",
+      to: "6",
+      label: "15"
+    },
+    {
+      id: "6",
+      from: "3",
+      to: "6",
+      label: "12"
+    },
+    {
+      id: "7",
+      from: "2",
+      to: "6",
+      label: "8"
+    },
+    {
+      id: "8",
+      from: "3",
+      to: "5",
+      label: "16"
+    },
+    {
+      id: "9",
+      from: "2",
+      to: "5",
+      label: "13"
+    },
+    {
+      id: "10",
+      from: "1",
+      to: "3",
+      label: "20"
+    },
+    {
+      id: "11",
+      from: "2",
+      to: "4",
+      label: "7"
+    },
+    {
+      id: "12",
+      from: "4",
+      to: "6",
+      label: "9"
+    },
+    {
+      id: "13",
+      from: "1",
+      to: "6",
+      label: "25"
+    },
+    {
+      id: "14",
+      from: "1",
+      to: "5",
+      label: "15"
+    },
+    {
+      id: "15",
+      from: "3",
+      to: "4",
+      label: "16"
+    },
+  ]);
 
   // create a network
   var container = document.getElementById("mynetwork");
@@ -587,7 +586,7 @@ function Eureliano() {
   let con = conexo();
   var cont;
 
-  if(conexo() === false) return false;
+  if (conexo() === false) return false;
   else if (con === true && nodir.checked === true) {
     for (let i = 1; i < matrix.length; i++) {
       cont = 0;
@@ -615,11 +614,13 @@ function imprimir_eureliano() {
 }
 
 function matrizpesor() {
-  var matrizpesoreal = JSON.parse(JSON.stringify(matrixpeso));
+  matrizpesoreal = JSON.parse(JSON.stringify(matrixpeso));
 
   matrizpesoreal.shift();
-  
-  for (var i = 0; i < matrizpesoreal.length; i++) { matrizpesoreal[i].splice( 0, 1 ); }
+
+  for (var i = 0; i < matrizpesoreal.length; i++) {
+    matrizpesoreal[i].splice(0, 1);
+  }
   console.log("Matriz peso real: ");
   console.log(matrizpesoreal);
 }
@@ -628,8 +629,8 @@ function bfs(rGraph, s, t, parent) {
   var visited = [];
   var queue = [];
   var V = rGraph.length;
-  
-  for(let i = 0; i < V; i++) {
+
+  for (let i = 0; i < V; i++) {
     visited[i] = false;
   }
 
@@ -637,10 +638,10 @@ function bfs(rGraph, s, t, parent) {
   visited[s] = true;
   parent[s] = -1;
 
-  while(queue.length != 0) {
+  while (queue.length != 0) {
     var u = queue.shift();
-    for(let v = 0; v < V; v++) {
-      if(visited[v] == false && rGraph[u][v] > 0) {
+    for (let v = 0; v < V; v++) {
+      if (visited[v] == false && rGraph[u][v] > 0) {
         queue.push(v);
         parent[v] = u;
         visited[v] = true;
@@ -653,42 +654,42 @@ function bfs(rGraph, s, t, parent) {
 
 function fordFulkerson(graph, s, t) {
   console.log(graph);
-  if (s < 0 || t < 0 || s > graph.length-1 || t > graph.length-1){
+  if (s < 0 || t < 0 || s > graph.length - 1 || t > graph.length - 1) {
     return 0;
   }
-  if(graph.length === 0){
+  if (graph.length === 0) {
     return 0;
   }
-	var rGraph = [];
-	for (var u = 0; u < graph.length; u++) {
-		var temp = [];
-    if(graph[u].length !== graph.length){
+  var rGraph = [];
+  for (var u = 0; u < graph.length; u++) {
+    var temp = [];
+    if (graph[u].length !== graph.length) {
       return 0;
     }
-		for (v = 0; v < graph.length; v++) {
-			temp.push(graph[u][v]);
-		}
-		rGraph.push(temp);
-	}
-	var parent = [];
-	var maxFlow = 0;
+    for (v = 0; v < graph.length; v++) {
+      temp.push(graph[u][v]);
+    }
+    rGraph.push(temp);
+  }
+  var parent = [];
+  var maxFlow = 0;
 
-	while (bfs(rGraph, s, t, parent)) {
-		var pathFlow = Number.MAX_VALUE;
-		for (var v = t; v != s; v = parent[v]) {
-			u = parent[v];
-			pathFlow = Math.min(pathFlow, rGraph[u][v]);
-		}
-		for (v = t; v != s; v = parent[v]) {
-			u = parent[v];
-			rGraph[u][v] -= pathFlow;
-			rGraph[v][u] += pathFlow;
-		}
+  while (bfs(rGraph, s, t, parent)) {
+    var pathFlow = Number.MAX_VALUE;
+    for (var v = t; v != s; v = parent[v]) {
+      u = parent[v];
+      pathFlow = Math.min(pathFlow, rGraph[u][v]);
+    }
+    for (v = t; v != s; v = parent[v]) {
+      u = parent[v];
+      rGraph[u][v] -= pathFlow;
+      rGraph[v][u] += pathFlow;
+    }
 
-		maxFlow += pathFlow;
-	}
+    maxFlow += pathFlow;
+  }
 
-	return maxFlow;
+  return maxFlow;
 }
 
 function fulker() {
@@ -696,22 +697,22 @@ function fulker() {
   var des = document.getElementById("nodoDestino").value;
 
   try {
-    var aux = fordFulkerson(matrixpeso, ori,des)
+    var aux = fordFulkerson(matrixpeso, ori, des)
   } catch (err) {
     alert(err);
   }
 
   document.getElementById("mostrarflujo").innerHTML = "";
 
-  
+
 
   document.getElementById("mostrarflujo").innerHTML = "Flujo máximo: " + aux;
 }
 
-function resultadocaminomascorto(){
+function resultadocaminomascorto() {
   document.getElementById("mostrarcaminomascorto").innerHTML = "";
 
-  document.getElementById("mostrarcaminomascorto").innerHTML = "Nodos del camino más corto: "+camino;
+  document.getElementById("mostrarcaminomascorto").innerHTML = "Nodos del camino más corto: " + camino;
 }
 
 function addConexion(nodoInicial, nodoFinal, valorDistancia) {
@@ -784,22 +785,24 @@ function Kruskal() {
   var fico = 1;
 
   for (let k = 1; k < nodes.length; k++) {
-    for (let j = 1; j < longitud; j++){
-      
-        if (aux % 2 == 0) {
-          if (matrixKruskal[fico][j] < minimo && matrixKruskal[fico][j] != 0 ) {
-            minimo = matrixKruskal[fico][j];
-            nodeaux = j;
-          }
-        } else {
-          if (matrixKruskal[j][fico] < minimo && matrixKruskal[j][fico] != 0 ) {
-            minimo = matrixKruskal[j][fico];
-            nodeaux = j;
-          }
+    for (let j = 1; j < longitud; j++) {
+
+      if (aux % 2 == 0) {
+        if (matrixKruskal[fico][j] < minimo && matrixKruskal[fico][j] != 0) {
+          minimo = matrixKruskal[fico][j];
+          nodeaux = j;
         }
-      
+      } else {
+        if (matrixKruskal[j][fico] < minimo && matrixKruskal[j][fico] != 0) {
+          minimo = matrixKruskal[j][fico];
+          nodeaux = j;
+        }
+      }
+
     }
+
     console.log(matrixKruskal);
+
     if (minimo != 0 || minimo != 1000) {
       nodoA.push(fico);
       nodoB.push(nodeaux);
@@ -811,41 +814,40 @@ function Kruskal() {
       aux++;
     }
 
-/*
-    for (let p = 0; p < arcos.length; p++) {
-      for (let y = 1; y < longitud; y++) {
-        for (let o = 1; o < longitud; o++) {
-          if (matrixKruskal[y][o] != 0 && (nodoA[p] == y || nodoB[p] == o) && arcos[p] > matrixKruskal[y][o]) {
-            nodoA[p]=y;
-            nodoB[p]=o;
-            arcos[p]=matrixKruskal[y][o];
-            matrixKruskal[y][o]=0;
-            matrixKruskal[o][y]=0;
-          }
-          else{
-            matrixKruskal[y][o]=0;
-            matrixKruskal[o][y]=0;
+    /*
+        for (let p = 0; p < arcos.length; p++) {
+          for (let y = 1; y < longitud; y++) {
+            for (let o = 1; o < longitud; o++) {
+              if (matrixKruskal[y][o] != 0 && (nodoA[p] == y || nodoB[p] == o) && arcos[p] > matrixKruskal[y][o]) {
+                nodoA[p]=y;
+                nodoB[p]=o;
+                arcos[p]=matrixKruskal[y][o];
+                matrixKruskal[y][o]=0;
+                matrixKruskal[o][y]=0;
+              }
+              else{
+                matrixKruskal[y][o]=0;
+                matrixKruskal[o][y]=0;
+              }
+            }
           }
         }
+    */
+
+
+
+
+    var a = conexo();
+
+    if (a == true) {
+      document.getElementById("resultadoKruskal").innerHTML = "";
+      for (let g = 0; g < nodoA.length; g++) {
+        document.getElementById("resultadoKruskal").innerHTML += "<p>" + "Desde " + nodoA[g] + " hasta " + nodoB[g] + ".</p>";
       }
+    } else {
+      document.getElementById("resultadoKruskal").innerHTML = "No es conexo";
+
     }
-*/
-
-
-
-
-var a = conexo();
-
-if(a = true){
-    document.getElementById("resultadoKruskal").innerHTML = "";
-    for(let g = 0; g < nodoA.length; g++){
-      document.getElementById("resultadoKruskal").innerHTML += "<p>"+"Desde " + nodoA[g]+" hasta "+ nodoB[g]+".</p>";
-    }
-  }
-  else{
-    document.getElementById("resultadoKruskal").innerHTML = "No es conexo";
-
-  }
 
   }
 
@@ -854,42 +856,38 @@ if(a = true){
 
   //generar arbol de expansion minimo
 
-
-
-
-  
 }
 
 
-function LimpiarN(){
-    nodes.clear();
-    edges.clear();
-    nodes.add(nodesArray);
-    edges.add(edgesArray);
+function LimpiarN() {
+  nodes.clear();
+  edges.clear();
+  nodes.add(nodesArray);
+  edges.add(edgesArray);
 }
 
-function solonumeros(e){
-  key=e.keyCode || e.which;
+function solonumeros(e) {
+  var key = e.keyCode || e.which;
 
-  teclado=String.fromCharCode(key);
+  var teclado = String.fromCharCode(key);
 
-  numeros="0123456789";
+  var numeros = "0123456789";
 
-  especiales="8-37-38-46";
+  var especiales = "8-37-38-46";
 
-  teclado_especial=false;
-  
-  for(var i in especiales){
+  var teclado_especial = false;
 
-    if(key==especiales[i]){
-      teclado_especial=true;
+  for (var i in especiales) {
+
+    if (key == especiales[i]) {
+      teclado_especial = true;
     }
 
   }
-  if(numeros.indexOf(teclado)==-1 && !teclado_especial){
+  if (numeros.indexOf(teclado) == -1 && !teclado_especial) {
     return false;
-  } 
   }
+}
 
 
 
@@ -911,6 +909,6 @@ window.addEventListener("load", () => {
   Kruskal();
 
 
-  
+
   // caminoCorto();
 });
