@@ -811,6 +811,29 @@ function Kruskal() {
       aux++;
     }
 
+/*
+    for (let p = 0; p < arcos.length; p++) {
+      for (let y = 1; y < longitud; y++) {
+        for (let o = 1; o < longitud; o++) {
+          if (matrixKruskal[y][o] != 0 && (nodoA[p] == y || nodoB[p] == o) && arcos[p] > matrixKruskal[y][o]) {
+            nodoA[p]=y;
+            nodoB[p]=o;
+            arcos[p]=matrixKruskal[y][o];
+            matrixKruskal[y][o]=0;
+            matrixKruskal[o][y]=0;
+          }
+          else{
+            matrixKruskal[y][o]=0;
+            matrixKruskal[o][y]=0;
+          }
+        }
+      }
+    }
+*/
+
+
+
+
 var a = conexo();
 
 if(a = true){
@@ -838,6 +861,36 @@ if(a = true){
 }
 
 
+function LimpiarN(){
+    nodes.clear();
+    edges.clear();
+    nodes.add(nodesArray);
+    edges.add(edgesArray);
+}
+
+function solonumeros(e){
+  key=e.keyCode || e.which;
+
+  teclado=String.fromCharCode(key);
+
+  numeros="0123456789";
+
+  especiales="8-37-38-46";
+
+  teclado_especial=false;
+  
+  for(var i in especiales){
+
+    if(key==especiales[i]){
+      teclado_especial=true;
+    }
+
+  }
+  if(numeros.indexOf(teclado)==-1 && !teclado_especial){
+    return false;
+  } 
+  }
+
 
 
 
@@ -856,5 +909,8 @@ window.addEventListener("load", () => {
   imprimir_hamilton();
   imprimir_eureliano();
   Kruskal();
+
+
+  
   // caminoCorto();
 });

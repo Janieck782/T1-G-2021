@@ -44,7 +44,7 @@
     <div>
       <h2>Nodos</h2>
       <label for="node-id">Id</label>
-      <input id="node-id" type="text" value="5" />
+      <input id="node-id" type="text" value="1" onkeypress="return solonumeros(event)" onpaste="return false"/>
 
       <h2>Accion</h2>
       <button id="node-add" onclick="addNode(),save_data(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso(), imprimir_hamilton(), imprimir_eureliano(), fulker(),Kruskal();">Añadir</button>
@@ -55,19 +55,19 @@
       <h2>Aristas</h2>
 
       <label for="edge-id">Id</label>
-      <input id="edge-id" type="text" value="4" />
+      <input id="edge-id" type="text" value="2" onkeypress="return solonumeros(event)" onpaste="return false"/>
       <br>
 
       <label for="edge-from">Desde</label>
-      <input id="edge-from" type="text" value="2" />
+      <input id="edge-from" type="text" value="2" onkeypress="return solonumeros(event)" onpaste="return false"/>
       <br>
 
       <label for="edge-to">Hacia</label>
-      <input id="edge-to" type="text" value="5" />
+      <input id="edge-to" type="text" value="5" onkeypress="return solonumeros(event)" onpaste="return false"/>
       <br>
 
       <label for="label-to">Peso</label>
-      <input id="label-to" type="text" value="1" />
+      <input id="label-to" type="text" value="1" onkeypress="return solonumeros(event)" onpaste="return false"/>
       <br>
 
       <h2>Accion</h2>
@@ -83,6 +83,7 @@
       <input type="Radio" id="dirigido" name="tipo" onclick="direv(),save_data(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso(), imprimir_hamilton(), imprimir_eureliano(),Kruskal();"> Dirigido
       <p id=conexo></p>
       <br>
+      <button onclick=" Adj(), caminoreal(), imprimir_conexo(), matrizPeso(), imprimir_hamilton(), imprimir_eureliano(),Kruskal(),LimpiarN();">Limpiar</button>
       <br>
       <p>*Para modificar un nodo/arista, por favor ingrese su Id y seleccione remover.</p>
     </div>
@@ -102,10 +103,10 @@
       <form name="form" method="get">
         <p>Nodo incial
         <p>
-          <input type="text" name="nodoI" />
+          <input type="text" name="nodoI" onkeypress="return solonumeros(event)" onpaste="return false"/>
           <br>
         <p>Nodo final</p>
-        <input type="text" name="nodoF" />
+        <input type="text" name="nodoF" onkeypress="return solonumeros(event)" onpaste="return false"/>
       </form>
       <button id="caminomascorto" onclick="shortestPath(),resultadocaminomascorto();" style="margin: 10px;">Mostrar</button>
       <p id="mostrarcaminomascorto"></p>
@@ -115,10 +116,10 @@
       <h2>Flujo máximo</h2>
       <form name="form" method="get">
           <label for="nodoOrigen">Nodo origen</label>
-          <input type="text" id="nodoOrigen" />
+          <input type="text" id="nodoOrigen" onkeypress="return solonumeros(event)" onpaste="return false" />
           <br>
           <label for="nodoDestino">Nodo destino</label>
-         <input type="text" id="nodoDestino" />
+          <input type="text" id="nodoDestino" onkeypress="return solonumeros(event)" onpaste="return false" />
       </form>
       <button id="caminomascorto" onclick="fulker();" style="margin: 10px;">Mostrar</button>
       <p id="mostrarflujo"></p>
