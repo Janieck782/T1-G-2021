@@ -13,7 +13,7 @@
 2. **Camino más corto**
    Para conocer el camino más corto entre dos nodos ingrese en “Nodo inicial” el Id del nodo desde donde quiere comenzar la búsqueda y “Nodo final” el Id del nodo objetivo, a continuación, seleccione “Mostrar” y se mostrará el camino más corto entre ambos nodos.
 
-3. ** Flujo Máximo**
+3. **Flujo Máximo**
     Para conocer el flujo máximo entre dos nodos ingrese el Id del nodo origen en “Nodo origen” y el Id del nodo destino en el “Nodo destino”, luego, seleccione “Mostrar” y se mostrará el flujo máximo.
 
 4. **Hamiltoniano y/o Euleriano**
