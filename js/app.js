@@ -17,6 +17,7 @@ function toJSON(obj) {
 */
 
 function addNode() {
+  console.log("Se agrego un nodo");
   var aux = document.getElementById("node-id").value;
   try {
     nodes.add({
@@ -32,6 +33,7 @@ function addNode() {
 }
 
 function updateNode() {
+  console.log("Se actualizo el nodo");
   try {
     nodes.update({
       id: document.getElementById("node-id").value,
@@ -45,6 +47,7 @@ function updateNode() {
 }
 
 function removeNode() {
+  console.log("Se removio el nodo");
   try {
     nodes.remove({
       id: document.getElementById("node-id").value
@@ -57,6 +60,7 @@ function removeNode() {
 }
 
 function addEdge() {
+  console.log("Se añadio una arista");
   var aux = document.getElementById("edge-id").value;
   var aux1 = document.getElementById("edge-from").value;
   var aux2 = document.getElementById("edge-to").value;
@@ -76,6 +80,7 @@ function addEdge() {
 }
 
 function updateEdge() {
+  console.log("Se actualizo una arista");
   try {
     edges.update({
       id: document.getElementById("edge-id").value,
@@ -91,6 +96,7 @@ function updateEdge() {
 }
 
 function save_data() {
+  console.log("Se guardo la informacion");
   let i;
 
   mapfrom = edges.map((edge) => edge.from);
@@ -114,6 +120,7 @@ function save_data() {
 }
 
 function removeEdge() {
+  console.log("Se removio una arista");
   var aux = document.getElementById("edge-id").value;
 
   try {
@@ -127,6 +134,7 @@ function removeEdge() {
 }
 
 function draw() {
+  console.log("Se dibuja el grafico");
   // create an array with nodes
   nodes = new vis.DataSet();
   nodes.on("*", function () {
@@ -313,6 +321,7 @@ function draw() {
 */
 
 function direv() {
+  console.log("Funcion Dirigido");
   nodir = document.getElementById("nodir");
   dirigido = document.getElementById("dirigido");
 
@@ -359,6 +368,7 @@ function direv() {
 
 //Funcion para generar la matriz adyacente y su tabla correspondiente
 function Adj() {
+  console.log("Funcion de la matriz adjunta");
   let i, j, c;
   var Table = document.getElementById("tablamatrizadyacente");
   Table.innerHTML = "";
@@ -424,6 +434,7 @@ function Adj() {
 }
 
 function matrizPeso() {
+  console.log("Funcion de la Matriz Peso");
   let c, i, j;
   matrixpeso = JSON.parse(JSON.stringify(matrix));
 
@@ -471,6 +482,7 @@ function matrizPeso() {
 }
 
 function conexo() {
+  console.log("Funcion de la matriz conexo");
   var x = 0;
   var mat = JSON.parse(JSON.stringify(matrixcamino));
 
@@ -487,7 +499,8 @@ function conexo() {
 }
 
 function imprimir_conexo() {
-  console.log("Función conexo");
+
+  console.log("Función que imprime la matriz conexo");
   document.getElementById("conexo").innerHTML = '';
 
   nodir = document.getElementById("nodir");
@@ -502,6 +515,8 @@ function imprimir_conexo() {
 }
 
 function caminoreal() {
+  console.log("Funcion camino");
+
   let i, j, k, n, m;
   var tabla2 = document.getElementById("tablacaminomatriz");
   tabla2.innerHTML = "";
@@ -548,6 +563,7 @@ function matriz_camino(i, j, k) {
 }
 
 function Hamilton() {
+  console.log("Funcion hamiltoniana");
   let hamil = JSON.parse(JSON.stringify(matrix));
   var cont;
   var aux = nodes.length / 2;
@@ -584,6 +600,7 @@ function imprimir_hamilton() {
 }
 
 function Eureliano() {
+  console.log("Funcion eureliana");
   let con = conexo();
   var cont;
 
@@ -615,6 +632,7 @@ function imprimir_eureliano() {
 }
 
 function matrizpesor() {
+  console.log("Funcion matriz pesos");
   var matrizpesoreal = JSON.parse(JSON.stringify(matrixpeso));
 
   matrizpesoreal.shift();
@@ -652,7 +670,7 @@ function bfs(rGraph, s, t, parent) {
 }
 
 function fordFulkerson(graph, s, t) {
-  console.log(graph);
+
   if (s < 0 || t < 0 || s > graph.length-1 || t > graph.length-1){
     return 0;
   }
@@ -738,6 +756,7 @@ function addConexion(nodoInicial, nodoFinal, valorDistancia) {
 }
 
 function shortestPath() {
+  console.log("Funcion Camnino mas corto");
   var nodoiaux, nodofaux;
   grafoDijkstra = new Array(nodes.length);
   var dataedge = edges.get();
@@ -770,14 +789,13 @@ function shortestPath() {
 
 
 function Kruskal() {
+  console.log("Funcion Kruskal");
 
   var nodoA = new Array(),
     nodoB = new Array(),
     arcos = new Array(),
     minimo = 1000;
   matrixKruskal = JSON.parse(JSON.stringify(matrixpeso));
-  console.log("Kruskal");
-  console.log(matrixKruskal);
   var nodeaux;
   var aux = 1;
   var longitud = matrixKruskal.length;
@@ -847,8 +865,6 @@ if(a = true){
 
   }
 
-  console.log(nodoA, nodoB, arcos);
-
   //generar arbol de expansion minimo
 
   }
@@ -856,6 +872,8 @@ if(a = true){
 
 
 function LimpiarN(){
+  console.clear();
+  console.log("Funcion que limpia el grafo");
     nodes.clear();
     edges.clear();
 
@@ -883,6 +901,9 @@ function solonumeros(e){
     return false;
   } 
   }
+
+
+
 
 
 
