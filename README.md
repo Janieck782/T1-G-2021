@@ -1,7 +1,7 @@
 # Trabajo Unidad I: Grafos
 
 * [Version Web](https://goofy-newton-e7e381.netlify.app) - Version web de la pagina
-* [Manual de instalacion](https://docdro.id/yxnerVw) - Manual para la instalacion de la pagina en un servidor local
+* [Manual de instalacion](https://www.docdroid.net/SaHqpLo) - Manual para la instalacion de la pagina en un servidor local
 
 #### Crear y visualizar el grafo
 
