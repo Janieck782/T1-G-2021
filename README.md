@@ -1,46 +1,27 @@
-# T1-G-2021
-El entregable debe ser un sitio que sea instalable auto contenido, es decir que incluya todas las
-librerías necesarias sin requerir instalación adicional en el servidor. Debe ser capaz de ejecutarse en un
-entorno Windows con los siguientes elementos:
+# Trabajo Unidad I: Grafos
 
-• Apache v 2.4
+#### Crear y visualizar el grafo
 
-• IIS v 7.5
+-Ocupe las funciones dentro de Nodos y Aristas para generar el grafo.
+-Para interactuar con una funciona ingrese los datos correspondientes para poder ejecutar la función, algunas funciones se actualizan de manera automática, mientras que otras necesitan interacción del usuario para poder funcionar.
 
-• .NET v 4.8
+#### Análisis del grafo
 
-• Tomcat 8.0
+1. **Grafo Dirigido/No dirigido**
+   Para definir si un grafo es dirigido o no dirigido solo es necesario seleccionar la opción que desee.
 
-• PHP v 7.3
+2. **Camino más corto**
+   Para conocer el camino más corto entre dos nodos ingrese en “Nodo inicial” el Id del nodo desde donde quiere comenzar la búsqueda y “Nodo final” el Id del nodo objetivo, a continuación, seleccione “Mostrar” y se mostrará el camino más corto entre ambos nodos.
 
-• Java 1.8.0_91
+3. ** Flujo Máximo**
+    Para conocer el flujo máximo entre dos nodos ingrese el Id del nodo origen en “Nodo origen” y el Id del nodo destino en el “Nodo destino”, luego, seleccione “Mostrar” y se mostrará el flujo máximo.
 
-Se reitera que los entregables que no corran en dichos entornos se consideran como entregas no conforme a
-lo estipulado, implicando nota mínima. Los trabajos con lenguajes compilables, deben incluir en la pauta las
-indicaciones de compilación. Que un trabajo no compile o no vengan las instrucciones de compilación, se
-considerará entrega no conforme y por ende, tendrán nota mínima. Además, en el repositorio debe haber un
-directorio especial que contenga el sitio ya compilado.
-Los aplicativos no pueden depender de la ruta de instalación en el disco/servidor. En general (aunque no
-necesariamente), los aplicativos serán instalados en ruta del tipo “ruta_www/GLF-TXX-GYY”; si para el
-funcionamiento de la aplicación, se debe saber la ruta, esta debe ser en un parámetro/properties dentro del
-sitio (indicado claramente en las instrucciones de instalación para que el docente pueda ajustarlo). Si un
-aplicativo depende de una ruta fija, contrario a lo antes indicado, se considerará entrega no conforme y, por
-ende, tendrá nota mínima.
+4. **Hamiltoniano y/o Euleriano**
+    Se entregara de manera automatica la informacion si el grafo es Hamiltoniano y/o Euleriano
 
-Diseñar una aplicación web (página web) que, en base a los contenidos de la asignatura, permita:
-1. Ingresar un grafo a la aplicación (puede ser simple, dirigido, etiquetado, etc.)[check]
-2. A partir del grafo ingresado, debe:
+5. **Flujo Máximo**
+    Para conocer el flujo máximo entre dos nodos ingrese el Id del nodo origen en “Nodo origen” y el Id del nodo destino en el “Nodo destino”, luego, seleccione “Mostrar” y se mostrará el flujo máximo.
 
-
-a. Mostrar matriz de caminos e indicar si el grafo es o no conexo. [check]
-
-b. Mostrar el camino más corto para dos nodos a elección del usuario, mostrando la duración
-y la ruta de dicho camino (nodos por los que pasa).
-
-c. Indicar si es hamiltoniano y/o euleriano, indicando el camino hamiltoniano y/o euleriano
-que lo define como tal.
-
-d. Indicar el flujo máximo para un nodo de origen/entrada y otro de destino/salida a elección
-del usuario.
-
-e. Obtener el árbol generador mínimo mediante prim o kruskal.
+6. **Árbol Generador Mínimo: Kruskal**
+    El arbol generador minimo se actualizara de manera automatica al interactuar con el grafo.
+    
