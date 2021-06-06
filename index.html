@@ -49,6 +49,7 @@
       <h2>Accion</h2>
       <button id="node-add" onclick="addNode(),save_data(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso(), imprimir_hamilton(), imprimir_eureliano(), Kruskal();">Añadir</button>
       <button id="node-remove" onclick="removeNode(),save_data(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso(), imprimir_hamilton(), imprimir_eureliano(), Kruskal();">Remover</button>
+     
     </div>
 
     <div class = "aristacs">
@@ -81,31 +82,33 @@
       <input type="Radio" id="nodir" name="tipo" checked onclick="direv(),save_data(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso(), imprimir_hamilton(), imprimir_eureliano(),Kruskal();"> No
       dirigido
       <input type="Radio" id="dirigido" name="tipo" onclick="direv(),save_data(), Adj(), caminoreal(), imprimir_conexo(), matrizPeso(), imprimir_hamilton(), imprimir_eureliano(),Kruskal();"> Dirigido
-      <p id=conexo></p>
       <br>
+      <h2>Tipo de grafo</h2>
+      <p id=conexo></p>
+      <h2>Limpiar datos del grafo</h2>
       <button onclick=" Adj(), caminoreal(), imprimir_conexo(), matrizPeso(), imprimir_hamilton(), imprimir_eureliano(),Kruskal(),LimpiarN();">Limpiar</button>
       <br>
-      <p>*Para modificar un nodo/arista, por favor ingrese su Id y seleccione remover.</p>
+
     </div>
 
     <div>
       <h2>Hamiltoniano/Eureliano</h2>
+      <p>Indica si un grafo Eureliano o Hamiltoniano</p>
       
-      <p id=hamilton></p>
-      <br>
-      <p id=eureliano></p>
-      <br>
+      <h2 id=hamilton></h2>
+  
+      <h2 id=eureliano></h2>
+    
     </div>
 
     
     <div class="contentcaminomascorto">
       <h2>Camino más corto</h2>
+      <p>Señala el camino mas corto entre dos Nodos</p>
       <form name="form" method="get">
         <p>Nodo incial
-        <p>
           <input type="text" name="nodoI" onkeypress="return solonumeros(event)" onpaste="return false"/>
-          <br>
-        <p>Nodo final</p>
+        <p>Nodo final
         <input type="text" name="nodoF" onkeypress="return solonumeros(event)" onpaste="return false"/>
       </form>
       <button id="caminomascorto" onclick="shortestPath(),resultadocaminomascorto();" style="margin: 10px;">Mostrar</button>
@@ -114,6 +117,7 @@
 
     <div class="contentcaminomascorto">
       <h2>Flujo máximo</h2>
+      <p>Señala la mayor distancia entre dos nodos</p>
       <form name="form" method="get">
           <label for="nodoOrigen">Nodo origen</label>
           <input type="text" id="nodoOrigen" onkeypress="return solonumeros(event)" onpaste="return false" />
@@ -125,9 +129,27 @@
       <p id="mostrarflujo"></p>
     </div>
     <div class="contKruskal">
-      <h2>Kruskal: Arbol generador minimo</h2>
+      <h3>Kruskal</h3>
+      <h2>Muestra el arbol generador minimo:</h2>
       <p id="resultadoKruskal"> </p>
 
+    </div>
+    <div>
+      <h2>Instrucciones:</h2>
+      <p>Para modificar un nodo/arista, por favor ingrese su Id.</p>
+      <p>Todos los datos ingresados deben de ser números enteros.</p>
+      <p>No pueden existir dos aristas/nodos con el mismo Id y estas deben de ser correlativas partiendo del número 1.</p>
+      <p>Para identificar el Id de un nodo o arista facilemente,visite la zona de variables</p>
+    </div>
+    <div>
+      <h2>Integrantes:</h2>
+      <p>DANTE SEBASTIAN CACERES OLGUIN</p>
+      <p>MATÍAS ALEJANDRO MUÑOZ MERINO</p>
+      <p>ISMAEL RUBÉN JARA GUTIÉRREZ</p>
+      <p>JEAN SEBASTIÁN SANDOVAL CASTRO</p>
+      <br>
+      <h3>GRAFOS Y LENGUAJES FORMALES</h3>
+      </p>
     </div>
   </div>
 
@@ -172,7 +194,21 @@
   </div>
 
   <footer class="footer">
+
     <p>Estudiantes Universidad Tecnologica Metropolitana</p>
+    <a href="https://github.com/Janieck782/T1-G-2021"><svg xmlns="http://www.w3.org/2000/svg"  class="icon icon-tabler icon-tabler-brand-github" width="40" height="40" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" /> 
+    </svg>
+    </a>
+    <a href="https://www.utem.cl/"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-school" width="40" height="40" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <path d="M22 9l-10 -4l-10 4l10 4l10 -4v6" />
+      <path d="M6 10.6v5.4a6 3 0 0 0 12 0v-5.4" />
+    </svg>
+  </a>
+   
+
   </footer>
 
 </body>
