@@ -1,6 +1,6 @@
 # Trabajo Unidad I: Grafos
 
-* [Version Web](https://integral-gf2021s1.netlify.app/) - Version web de la pagina
+* [Version Web](https://t1-g-2021-grafos.netlify.app/) - Version web de la pagina
 * [Manual de instalacion](https://www.docdroid.net/SaHqpLo) - Manual para la instalacion de la pagina en un servidor local
 
 #### Crear y visualizar el grafo
